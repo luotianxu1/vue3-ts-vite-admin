@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHashHistory } from "vue-router"
 
 const router = createRouter({
-	history: createWebHistory(import.meta.env.BASE_URL),
+	history: createWebHashHistory(),
 	routes: [
 		{
 			path: "/",
@@ -10,7 +10,7 @@ const router = createRouter({
 		{
 			path: "/login",
 			name: "login",
-			component: () => import("@/views/login/Login.vue")
+			component: () => import("@views/login/Login.vue")
 		}
 	]
 })
