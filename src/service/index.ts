@@ -1,3 +1,5 @@
+import { LOGIN_TOKEN } from "@/global/constants"
+import { localCache } from "@/utils/cache"
 import Request from "./request"
 import { BASE_URL, TIME_OUT } from "./request/config"
 
@@ -6,9 +8,9 @@ const api = new Request({
 	timeout: TIME_OUT,
 	interceptors: {
 		requsetInterceptor: config => {
-			const token = ""
-			if (token) {
-				config.headers.Authorization = `Bear ${token}`
+			const token = localCache.getCache(LOGIN_TOKEN)
+			if (config.headers && token) {
+				config.headers.Authorization = "Bear " + localCache.getCache(LOGIN_TOKEN)
 			}
 			return config
 		},

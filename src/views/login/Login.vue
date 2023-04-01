@@ -12,7 +12,15 @@
 						<el-input v-model="form.name" class="input" size="large" placeholder="请输入用户名" :prefix-icon="User" />
 					</el-form-item>
 					<el-form-item prop="password">
-						<el-input v-model="form.password" class="input" size="large" placeholder="请输入登录密码" :prefix-icon="Unlock" />
+						<el-input
+							v-model="form.password"
+							class="input"
+							size="large"
+							placeholder="请输入登录密码"
+							:prefix-icon="Unlock"
+							type="password"
+							show-password
+						/>
 					</el-form-item>
 					<el-form-item prop="code">
 						<el-input v-model="form.code" class="input-code" size="large" placeholder="请输入右侧校验码" :prefix-icon="Key" />
@@ -35,16 +43,21 @@
 import { User, Unlock, Key } from "@element-plus/icons-vue"
 import { type FormRules, type FormInstance, ElMessage } from "element-plus"
 import CodeBox from "./components/CodeBox.vue"
+import useLoginStore from "@stores/login/login"
+import { localCache } from "@/utils/cache"
+import { CACHE_NAME, CACHE_PASSWORD } from "@/global/constants"
 
 const checkBoxRef = ref<InstanceType<typeof CodeBox>>()
 // checkBoxRef.value?.checkBox()
 
+const loginStore = useLoginStore()
+
 const ruleFormRef = ref<FormInstance>()
 const form = reactive({
-	name: "",
-	password: "",
+	name: localCache.getCache(CACHE_NAME) ?? "",
+	password: localCache.getCache(CACHE_PASSWORD) ?? "",
 	code: "",
-	remember: false
+	remember: localCache.getCache(CACHE_NAME) ? true : false
 })
 const rules = reactive<FormRules>({
 	name: [
@@ -59,10 +72,14 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 	if (!formEl) return
 	await formEl.validate(valid => {
 		if (valid) {
-			console.log(form)
+			loginStore.loginAccountAction(
+				{
+					name: form.name,
+					password: form.password
+				},
+				form.remember
+			)
 		} else {
-			console.log(123)
-
 			ElMessage.warning("请输入完整表单")
 		}
 	})

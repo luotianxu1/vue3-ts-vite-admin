@@ -5,7 +5,10 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@assets/*": ["./src/assets/*"],
-			"@views/*": ["./src/views/*"]
+			"@views/*": ["./src/views/*"],
+			"@stores/*": ["./src/stores/*"],
+			"@utils/*": ["./src/utils/*"],
+			"@global/*": ["./src/global/*"]
 		},
 		"types": ["element-plus/global"],
 		"typeRoots": ["./node_modules/@types/", "./src/types/"]

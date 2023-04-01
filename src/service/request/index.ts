@@ -59,20 +59,6 @@ class Request {
 		)
 	}
 
-	// interface DataType {
-	//   data: any
-	//   returnCode: string
-	//   success: boolean
-	// }
-	// api.get<DataType>({
-	//   url: "/home/multidata",
-	//   interceptors: {
-	//     requsetInterceptor: config => {
-	//       return config
-	//     }
-	//   },
-	//   showLoading: false
-	// })
 	request<T>(config: RequestConfig<T>): Promise<T> {
 		return new Promise((resolve, reject) => {
 			// 单个请求对请求config的处理
