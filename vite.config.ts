@@ -7,6 +7,8 @@ import Components from "unplugin-vue-components/vite"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 import { createStyleImportPlugin, ElementPlusResolve } from "vite-plugin-style-import"
 import { viteMockServe } from "vite-plugin-mock"
+import Icons from "unplugin-icons/vite"
+import IconsResolver from "unplugin-icons/resolver"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +16,12 @@ export default defineConfig({
 		vue(),
 		vueJsx(),
 		AutoImport({
-			resolvers: [ElementPlusResolver()],
+			resolvers: [
+				ElementPlusResolver(),
+				IconsResolver({
+					prefix: "Icon"
+				})
+			],
 			imports: ["vue", "vue-router", "pinia"],
 			dts: "src/types/auto-imports.d.ts",
 			eslintrc: {
@@ -24,8 +31,16 @@ export default defineConfig({
 			}
 		}),
 		Components({
-			resolvers: [ElementPlusResolver()],
+			resolvers: [
+				ElementPlusResolver(),
+				IconsResolver({
+					enabledCollections: ["ep"]
+				})
+			],
 			dts: "src/types/components.d.ts"
+		}),
+		Icons({
+			autoInstall: true
 		}),
 		// 自动引入element-plus样式
 		createStyleImportPlugin({

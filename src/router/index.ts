@@ -1,4 +1,4 @@
-import { LOGIN_TOKEN } from "@/global/constants"
+import { GLOB_APP_HOME, LOGIN_TOKEN } from "@/global/constants"
 import { localCache } from "@/utils/cache"
 import { createRouter, createWebHashHistory } from "vue-router"
 
@@ -17,11 +17,19 @@ const router = createRouter({
 		{
 			path: "/main",
 			name: "main",
-			component: () => import("@views/main/Main.vue")
+			component: () => import("@/components/layoutBase/index.vue"),
+			redirect: GLOB_APP_HOME,
+			children: [
+				{
+					path: "/main/user",
+					name: "user",
+					component: () => import("@views/main/Main.vue")
+				}
+			]
 		},
 		{
 			path: "/:pathMatch(.*)",
-			component: () => import("@views/not-fount/404.vue")
+			component: () => import("@views/error/404.vue")
 		}
 	]
 })

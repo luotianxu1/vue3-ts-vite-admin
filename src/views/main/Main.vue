@@ -1,12 +1,11 @@
 <template>
 	<div><el-button @click="logout">退出登陆</el-button></div>
-
 	{{ userInfo }}
 </template>
 
 <script lang="ts" setup>
 import { LOGIN_TOKEN } from "@/global/constants"
-import useLoginStore from "@/stores/login/login"
+import userLoginStore from "@/stores/login/login"
 import { localCache } from "@/utils/cache"
 
 const router = useRouter()
@@ -17,7 +16,7 @@ const logout = () => {
 	router.push("/login")
 }
 
-const loginStore = useLoginStore()
+const loginStore = userLoginStore()
 const userInfo = loginStore.token
 </script>
 

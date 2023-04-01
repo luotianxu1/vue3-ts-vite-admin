@@ -4,3 +4,16 @@
 	position: relative;
 	font-family: "微软雅黑 Bold", "微软雅黑 Regular", "微软雅黑", sans-serif;
 }
+
+/* flex */
+.flx-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.flx-justify-between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

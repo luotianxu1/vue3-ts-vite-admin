@@ -16,6 +16,7 @@ export interface IUserInfo {
 	enable?: number
 	createTime?: string
 	updateTime?: string
+	img: string
 	role?: {
 		id: string
 		name: string
@@ -37,11 +38,32 @@ export interface Menu {
 }
 
 export interface MenuListResult {
-	menu: Menu[]
+	menu: IMenuOptions[]
 }
 
 export interface ILoginStore {
 	token: string
 	userInfo: IUserInfo
-	userMenuList: Menu[]
+	userMenuList: IMenuOptions[]
+}
+
+// 路由
+export interface IMetaProps {
+	icon: string
+	title: string
+	activeMenu?: string
+	isLink?: string
+	isHide: boolean
+	isFull: boolean
+	isAffix: boolean
+	isKeepAlive: boolean
+}
+
+export interface IMenuOptions {
+	path: string
+	name: string
+	component?: string | (() => Promise<any>)
+	redirect?: string
+	meta: IMetaProps
+	children?: IMenuOptions[]
 }
