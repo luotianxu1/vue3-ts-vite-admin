@@ -44,13 +44,13 @@
 <script setup lang="ts">
 import Main from "../components/main/Main.vue"
 import HeaderRight from "../components/header/HeaderRight.vue"
-import GlobalStore from "@/stores/global/global"
-import UserLoginStore from "@/stores/login/login"
+import { GlobalStore } from "@/stores/modules/global"
+import { UserStore } from "@/stores/modules/user"
 import type { IMenuOptions } from "@/types"
 
 const router = useRouter()
 const globalStore = GlobalStore()
-const userStore = UserLoginStore()
+const userStore = UserStore()
 const menuList = computed(() => userStore.showMenuListGet)
 
 // 图标

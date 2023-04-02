@@ -1,11 +1,11 @@
 import { defineStore } from "pinia"
-// import piniaPersistConfig from "@/config/piniaPersist"
+import piniaPersistConfig from "@/global/piniaPersist"
 import router from "@/router/index"
 import { GLOB_APP_HOME, DEFAULT_PRIMARY, TABS_BLACK_LIST } from "@/global/constants"
 import dayjs from "dayjs"
 import type { GlobalState, IRouterList, ThemeConfigProps } from "@/types"
 
-const globalStore = defineStore("GlobalState", {
+export const GlobalStore = defineStore("GlobalState", {
 	state: (): GlobalState => ({
 		// 系统语言
 		language: "zh",
@@ -102,8 +102,6 @@ const globalStore = defineStore("GlobalState", {
 		setThemeConfig(themeConfig: ThemeConfigProps) {
 			this.themeConfig = themeConfig
 		}
-	}
-	// persist: piniaPersistConfig("GlobalState")
+	},
+	persist: piniaPersistConfig("GlobalState")
 })
-
-export default globalStore

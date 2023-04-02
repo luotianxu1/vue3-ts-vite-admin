@@ -22,7 +22,7 @@
 <script lang="ts" setup>
 import router from "@/router/index"
 import type { RouteLocationRaw } from "vue-router"
-import userLoginStore from "@/stores/login/login"
+import { UserStore } from "@/stores/modules/user"
 
 const headerSearchRef = ref()
 const isShow = ref(false)
@@ -32,7 +32,7 @@ const showSearch = () => {
 }
 
 const search = ref("")
-const userStore = userLoginStore()
+const userStore = UserStore()
 const menuList = computed(() => userStore.flatMenuListGet.filter(item => !item.meta.isHide && item.component))
 
 const onSelectChange = (path: RouteLocationRaw) => {

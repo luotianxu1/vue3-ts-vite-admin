@@ -103,7 +103,7 @@
 <script lang="ts" setup>
 import { DEFAULT_PRIMARY } from "@/global/constants"
 import { useTheme } from "@/hooks/useTheme"
-import GlobalStore from "@/stores/global/global"
+import { GlobalStore } from "@/stores/modules/global"
 import { ElMessage } from "element-plus"
 
 const drawer = ref(false)

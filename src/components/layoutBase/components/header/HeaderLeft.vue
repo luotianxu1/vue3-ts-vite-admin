@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import GlobalStore from "@/stores/global/global"
+import { GlobalStore } from "@/stores/modules/global"
 import BreadCrumb from "./components/BreadCrumb.vue"
 
 const globalStore = GlobalStore()

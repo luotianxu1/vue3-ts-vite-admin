@@ -1,23 +1,7 @@
 <template>
-	<div><el-button @click="logout">退出登陆</el-button></div>
-	{{ userInfo }}
+	<div><el-button>退出登陆</el-button></div>
 </template>
 
-<script lang="ts" setup>
-import { LOGIN_TOKEN } from "@/global/constants"
-import userLoginStore from "@/stores/login/login"
-import { localCache } from "@/utils/cache"
-
-const router = useRouter()
-const logout = () => {
-	// 删除token
-	localCache.removeCache(LOGIN_TOKEN)
-	// 跳回登陆页面
-	router.push("/login")
-}
-
-const loginStore = userLoginStore()
-const userInfo = loginStore.token
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss" scoped></style>

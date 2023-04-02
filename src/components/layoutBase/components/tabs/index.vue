@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import MoreButton from "./components/MoreButton.vue"
 import type { TabPaneName, TabsPaneContext } from "element-plus"
-import GlobalStore from "@/stores/global/global"
+import { GlobalStore } from "@/stores/modules/global"
 
 const globalStore = GlobalStore()
 const tabsMenuList = computed(() => globalStore.routerList)

@@ -27,9 +27,9 @@
 
 <script lang="ts" setup>
 import { ElMessageBox } from "element-plus"
-import userLoginStore from "@/stores/login/login"
+import { UserStore } from "@/stores/modules/user"
 
-const userStore = userLoginStore()
+const userStore = UserStore()
 const userInfo = userStore.userInfo
 
 const handleCommand = (command: any) => {
@@ -43,6 +43,7 @@ const handleCommand = (command: any) => {
 				type: "warning"
 			}).then(() => {
 				// userStore.logout()
+				userStore.logout()
 			})
 			break
 		default:

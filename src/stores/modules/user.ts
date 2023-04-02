@@ -1,14 +1,14 @@
-import { CACHE_NAME, CACHE_PASSWORD, LOGIN_TOKEN, LOGIN_USERINFO, USER_MENULIST } from "@global/constants"
-import { accountLoginRequest, getUserInfoById, getUserMenuByRoleId } from "@/service/login/login"
+import { CACHE_NAME, CACHE_PASSWORD, GLOB_APP_HOME, USER_TOKEN, USER_INFO, USER_MENULIST } from "@global/constants"
+import { accountLoginRequest, getUserInfoById, getUserMenuByRoleId } from "@/service/modules/login"
 import type { IAccount, ILoginStore } from "@/types"
 import { localCache } from "@utils/cache"
 import router from "@/router"
 import { getFlatArr, getShowMenuList, getAllBreadcrumbList } from "@/utils/route"
 
-const useLoginStore = defineStore("LoginState", {
+export const UserStore = defineStore("UserStore", {
 	state: (): ILoginStore => ({
-		token: localCache.getCache(LOGIN_TOKEN) ?? "",
-		userInfo: localCache.getCache(LOGIN_USERINFO) ?? "",
+		token: localCache.getCache(USER_TOKEN) ?? "",
+		userInfo: localCache.getCache(USER_INFO) ?? {},
 		userMenuList: localCache.getCache(USER_MENULIST) ?? []
 	}),
 	getters: {
@@ -20,19 +20,20 @@ const useLoginStore = defineStore("LoginState", {
 		breadcrumbListGet: state => getAllBreadcrumbList(state.userMenuList)
 	},
 	actions: {
+		// 用户登陆
 		async loginAccountAction(account: IAccount, remermber: boolean) {
 			// 账号登陆，获取token信息
 			const loginResult = await accountLoginRequest(account)
 			if (!loginResult.data) return
 			this.token = loginResult.data.token
-			localCache.setCache(LOGIN_TOKEN, this.token)
+			localCache.setCache(USER_TOKEN, this.token)
 			const id = loginResult.data.id
 
 			// 获取登陆用户详细信息
 			const userInfoResult = await getUserInfoById(id)
 			if (!userInfoResult.data) return
 			this.userInfo = userInfoResult.data
-			localCache.setCache(LOGIN_USERINFO, userInfoResult.data)
+			localCache.setCache(USER_INFO, userInfoResult.data)
 
 			// 根据角色请求用户的权限
 			if (!this.userInfo.role) return
@@ -50,9 +51,16 @@ const useLoginStore = defineStore("LoginState", {
 				localCache.removeCache(CACHE_PASSWORD)
 			}
 
-			router.push("/main")
+			// 跳转主页
+			router.push(GLOB_APP_HOME)
+		},
+		logout() {
+			// 删除token
+			localCache.removeCache(USER_TOKEN)
+			localCache.removeCache(USER_INFO)
+			localCache.removeCache(USER_MENULIST)
+			// 跳回登陆页面
+			router.push("/login")
 		}
 	}
 })
-
-export default useLoginStore

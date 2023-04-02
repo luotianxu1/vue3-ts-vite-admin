@@ -1,5 +1,5 @@
 import { DEFAULT_PRIMARY } from "@/global/constants"
-import GlobalStore from "@/stores/global/global"
+import { GlobalStore } from "@/stores/modules/global"
 import { getDarkColor, getLightColor } from "@/utils/theme"
 
 export const useTheme = () => {

@@ -19,17 +19,17 @@
 	</el-breadcrumb>
 </template>
 <script setup lang="ts">
-import GlobalStore from "@/stores/global/global"
+import { GlobalStore } from "@/stores/modules/global"
 import { ArrowRight } from "@element-plus/icons-vue"
 import { GLOB_APP_HOME } from "@/global/constants"
-import userLoginStore from "@/stores/login/login"
+import { UserStore } from "@/stores/modules/user"
 
 const globalStore = GlobalStore()
 const route = useRoute()
 const userRouter = useRouter()
 
 // 菜单列表
-const userStore = userLoginStore()
+const userStore = UserStore()
 const breadcrumbList = computed(() => {
 	return userStore.breadcrumbListGet[route.matched[route.matched.length - 1].path]
 })

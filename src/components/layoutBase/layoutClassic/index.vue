@@ -46,8 +46,8 @@ import HeaderRight from "../components/header/HeaderRight.vue"
 import Main from "../components/main/Main.vue"
 import Tabs from "../components/tabs/index.vue"
 import Footer from "../components/footer/index.vue"
-import GlobalStore from "@/stores/global/global"
-import userLoginStore from "@/stores/login/login"
+import { GlobalStore } from "@/stores/modules/global"
+import { UserStore } from "@/stores/modules/user"
 
 // 图标
 const url = ref("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png")
@@ -56,7 +56,7 @@ const globalStore = GlobalStore()
 const isCollapse = computed(() => globalStore.themeConfig.isCollapse)
 
 // 菜单列表
-const userStore = userLoginStore()
+const userStore = UserStore()
 const menuList = computed(() => userStore.showMenuListGet)
 </script>
 

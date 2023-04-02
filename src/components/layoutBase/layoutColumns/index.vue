@@ -56,14 +56,14 @@ import HeaderLeft from "../components/header/HeaderLeft.vue"
 import HeaderRight from "../components/header/HeaderRight.vue"
 import Tabs from "../components/tabs/index.vue"
 import Footer from "../components/footer/index.vue"
-import GlobalStore from "@/stores/global/global"
-import UseLoginStore from "@/stores/login/login"
+import { GlobalStore } from "@/stores/modules/global"
+import { UserStore } from "@/stores/modules/user"
 import type { IMenuOptions } from "@/types"
 
 const route = useRoute()
 const router = useRouter()
 const globalStore = GlobalStore()
-const userStore = UseLoginStore()
+const userStore = UserStore()
 const menuList = computed(() => userStore.showMenuListGet)
 const isCollapse = computed(() => globalStore.themeConfig.isCollapse)
 

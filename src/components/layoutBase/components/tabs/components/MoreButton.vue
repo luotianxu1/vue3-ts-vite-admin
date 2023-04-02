@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { GLOB_APP_HOME } from "@/global/constants"
-import GlobalStore from "@/stores/global/global"
+import { GlobalStore } from "@/stores/modules/global"
 import eventHub from "@/utils/eventHub"
 
 const globalStore = GlobalStore()

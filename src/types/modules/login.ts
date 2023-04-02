@@ -16,7 +16,7 @@ export interface IUserInfo {
 	enable?: number
 	createTime?: string
 	updateTime?: string
-	img: string
+	img?: string
 	role?: {
 		id: string
 		name: string

@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import GlobalStore from "@/stores/global/global"
+import { GlobalStore } from "@/stores/modules/global"
 import TreeMenu from "./components/TreeMenu.vue"
 
 const router = useRouter()

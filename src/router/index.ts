@@ -1,4 +1,4 @@
-import { GLOB_APP_HOME, LOGIN_TOKEN } from "@/global/constants"
+import { GLOB_APP_HOME, USER_TOKEN } from "@/global/constants"
 import { localCache } from "@/utils/cache"
 import { createRouter, createWebHashHistory } from "vue-router"
 
@@ -36,7 +36,7 @@ const router = createRouter({
 
 //导航守卫
 router.beforeEach((to, form, next) => {
-	const token = localCache.getCache(LOGIN_TOKEN)
+	const token = localCache.getCache(USER_TOKEN)
 	if (!token && to.path === "/main") next("/login")
 	next()
 })

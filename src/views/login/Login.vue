@@ -43,15 +43,15 @@
 import { User, Unlock, Key } from "@element-plus/icons-vue"
 import { type FormRules, type FormInstance, ElMessage } from "element-plus"
 import CodeBox from "./components/CodeBox.vue"
-import useLoginStore from "@stores/login/login"
+import { UserStore } from "@/stores/modules/user"
 import { localCache } from "@/utils/cache"
 import { CACHE_NAME, CACHE_PASSWORD } from "@/global/constants"
 
+// 校验码
 const checkBoxRef = ref<InstanceType<typeof CodeBox>>()
 // checkBoxRef.value?.checkBox()
 
-const loginStore = useLoginStore()
-
+// 表单
 const ruleFormRef = ref<FormInstance>()
 const form = reactive({
 	name: localCache.getCache(CACHE_NAME) ?? "",
@@ -68,11 +68,13 @@ const rules = reactive<FormRules>({
 	code: [{ required: true, message: "请输入右侧校验码", trigger: "blur" }]
 })
 
+// 提交表单
+const userStore = UserStore()
 const submitForm = async (formEl: FormInstance | undefined) => {
 	if (!formEl) return
 	await formEl.validate(valid => {
 		if (valid) {
-			loginStore.loginAccountAction(
+			userStore.loginAccountAction(
 				{
 					name: form.name,
 					password: form.password
