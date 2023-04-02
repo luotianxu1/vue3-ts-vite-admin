@@ -21,6 +21,7 @@ import Select from "./components/Select.vue"
 .right {
 	display: flex;
 	align-items: center;
+	padding-right: 10px;
 
 	.item {
 		padding: 0 12px;

@@ -110,7 +110,7 @@ const menuList = computed(() => userStore.showMenuListGet)
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 55px;
+		height: 45px;
 		padding: 0 15px;
 		border-bottom: 1px solid var(--el-border-color);
 	}

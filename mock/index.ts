@@ -58,7 +58,7 @@ export default [
 			}
 		}
 	},
-	// 用户登陆
+	// 用户菜单
 	{
 		url: "/testApi/menu",
 		method: "post",
@@ -85,7 +85,7 @@ export default [
 								{
 									path: "/main/user",
 									name: "user",
-									component: "/system/user/User",
+									component: "/main/dashboard/Dashboard",
 									meta: {
 										title: "用户管理",
 										icon: "icon-yonghu",
@@ -96,9 +96,9 @@ export default [
 									}
 								},
 								{
-									path: "/system/menu",
+									path: "/main/menu",
 									name: "menu",
-									component: "/system/menu/Menu",
+									component: "/main/overView/OverView",
 									meta: {
 										title: "菜单管理",
 										icon: "icon-caidan",

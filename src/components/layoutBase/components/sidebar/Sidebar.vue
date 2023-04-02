@@ -19,14 +19,14 @@
 
 <script lang="ts" setup>
 import { GlobalStore } from "@/stores/modules/global"
+import { UserStore } from "@/stores/modules/user"
 import TreeMenu from "./components/TreeMenu.vue"
-
-const router = useRouter()
 
 // 图标
 const url = ref("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png")
 
 const globalStore = GlobalStore()
+const router = useRouter()
 // 监听路由
 watch(
 	() => router.currentRoute.value.path,
@@ -36,8 +36,8 @@ watch(
 	{ immediate: true }
 )
 
-// const menuList = computed(() => userStore.showMenuListGet)
-const menuList: any = []
+const userRouter = UserStore()
+const menuList = computed(() => userRouter.showMenuListGet)
 </script>
 
 <style scoped lang="scss">

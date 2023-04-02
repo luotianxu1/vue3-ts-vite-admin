@@ -15,3 +15,5 @@ export const RROUTER_WHITLE: string[] = ["/login"]
 export const DEFAULT_PRIMARY: string = "#409EFF"
 // 主页面路由
 export const GLOB_APP_HOME: string = "/main/user"
+// 名称
+export const GLOB_APP_TITLE: string = "vue3-vite-admin"

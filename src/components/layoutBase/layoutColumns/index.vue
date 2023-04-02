@@ -42,7 +42,9 @@
 				<HeaderRight></HeaderRight>
 			</el-header>
 			<Tabs v-if="globalStore.themeConfig.tabs"></Tabs>
-			<Main></Main>
+			<el-main>
+				<Main></Main>
+			</el-main>
 			<el-footer v-if="globalStore.themeConfig.footer">
 				<Footer></Footer>
 			</el-footer>
@@ -105,7 +107,7 @@ const changeSubMenu = (item: IMenuOptions) => {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	height: 55px;
+	height: 45px;
 	padding: 0 15px;
 	border-bottom: 1px solid var(--el-border-color);
 }
@@ -187,5 +189,11 @@ const changeSubMenu = (item: IMenuOptions) => {
 	.not-aside {
 		width: 0 !important;
 	}
+}
+
+.el-main {
+	padding: 0;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 </style>

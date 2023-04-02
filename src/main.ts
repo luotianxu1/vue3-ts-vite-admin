@@ -7,8 +7,13 @@ import "normalize.css"
 import "@assets/scss/index.scss"
 import "element-plus/theme-chalk/dark/css-vars.css"
 import directives from "@/directives/index"
+import * as globalVariables from "@/utils/global.js"
 
 const app = createApp(App)
+
+for (const key in globalVariables) {
+	app.config.globalProperties[`$${key}`] = globalVariables[key]
+}
 
 app.use(router)
 app.use(I18n)

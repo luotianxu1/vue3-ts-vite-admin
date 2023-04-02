@@ -5,7 +5,7 @@
 				<span class="user">
 					<el-avatar :size="30" :src="userInfo?.img"></el-avatar>
 					<span class="userInfo">
-						<!-- <span>{{ userInfo?.name }}</span> -->
+						<span>{{ userInfo?.name }}</span>
 					</span>
 				</span>
 			</span>
@@ -42,8 +42,7 @@ const handleCommand = (command: any) => {
 				cancelButtonText: "取消",
 				type: "warning"
 			}).then(() => {
-				// userStore.logout()
-				userStore.logout()
+				userStore.logoutAccountAction()
 			})
 			break
 		default:

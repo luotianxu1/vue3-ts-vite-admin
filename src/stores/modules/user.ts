@@ -1,9 +1,18 @@
-import { CACHE_NAME, CACHE_PASSWORD, GLOB_APP_HOME, USER_TOKEN, USER_INFO, USER_MENULIST } from "@global/constants"
+import {
+	CACHE_NAME,
+	CACHE_PASSWORD,
+	GLOB_APP_HOME,
+	USER_TOKEN,
+	USER_INFO,
+	USER_MENULIST,
+	GLOB_APP_LOGIN
+} from "@global/constants"
 import { accountLoginRequest, getUserInfoById, getUserMenuByRoleId } from "@/service/modules/login"
 import type { IAccount, ILoginStore } from "@/types"
 import { localCache } from "@utils/cache"
 import router from "@/router"
 import { getFlatArr, getShowMenuList, getAllBreadcrumbList } from "@/utils/route"
+import { ElNotification } from "element-plus"
 
 export const UserStore = defineStore("UserStore", {
 	state: (): ILoginStore => ({
@@ -20,7 +29,12 @@ export const UserStore = defineStore("UserStore", {
 		breadcrumbListGet: state => getAllBreadcrumbList(state.userMenuList)
 	},
 	actions: {
-		// 用户登陆
+		/**
+		 * 用户登陆
+		 * @param account 用户名和密码
+		 * @param remermber 是否记住密码
+		 * @returns
+		 */
 		async loginAccountAction(account: IAccount, remermber: boolean) {
 			// 账号登陆，获取token信息
 			const loginResult = await accountLoginRequest(account)
@@ -35,13 +49,6 @@ export const UserStore = defineStore("UserStore", {
 			this.userInfo = userInfoResult.data
 			localCache.setCache(USER_INFO, userInfoResult.data)
 
-			// 根据角色请求用户的权限
-			if (!this.userInfo.role) return
-			const userMenuListResult = await getUserMenuByRoleId(this.userInfo.role.id)
-			if (!userMenuListResult.data) return
-			this.userMenuList = userMenuListResult.data.menu
-			localCache.setCache(USER_MENULIST, userMenuListResult.data.menu)
-
 			// 记住密码
 			if (remermber) {
 				localCache.setCache(CACHE_NAME, account.name)
@@ -54,13 +61,38 @@ export const UserStore = defineStore("UserStore", {
 			// 跳转主页
 			router.push(GLOB_APP_HOME)
 		},
-		logout() {
+		/**
+		 * 退出登陆
+		 */
+		logoutAccountAction() {
 			// 删除token
 			localCache.removeCache(USER_TOKEN)
 			localCache.removeCache(USER_INFO)
 			localCache.removeCache(USER_MENULIST)
 			// 跳回登陆页面
-			router.push("/login")
+			router.push(GLOB_APP_LOGIN)
+		},
+		/**
+		 * 根据角色id查询菜单
+		 */
+		async getUserMenuList() {
+			if (!this.userInfo.role) return
+			const userMenuListResult = await getUserMenuByRoleId(this.userInfo.role.id)
+			if (!userMenuListResult.data) return
+			this.userMenuList = userMenuListResult.data.menu
+
+			// 判断当前用户有没有菜单权限
+			if (!this.userMenuList.length) {
+				ElNotification({
+					title: "无权限访问",
+					message: "当前账号无任何菜单权限，请联系系统管理员！",
+					type: "warning",
+					duration: 3000
+				})
+				this.logoutAccountAction()
+				router.replace(GLOB_APP_LOGIN)
+				return Promise.reject("暂无权限！")
+			}
 		}
 	}
 })
