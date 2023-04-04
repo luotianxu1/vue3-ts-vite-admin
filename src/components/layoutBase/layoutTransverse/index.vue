@@ -95,7 +95,7 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 	flex: 1;
 	overflow: hidden;
 	border-bottom: 1px solid var(--el-border-color);
-	height: 55px;
+	height: 45px;
 	.is-active {
 		border-bottom-color: var(--el-color-primary) !important;
 		&:hover {

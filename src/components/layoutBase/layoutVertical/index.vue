@@ -91,7 +91,7 @@ const menuList = computed(() => userStore.showMenuListGet)
 			}
 			.logo {
 				box-sizing: border-box;
-				height: 55px;
+				height: 45px;
 				span {
 					font-size: 24px;
 					font-weight: bold;

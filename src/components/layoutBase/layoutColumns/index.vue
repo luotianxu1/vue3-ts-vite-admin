@@ -127,7 +127,7 @@ const changeSubMenu = (item: IMenuOptions) => {
 		border-right: 1px solid var(--el-border-color);
 		.logo {
 			box-sizing: border-box;
-			height: 55px;
+			height: 45px;
 			border-bottom: 1px solid var(--el-border-color);
 			img {
 				width: 32px;
@@ -177,7 +177,7 @@ const changeSubMenu = (item: IMenuOptions) => {
 		}
 		.logo {
 			box-sizing: border-box;
-			height: 55px;
+			height: 45px;
 			border-bottom: 1px solid var(--el-border-color);
 			span {
 				font-size: 24px;
