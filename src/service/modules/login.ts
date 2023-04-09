@@ -1,7 +1,7 @@
 import api from "../index"
-import type { IAccount, IAccountResult, IResponseData, IUserInfo, MenuListResult } from "@/types"
+import type { IAccountReq, IAccountResult, IResponseData, IUserInfo, IMenuListResult } from "@/types"
 
-export function accountLoginRequest(account: IAccount) {
+export function accountLoginRequest(account: IAccountReq) {
 	return api.post<IResponseData<IAccountResult>>({
 		url: "/login",
 		data: account
@@ -24,7 +24,7 @@ export function getUserInfoById(id: string) {
 }
 
 export function getUserMenuByRoleId(id: string) {
-	return api.post<IResponseData<MenuListResult>>({
+	return api.post<IResponseData<IMenuListResult>>({
 		url: "/menu",
 		data: {
 			id

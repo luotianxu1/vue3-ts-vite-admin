@@ -8,7 +8,7 @@ import {
 	GLOB_APP_LOGIN
 } from "@global/constants"
 import { accountLoginRequest, getUserInfoById, getUserMenuByRoleId } from "@/service/modules/login"
-import type { IAccount, ILoginStore } from "@/types"
+import type { IAccountReq, ILoginStore } from "@/types"
 import { localCache } from "@utils/cache"
 import router from "@/router"
 import { getFlatArr, getShowMenuList, getAllBreadcrumbList } from "@/utils/route"
@@ -35,7 +35,7 @@ export const UserStore = defineStore("UserStore", {
 		 * @param remermber 是否记住密码
 		 * @returns
 		 */
-		async loginAccountAction(account: IAccount, remermber: boolean) {
+		async loginAccountAction(account: IAccountReq, remermber: boolean) {
 			// 账号登陆，获取token信息
 			const loginResult = await accountLoginRequest(account)
 			if (!loginResult.data) return

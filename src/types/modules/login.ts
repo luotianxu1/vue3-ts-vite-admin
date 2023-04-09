@@ -1,4 +1,7 @@
-export interface IAccount {
+import type { IUserInfo } from "./user"
+
+// 登陆
+export interface IAccountReq {
 	name: string
 	password: string
 }
@@ -9,35 +12,7 @@ export interface IAccountResult {
 	token: string
 }
 
-export interface IUserInfo {
-	id?: string
-	name?: string
-	cellphone?: number
-	enable?: number
-	createTime?: string
-	updateTime?: string
-	img?: string
-	role?: {
-		id: string
-		name: string
-		intro: string
-	}
-	department?: {
-		id: string
-		name: string
-		parentId: any
-		leader: any
-	}
-}
-
-export interface Menu {
-	id: number
-	name: string
-	type: number
-	url: string
-}
-
-export interface MenuListResult {
+export interface IMenuListResult {
 	menu: IMenuOptions[]
 }
 

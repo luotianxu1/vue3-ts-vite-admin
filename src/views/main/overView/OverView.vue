@@ -14,5 +14,6 @@ import Content from "./components/Content.vue"
 .user {
 	padding: 20px;
 	height: calc(100% - 40px);
+	overflow: auto;
 }
 </style>
