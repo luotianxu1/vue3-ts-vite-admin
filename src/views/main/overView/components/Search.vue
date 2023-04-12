@@ -49,6 +49,8 @@
 import { Refresh, Search } from "@element-plus/icons-vue"
 import type { FormInstance } from "element-plus"
 
+const emit = defineEmits(["queryClick"])
+
 const searchFormRef = ref<FormInstance>()
 const searchForm = reactive({
 	name: "",
@@ -63,7 +65,9 @@ const handleResetClick = () => {
 	searchFormRef.value?.resetFields()
 }
 
-const handleCommit = () => {}
+const handleCommit = () => {
+	emit("queryClick", searchForm)
+}
 </script>
 
 <style lang="scss" scoped>

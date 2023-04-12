@@ -3,7 +3,7 @@ v
 	<div class="content">
 		<div class="header">
 			<h3 class="title">用户列表</h3>
-			<el-button type="primary">新建用户</el-button>
+			<el-button type="primary" @click="handleAddBtnClick">新建用户</el-button>
 		</div>
 		<div class="table">
 			<el-table :data="userList" :border="true">
@@ -22,8 +22,10 @@ v
 				<el-table-column align="center" label="添加时间" prop="addTime"></el-table-column>
 				<el-table-column align="center" label="修改时间" prop="editTime"></el-table-column>
 				<el-table-column align="center" label="操作" width="160">
-					<el-button link type="primary" :icon="Edit">编辑</el-button>
-					<el-button link type="danger" :icon="Delete">删除</el-button>
+					<template #default="scoped">
+						<el-button link type="primary" :icon="Edit" @click="handleEditBtnClick(scoped.row)">编辑</el-button>
+						<el-button link type="danger" :icon="Delete" @click="handleDeleteBtnClick(scoped.row.id)">删除</el-button>
+					</template>
 				</el-table-column>
 			</el-table>
 		</div>
@@ -46,6 +48,8 @@ import { Delete, Edit } from "@element-plus/icons-vue"
 import type { IUserInfo } from "@/types"
 import { getuserList } from "@/service/modules/user"
 
+const emit = defineEmits(["newBtnClick", "editBtnClick"])
+
 onMounted(() => {
 	getList()
 })
@@ -60,10 +64,28 @@ const handleCurrentChange = () => {
 }
 
 const userList = ref<IUserInfo[]>()
-const getList = async () => {
-	const res = await getuserList({ size: pageSize.value, offset: (currentPage.value - 1) * pageSize.value })
+const getList = async (formData = {}) => {
+	const size = pageSize.value
+	const offset = (currentPage.value - 1) * size
+	const pageInfo = { size, offset }
+	const queryInfo = { ...pageInfo, ...formData }
+	const res = await getuserList(queryInfo)
 	userList.value = res.data?.list
 }
+
+const handleDeleteBtnClick = (id: any) => {
+	console.log(id)
+}
+
+const handleAddBtnClick = () => {
+	emit("newBtnClick")
+}
+
+const handleEditBtnClick = (data: any) => {
+	emit("editBtnClick", data)
+}
+
+defineExpose({ getList })
 </script>
 
 <style lang="scss" scoped>
