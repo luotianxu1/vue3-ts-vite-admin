@@ -1,17 +1,23 @@
 <template>
 	<div class="user">
-		<Search @query-click="handleQueryClick"></Search>
-		<Content ref="contentRef" @new-btn-click="handleNewBtnClick" @edit-btn-click="handleEditBtnClick"></Content>
+		<PageSearch :search-config="searchConfig" @query-click="handleQueryClick"></PageSearch>
+		<PageContent
+			:content-config="contentConfig"
+			ref="contentRef"
+			@new-btn-click="handleNewBtnClick"
+			@edit-btn-click="handleEditBtnClick"
+		></PageContent>
 		<UserModal ref="userMoadlRef"></UserModal>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import Search from "./components/Search.vue"
-import Content from "./components/Content.vue"
+import PageContent from "@/components/pageContent/index.vue"
 import UserModal from "./components/UserModal.vue"
+import searchConfig from "./config/searchConfig"
+import contentConfig from "./config/contentConfig"
 
-const contentRef = ref<InstanceType<typeof Content>>()
+const contentRef = ref<InstanceType<typeof PageContent>>()
 const userMoadlRef = ref<InstanceType<typeof UserModal>>()
 
 const handleQueryClick = (formData: any) => {

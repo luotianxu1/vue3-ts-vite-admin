@@ -2,7 +2,7 @@ v
 <template>
 	<div class="content">
 		<div class="header">
-			<h3 class="title">用户列表</h3>
+			<h3 class="title">{{ contentConfig?.header?.title ?? "数据列表" }}</h3>
 			<el-button type="primary" @click="handleAddBtnClick">新建用户</el-button>
 		</div>
 		<div class="table">
@@ -48,7 +48,17 @@ import { Delete, Edit } from "@element-plus/icons-vue"
 import type { IUserInfo } from "@/types"
 import { getuserList } from "@/service/modules/user"
 
+interface IProps {
+	contentConfig: {
+		header?: {
+			title?: string
+		}
+		propsList: any[]
+	}
+}
+
 const emit = defineEmits(["newBtnClick", "editBtnClick"])
+const props = defineProps<IProps>()
 
 onMounted(() => {
 	getList()
