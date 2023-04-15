@@ -12,17 +12,18 @@ const searchConfig = {
 			type: "input",
 			prop: "leader",
 			label: "部门领导",
-			placeholder: "请输入查询的部门领导名称"
+			placeholder: "请输入领导名称"
 		},
 		{
 			type: "date-picker",
 			prop: "createAt",
-			label: "创建时间"
+			label: "创建时间",
+			span: 6
 		},
 		{
 			type: "select",
 			prop: "enable",
-			label: "状态",
+			label: "用户状态",
 			placeholder: "请选择查询状态",
 			options: [
 				{ label: "启动", value: 1 },

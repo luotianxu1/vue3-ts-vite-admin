@@ -122,20 +122,21 @@ export default [
 								{
 									path: "/main/user",
 									name: "user",
-									component: "/main/dashboard/Dashboard",
+									component: "/main/user/User",
 									meta: {
 										title: "用户管理",
 										icon: "icon-yonghu",
 										isFull: false,
 										isHide: false,
 										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: true,
+										permission: []
 									}
 								},
 								{
 									path: "/main/menu",
 									name: "menu",
-									component: "/main/overView/OverView",
+									component: "/main/menu/Menu",
 									meta: {
 										title: "菜单管理",
 										icon: "icon-caidan",

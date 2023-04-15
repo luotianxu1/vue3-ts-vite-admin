@@ -7,26 +7,25 @@ v
 		</div>
 		<div class="table">
 			<el-table :data="userList" :border="true">
-				<el-table-column align="center" type="selection" width="40"></el-table-column>
-				<el-table-column align="center" label="序号" type="index" width="55"></el-table-column>
-				<el-table-column align="center" label="用户名" prop="name" width="80"></el-table-column>
-				<el-table-column align="center" label="年龄" prop="age" width="55"></el-table-column>
-				<el-table-column align="center" label="手机号" prop="phone" width="120"></el-table-column>
-				<el-table-column align="center" label="邮箱" prop="email" width="180"></el-table-column>
-				<el-table-column align="center" label="城市" prop="city"></el-table-column>
-				<el-table-column align="center" label="状态" prop="status" width="100">
-					<template #default="scoped">
-						<el-tag :type="scoped.row.status ? 'success' : 'danger'">{{ scoped.row.status ? "启用" : "禁用" }}</el-tag>
+				<template v-for="item in contentConfig.propsList" :key="item.prop">
+					<template v-if="item.type === 'timer'">
+						<el-table-column align="center" v-bind="item">
+							<template #default="scope">
+								{{ scope.row[item.prop] }}
+							</template>
+						</el-table-column>
 					</template>
-				</el-table-column>
-				<el-table-column align="center" label="添加时间" prop="addTime"></el-table-column>
-				<el-table-column align="center" label="修改时间" prop="editTime"></el-table-column>
-				<el-table-column align="center" label="操作" width="160">
-					<template #default="scoped">
-						<el-button link type="primary" :icon="Edit" @click="handleEditBtnClick(scoped.row)">编辑</el-button>
-						<el-button link type="danger" :icon="Delete" @click="handleDeleteBtnClick(scoped.row.id)">删除</el-button>
+					<template v-else-if="item.type === 'custom'">
+						<el-table-column align="center" v-bind="item">
+							<template #default="scope">
+								<slot :name="item.sloatName" v-bind="scope"></slot>
+							</template>
+						</el-table-column>
 					</template>
-				</el-table-column>
+					<template v-else>
+						<el-table-column align="center" v-bind="item"></el-table-column>
+					</template>
+				</template>
 			</el-table>
 		</div>
 		<div class="pagination">
@@ -44,7 +43,6 @@ v
 </template>
 
 <script lang="ts" setup>
-import { Delete, Edit } from "@element-plus/icons-vue"
 import type { IUserInfo } from "@/types"
 import { getuserList } from "@/service/modules/user"
 
@@ -83,16 +81,8 @@ const getList = async (formData = {}) => {
 	userList.value = res.data?.list
 }
 
-const handleDeleteBtnClick = (id: any) => {
-	console.log(id)
-}
-
 const handleAddBtnClick = () => {
 	emit("newBtnClick")
-}
-
-const handleEditBtnClick = (data: any) => {
-	emit("editBtnClick", data)
 }
 
 defineExpose({ getList })

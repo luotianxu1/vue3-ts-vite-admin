@@ -68,6 +68,7 @@ declare module '@vue/runtime-core' {
     Main: typeof import('./../components/layoutBase/components/main/Main.vue')['default']
     MoreButton: typeof import('./../components/layoutBase/components/tabs/components/MoreButton.vue')['default']
     PageContent: typeof import('./../components/pageContent/index.vue')['default']
+    PageModal: typeof import('./../components/pageModal/index.vue')['default']
     PageSearch: typeof import('./../components/pageSearch/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
