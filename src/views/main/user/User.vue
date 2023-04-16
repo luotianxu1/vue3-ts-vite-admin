@@ -17,6 +17,8 @@
 <script lang="ts" setup>
 import { Delete, Edit } from "@element-plus/icons-vue"
 
+import { getDepartmentList } from "@/service/modules/department"
+
 import searchConfig from "./config/searchConfig"
 import contentConfig from "./config/contentConfig"
 import modalConfig from "./config/modalConfig"
@@ -24,7 +26,28 @@ import modalConfig from "./config/modalConfig"
 import usePageContent from "@/hooks/usePageContent"
 import useModalContent from "@/hooks/usePageModal"
 
+import type { IDepartment } from "@/types"
+
+// 获取部门列表
+let departmentList = ref<IDepartment[]>([])
+const queryDepartment = async () => {
+	const res = await getDepartmentList({})
+	departmentList.value = res.data?.list ?? []
+}
+queryDepartment()
+
+// 动态向新增弹窗添加值
 const modalConfigRef = computed(() => {
+	modalConfig.formItems.forEach(item => {
+		if (item.prop === "department") {
+			item.options = departmentList.value.map(department => {
+				return {
+					label: department.name,
+					value: department.id
+				}
+			})
+		}
+	})
 	return modalConfig
 })
 

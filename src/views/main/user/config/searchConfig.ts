@@ -6,19 +6,21 @@ const searchConfig = {
 			prop: "name",
 			label: "部门名称",
 			placeholder: "请输入查询的部门名称",
-			initialValue: "aaa"
+			initialValue: "aaa",
+			span: 5
 		},
 		{
 			type: "input",
 			prop: "leader",
 			label: "部门领导",
-			placeholder: "请输入领导名称"
+			placeholder: "请输入领导名称",
+			span: 5
 		},
 		{
 			type: "date-picker",
 			prop: "createAt",
 			label: "创建时间",
-			span: 6
+			span: 8
 		},
 		{
 			type: "select",

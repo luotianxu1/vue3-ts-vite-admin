@@ -21,6 +21,13 @@ const modalConfig: IModalConfig = {
 		},
 		{
 			type: "select",
+			prop: "department",
+			label: "部门",
+			placeholder: "请选择部门",
+			options: []
+		},
+		{
+			type: "select",
 			prop: "enable",
 			label: "状态",
 			placeholder: "请选择查询状态",

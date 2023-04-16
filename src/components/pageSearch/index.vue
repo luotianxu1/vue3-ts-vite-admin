@@ -3,7 +3,7 @@
 		<el-form ref="searchFormRef" :label-width="searchConfig.labelWidth ?? '80px'" size="default" :model="searchForm">
 			<el-row :gutter="20">
 				<template v-for="item in searchConfig.formItems" :key="item.prop">
-					<el-col :span="item.span ?? 4">
+					<el-col :span="item.span ?? 6">
 						<el-form-item :label="item.label" :prop="item.prop">
 							<template v-if="item.type === 'input'">
 								<el-input v-model="searchForm[item.prop]" :placeholder="item.placeholder"></el-input>

@@ -1,4 +1,4 @@
-// 用户列表
+// 用户信息
 export interface IUserInfo {
 	id?: string
 	name?: string
@@ -20,6 +20,7 @@ export interface IUserInfo {
 	}
 }
 
+// 查询用户返回值
 export interface IPageListResult {
 	list: IUserInfo[]
 	total: number

@@ -14,6 +14,6 @@ export const RROUTER_WHITLE: string[] = ["/login"]
 // 默认主题色
 export const DEFAULT_PRIMARY: string = "#409EFF"
 // 主页面路由
-export const GLOB_APP_HOME: string = "/main/user"
+export const GLOB_APP_HOME: string = "/dashborad"
 // 名称
 export const GLOB_APP_TITLE: string = "vue3-vite-admin"

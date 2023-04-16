@@ -107,6 +107,21 @@ export default [
 				data: {
 					menu: [
 						{
+							path: "/dashborad",
+							name: "dashborad",
+							component: "/main/dashboard/Dashboard",
+							children: [],
+							meta: {
+								title: "首页",
+								icon: "icon-baobiao",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false,
+								permission: []
+							}
+						},
+						{
 							path: "/main",
 							name: "main",
 							redirect: "/main/user",
@@ -147,6 +162,72 @@ export default [
 									}
 								}
 							]
+						}
+					]
+				}
+			}
+		}
+	},
+	// 部门列表
+	{
+		url: "/testApi/departmentList",
+		method: "post",
+		response: () => {
+			return {
+				status: 200,
+				message: "查询部门列表成功！",
+				data: {
+					list: [
+						{
+							id: "@id",
+							name: "研发部"
+						},
+						{
+							id: "@id",
+							name: "市场部"
+						}
+					]
+				}
+			}
+		}
+	},
+	// 首页
+	{
+		url: "/testApi/count/list",
+		method: "post",
+		response: () => {
+			return {
+				status: 200,
+				message: "查询成功！",
+				data: {
+					list: [
+						{
+							title: "今日交易额(元)",
+							tips: "stringy",
+							number: 714400,
+							subTitle: "同比昨日",
+							value: 1.6
+						},
+						{
+							title: "今日订单量(元)",
+							tips: "stringy",
+							number: 5960,
+							subTitle: "同比昨日",
+							value: -0.5
+						},
+						{
+							title: "今日浏览量",
+							tips: "stringy",
+							number: 12218,
+							subTitle: "同比昨日",
+							value: -0.5
+						},
+						{
+							title: "新增会员",
+							tips: "stringy",
+							number: 2452,
+							subTitle: "同比昨日",
+							value: 4.0
 						}
 					]
 				}
