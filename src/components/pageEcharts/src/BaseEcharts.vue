@@ -19,6 +19,10 @@ onMounted(() => {
 		renderer: "canvas"
 	})
 	echartsInstance.setOption(props.option)
+
+	window.addEventListener("resize", () => {
+		echartsInstance.resize()
+	})
 })
 </script>
 
