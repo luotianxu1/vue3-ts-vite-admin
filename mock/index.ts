@@ -110,15 +110,13 @@ export default [
 							path: "/dashborad",
 							name: "dashborad",
 							component: "/main/dashboard/Dashboard",
-							children: [],
 							meta: {
 								title: "首页",
 								icon: "icon-baobiao",
 								isFull: false,
 								isHide: false,
 								isAffix: false,
-								isKeepAlive: false,
-								permission: []
+								isKeepAlive: false
 							}
 						},
 						{
@@ -146,7 +144,13 @@ export default [
 										isAffix: false,
 										isKeepAlive: true,
 										permission: []
-									}
+									},
+									children: [
+										{
+											title: "新增",
+											permission: "system:user:create"
+										}
+									]
 								},
 								{
 									path: "/main/menu",
@@ -159,7 +163,13 @@ export default [
 										isHide: false,
 										isAffix: false,
 										isKeepAlive: true
-									}
+									},
+									children: [
+										{
+											title: "修改",
+											permission: "system:menus:edit"
+										}
+									]
 								}
 							]
 						}

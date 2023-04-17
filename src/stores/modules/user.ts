@@ -11,7 +11,7 @@ import { accountLoginRequest, getUserInfoById, getUserMenuByRoleId } from "@/ser
 import type { IAccountReq, ILoginStore } from "@/types"
 import { localCache } from "@utils/cache"
 import router from "@/router"
-import { getFlatArr, getShowMenuList, getAllBreadcrumbList } from "@/utils/route"
+import { getFlatArr, getShowMenuList, getAllBreadcrumbList, getAllPermissions } from "@/utils/route"
 import { ElNotification } from "element-plus"
 
 export const UserStore = defineStore("UserStore", {
@@ -23,10 +23,12 @@ export const UserStore = defineStore("UserStore", {
 	getters: {
 		// 扁平化之后的一维数组路由，主要用来添加动态路由
 		flatMenuListGet: state => getFlatArr(state.userMenuList),
-		// 后端返回的菜单列表 ==> 左侧菜单栏渲染，需要去除 isHide == true
+		// 后端返回的菜单列表 ==> 左侧菜单栏渲染，需要去除 isHide == true 和按钮权限
 		showMenuListGet: state => getShowMenuList(state.userMenuList),
 		// 所有面包屑导航列表
-		breadcrumbListGet: state => getAllBreadcrumbList(state.userMenuList)
+		breadcrumbListGet: state => getAllBreadcrumbList(state.userMenuList),
+		// 所有按钮权限
+		permissionsListGet: state => getAllPermissions(state.userMenuList)
 	},
 	actions: {
 		/**

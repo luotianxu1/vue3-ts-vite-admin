@@ -6,7 +6,12 @@ import type { IMenuOptions } from "@/types"
 export function getFlatArr(menuList: IMenuOptions[]) {
 	const newMenuList: IMenuOptions[] = JSON.parse(JSON.stringify(menuList))
 	return newMenuList.reduce((pre: IMenuOptions[], current: IMenuOptions) => {
-		let flatArr = [...pre, current]
+		let flatArr: IMenuOptions[]
+		if (current.permission) {
+			flatArr = [...pre]
+		} else {
+			flatArr = [...pre, current]
+		}
 		if (current.children) flatArr = [...flatArr, ...getFlatArr(current.children)]
 		return flatArr
 	}, [])
@@ -21,7 +26,7 @@ export function getShowMenuList(menuList: IMenuOptions[]) {
 	const newMenuList: IMenuOptions[] = JSON.parse(JSON.stringify(menuList))
 	return newMenuList.filter(item => {
 		item.children?.length && (item.children = getShowMenuList(item.children))
-		return !item.meta?.isHide
+		return !item.meta?.isHide && !item.permission
 	})
 }
 
@@ -38,4 +43,24 @@ export const getAllBreadcrumbList = (menuList: IMenuOptions[], result: { [key: s
 		if (item.children) getAllBreadcrumbList(item.children, result, result[item.path])
 	}
 	return result
+}
+
+/**
+ * 递归找出所有按钮权限
+ * @param menuList
+ * @returns
+ */
+export const getAllPermissions = (menuList: IMenuOptions[]) => {
+	const permissionsList: string[] = []
+	const recurseGetPermission = (menus: any[]) => {
+		for (const item of menus) {
+			if (item.permission) {
+				permissionsList.push(item.permission)
+			} else {
+				recurseGetPermission(item.children ?? [])
+			}
+		}
+	}
+	recurseGetPermission(menuList)
+	return permissionsList
 }

@@ -45,4 +45,5 @@ export interface IMenuOptions {
 	redirect?: string
 	meta: IMetaProps
 	children?: IMenuOptions[]
+	permission?: string
 }

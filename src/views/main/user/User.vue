@@ -16,17 +16,23 @@
 
 <script lang="ts" setup>
 import { Delete, Edit } from "@element-plus/icons-vue"
-
-import { getDepartmentList } from "@/service/modules/department"
+import type { IDepartment, IUserInfo } from "@/types"
+import type PageContent from "@/components/pageContent/index.vue"
 
 import searchConfig from "./config/searchConfig"
 import contentConfig from "./config/contentConfig"
 import modalConfig from "./config/modalConfig"
 
-import usePageContent from "@/hooks/usePageContent"
 import useModalContent from "@/hooks/usePageModal"
+import { UserStore } from "@/stores/modules/user"
 
-import type { IDepartment } from "@/types"
+import { getuserList } from "@/service/modules/user"
+import { getDepartmentList } from "@/service/modules/department"
+
+const userStore = UserStore()
+console.log(userStore.permissionsListGet)
+
+const contentRef = ref<InstanceType<typeof PageContent>>()
 
 // 获取部门列表
 let departmentList = ref<IDepartment[]>([])
@@ -51,7 +57,19 @@ const modalConfigRef = computed(() => {
 	return modalConfig
 })
 
-const { contentRef, handleQueryClick } = usePageContent()
+// 获取用户列表
+const userList = ref<IUserInfo[]>()
+const getList = async (formData = {}) => {
+	const res = await getuserList(formData)
+	userList.value = res.data?.list
+	contentRef.value?.showTable(userList.value)
+}
+getList()
+
+// 查询
+const handleQueryClick = () => {
+	getList()
+}
 
 const { userMoadlRef, handleEditBtnClick, handleNewBtnClick } = useModalContent()
 
