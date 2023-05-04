@@ -1,7 +1,6 @@
 <template>
 	<div class="card content-box">
-		<span class="text"> 引导页</span>
-		<div id="Geeker"><el-button type="primary" @click.prevent.stop="guide">打开引导页 🤹‍♂️</el-button></div>
+		<div id="Geeker"><el-button type="primary" @click.prevent.stop="guide">打开引导页</el-button></div>
 	</div>
 </template>
 

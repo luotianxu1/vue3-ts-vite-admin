@@ -290,6 +290,19 @@ export default [
 										isAffix: false,
 										isKeepAlive: true
 									}
+								},
+								{
+									path: "/function/svg",
+									name: "svg",
+									component: "/function/svg/Svg",
+									meta: {
+										title: "Svg",
+										icon: "icon-yonghu",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
 								}
 							]
 						}

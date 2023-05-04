@@ -9,6 +9,8 @@ import { createStyleImportPlugin, ElementPlusResolve } from "vite-plugin-style-i
 import { viteMockServe } from "vite-plugin-mock"
 import Icons from "unplugin-icons/vite"
 import IconsResolver from "unplugin-icons/resolver"
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
+import { resolve } from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -65,6 +67,11 @@ export default defineConfig({
 			injectCode: ` import { setupProdMockServer } from './utils/mockProdServer'; setupProdMockServer(); `,
 			logger: false, //是否在控制台显示请求日志
 			supportTs: true //打开后，可以读取 ts 文件模块。 请注意，打开后将无法监视.js 文件
+		}),
+		// 使用 svg 图标
+		createSvgIconsPlugin({
+			iconDirs: [resolve(process.cwd(), "src/assets/svg")],
+			symbolId: "icon-[dir]-[name]"
 		})
 	],
 	resolve: {
