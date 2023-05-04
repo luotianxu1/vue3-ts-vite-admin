@@ -1,18 +1,17 @@
 <template>
 	<div class="left">
-		<i
-			class="iconfont icon-duoyuyan"
-			:class="globalStore.themeConfig.isCollapse ? 'icon-mulushousuo' : 'icon-muluzhankai'"
-			@click="changAside"
-		></i>
-
-		<BreadCrumb class="item" v-if="globalStore.themeConfig.breadcrumb"></BreadCrumb>
+		<el-icon @click="changAside">
+			<Expand v-if="globalStore.themeConfig.isCollapse"></Expand>
+			<Fold v-else></Fold>
+		</el-icon>
+		<BreadCrumb v-if="globalStore.themeConfig.breadcrumb"></BreadCrumb>
 	</div>
 </template>
 
 <script lang="ts" setup>
 import { GlobalStore } from "@/stores/modules/global"
 import BreadCrumb from "./components/BreadCrumb.vue"
+import { Expand, Fold } from "@element-plus/icons-vue"
 
 const globalStore = GlobalStore()
 const changAside = () => {
@@ -24,15 +23,13 @@ const changAside = () => {
 .left {
 	display: flex;
 	align-items: center;
-
-	.item {
-		margin-left: 10px;
-	}
 }
 
 i {
-	font-size: 20px;
+	font-size: 22px;
 	cursor: pointer;
+	margin-right: 20px;
+
 	&:hover {
 		color: var(--el-color-primary);
 	}

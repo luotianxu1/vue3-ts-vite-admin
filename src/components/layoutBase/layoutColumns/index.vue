@@ -130,7 +130,7 @@ const changeSubMenu = (item: IMenuOptions) => {
 			height: 45px;
 			border-bottom: 1px solid var(--el-border-color);
 			img {
-				width: 32px;
+				width: 30px;
 				object-fit: contain;
 			}
 		}
@@ -180,7 +180,7 @@ const changeSubMenu = (item: IMenuOptions) => {
 			height: 45px;
 			border-bottom: 1px solid var(--el-border-color);
 			span {
-				font-size: 24px;
+				font-size: 20px;
 				font-weight: bold;
 				white-space: nowrap;
 			}

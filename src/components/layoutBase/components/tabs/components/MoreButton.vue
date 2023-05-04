@@ -2,15 +2,22 @@
 	<el-dropdown trigger="click">
 		<el-button size="small" type="primary">
 			<span>更多</span>
-			<i class="iconfont icon-xiangxia"></i>
-			<!-- <MyIcon icon="icon-xiangxia" color="#fff" :font="14" style="margin-left: 5px"></MyIcon> -->
+			<el-icon class="el-icon--right"><ArrowDown /></el-icon>
 		</el-button>
 		<template #dropdown>
 			<el-dropdown-menu>
-				<el-dropdown-item @click="refresh">刷新</el-dropdown-item>
-				<el-dropdown-item @click="closeCurrentTab">关闭当前</el-dropdown-item>
-				<el-dropdown-item @click="closeOtherTab">关闭其他</el-dropdown-item>
-				<el-dropdown-item @click="closeAllTab">关闭所有</el-dropdown-item>
+				<el-dropdown-item @click="refresh">
+					<el-icon><RefreshRight /></el-icon>刷新
+				</el-dropdown-item>
+				<el-dropdown-item @click="closeCurrentTab">
+					<el-icon><Remove /></el-icon>关闭当前
+				</el-dropdown-item>
+				<el-dropdown-item @click="closeOtherTab">
+					<el-icon><CircleClose /></el-icon>关闭其他
+				</el-dropdown-item>
+				<el-dropdown-item @click="closeAllTab">
+					<el-icon><FolderRemove /></el-icon>关闭所有
+				</el-dropdown-item>
 			</el-dropdown-menu>
 		</template>
 	</el-dropdown>
@@ -20,6 +27,7 @@
 import { GLOB_APP_HOME } from "@/global/constants"
 import { GlobalStore } from "@/stores/modules/global"
 import eventHub from "@/utils/eventHub"
+import { ArrowDown, RefreshRight, CircleClose, Remove, FolderRemove } from "@element-plus/icons-vue"
 
 const globalStore = GlobalStore()
 

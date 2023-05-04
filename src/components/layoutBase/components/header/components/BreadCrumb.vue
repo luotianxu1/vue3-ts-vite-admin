@@ -42,10 +42,9 @@ const goto = (val: string): void => {
 .link {
 	display: flex;
 	align-items: center;
-	font-size: 16px;
+	font-weight: 400 !important;
 
 	i {
-		font-size: 14px;
 		margin-right: 6px;
 	}
 }

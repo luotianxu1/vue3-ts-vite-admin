@@ -4,8 +4,8 @@
 			<template #btn="scope">
 				<el-button link type="primary" :icon="Edit" @click="handleEditBtn(scope.row)">编辑</el-button>
 				<el-button link type="danger" :icon="Delete">删除</el-button>
-			</template></PageContent
-		>
+			</template>
+		</PageContent>
 	</div>
 </template>
 

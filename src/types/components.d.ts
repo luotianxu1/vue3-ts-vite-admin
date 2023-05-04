@@ -81,6 +81,6 @@ declare module '@vue/runtime-core' {
     Setting: typeof import('./../components/layoutBase/components/header/components/Setting.vue')['default']
     Sidebar: typeof import('./../components/layoutBase/components/sidebar/Sidebar.vue')['default']
     Tabs: typeof import('./../components/layoutBase/components/tabs/index.vue')['default']
-    TreeMenu: typeof import('./../components/layoutBase/components/sidebar/components/TreeMenu.vue')['default']
+    TreeMenu: typeof import('./../components/layoutBase/components/sidebar/TreeMenu.vue')['default']
   }
 }

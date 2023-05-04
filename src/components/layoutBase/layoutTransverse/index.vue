@@ -78,12 +78,12 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 			width: 210px;
 			margin-right: 30px;
 			span {
-				font-size: 21.5px;
+				font-size: 20px;
 				font-weight: bold;
 				white-space: nowrap;
 			}
 			img {
-				width: 28px;
+				width: 30px;
 				object-fit: contain;
 				margin-right: 6px;
 			}

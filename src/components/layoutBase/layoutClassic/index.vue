@@ -79,12 +79,12 @@ const menuList = computed(() => userStore.showMenuListGet)
 				width: 210px;
 				margin-right: 16px;
 				span {
-					font-size: 24px;
+					font-size: 20px;
 					font-weight: bold;
 					white-space: nowrap;
 				}
 				img {
-					width: 28px;
+					width: 30px;
 					object-fit: contain;
 					margin-right: 6px;
 				}

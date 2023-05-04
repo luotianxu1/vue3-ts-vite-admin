@@ -142,8 +142,7 @@ export default [
 										isFull: false,
 										isHide: false,
 										isAffix: false,
-										isKeepAlive: true,
-										permission: []
+										isKeepAlive: true
 									},
 									children: [
 										{
@@ -170,6 +169,99 @@ export default [
 											permission: "system:menus:edit"
 										}
 									]
+								}
+							]
+						},
+						{
+							path: "/directives",
+							name: "directives",
+							redirect: "/directives/copyDirect",
+							meta: {
+								title: "自定义指令",
+								icon: "icon-setting",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
+							children: [
+								{
+									path: "/directives/copyDirect",
+									name: "copyDirect",
+									component: "/directives/copyDirect/CopyDirect",
+									meta: {
+										title: "复制指令",
+										icon: "icon-yonghu",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
+								},
+								{
+									path: "/directives/watermarkDirect",
+									name: "watermarkDirect",
+									component: "/directives/watermarkDirect/WatermarkDirect",
+									meta: {
+										title: "水印指令",
+										icon: "icon-yonghu",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
+								},
+								{
+									path: "/directives/dragDirect",
+									name: "dragDirect",
+									component: "/directives/dragDirect/DragDirect",
+									meta: {
+										title: "拖拽指令",
+										icon: "icon-yonghu",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
+								},
+								{
+									path: "/directives/debounceDirect",
+									name: "debounceDirect",
+									component: "/directives/debounceDirect/DebounceDirect",
+									meta: {
+										title: "防抖指令",
+										icon: "icon-yonghu",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
+								},
+								{
+									path: "/directives/throttleDirect",
+									name: "throttleDirect",
+									component: "/directives/throttleDirect/ThrottleDirect",
+									meta: {
+										title: "节流指令",
+										icon: "icon-yonghu",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
+								},
+								{
+									path: "/directives/longpressDirect",
+									name: "longpressDirect",
+									component: "/directives/longpressDirect/LongpressDirect",
+									meta: {
+										title: "长按指令",
+										icon: "icon-yonghu",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
 								}
 							]
 						}

@@ -1,6 +1,6 @@
 <template>
 	<div class="footer">
-		<span>Vue3-Vite-Admin</span>
+		<span>Vue3-TS-Vite-Admin</span>
 	</div>
 </template>
 
@@ -12,13 +12,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: var(--el-bg-color);
 	border-top: 1px solid var(--el-border-color);
 	span {
 		font-size: 14px;
-		color: var(--el-text-color-primary);
-
 		text-decoration: none;
 		letter-spacing: 0.5px;
+		color: var(--el-text-color-secondary);
 	}
 }
 </style>
