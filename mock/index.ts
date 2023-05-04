@@ -264,6 +264,34 @@ export default [
 									}
 								}
 							]
+						},
+						{
+							path: "/function",
+							name: "function",
+							redirect: "/function/bootPage",
+							meta: {
+								title: "常用功能",
+								icon: "icon-setting",
+								isFull: false,
+								isHide: false,
+								isAffix: false,
+								isKeepAlive: false
+							},
+							children: [
+								{
+									path: "/function/bootPage",
+									name: "bootPage",
+									component: "/function/guide/Guide",
+									meta: {
+										title: "引导页",
+										icon: "icon-yonghu",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
+								}
+							]
 						}
 					]
 				}

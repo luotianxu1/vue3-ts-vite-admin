@@ -1,10 +1,10 @@
 <template>
 	<div class="left">
-		<el-icon @click="changAside">
+		<el-icon @click="changAside" id="collapseIcon">
 			<Expand v-if="globalStore.themeConfig.isCollapse"></Expand>
 			<Fold v-else></Fold>
 		</el-icon>
-		<BreadCrumb v-if="globalStore.themeConfig.breadcrumb"></BreadCrumb>
+		<BreadCrumb id="breadcrumb" v-if="globalStore.themeConfig.breadcrumb"></BreadCrumb>
 	</div>
 </template>
 
