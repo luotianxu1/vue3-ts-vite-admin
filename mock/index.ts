@@ -296,7 +296,7 @@ export default [
 									name: "svg",
 									component: "/function/svg/Svg",
 									meta: {
-										title: "Svg",
+										title: "SVG图标",
 										icon: "icon-svg",
 										isFull: false,
 										isHide: false,
@@ -309,8 +309,34 @@ export default [
 									name: "wangEditor",
 									component: "/function/wangEditor/WangEditor",
 									meta: {
-										title: "markDown编辑器",
+										title: "富文本编辑器",
 										icon: "icon-markdown",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
+								},
+								{
+									path: "/function/draggable",
+									name: "draggable",
+									component: "/function/draggable/Draggable",
+									meta: {
+										title: "拖拽",
+										icon: "icon-yidong",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
+								},
+								{
+									path: "/function/embedded",
+									name: "embedded",
+									component: "/function/embedded/Embedded",
+									meta: {
+										title: "嵌套页面",
+										icon: "icon-kaifazhong",
 										isFull: false,
 										isHide: false,
 										isAffix: false,

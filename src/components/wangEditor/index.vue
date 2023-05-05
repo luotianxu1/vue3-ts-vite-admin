@@ -10,7 +10,6 @@ import "@wangeditor/editor/dist/css/style.css" // 引入 css
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue"
 import { i18nChangeLanguage } from "@wangeditor/editor"
 import type { IEditorConfig, IToolbarConfig } from "@wangeditor/editor"
-// import { formContextKey, formItemContextKey } from "element-plus"
 
 i18nChangeLanguage("zh-CN")
 

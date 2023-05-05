@@ -86,6 +86,6 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./../components/svgIcon/index.vue')['default']
     Tabs: typeof import('./../components/layoutBase/components/tabs/index.vue')['default']
     TreeMenu: typeof import('./../components/layoutBase/components/sidebar/TreeMenu.vue')['default']
-    WangEditor: typeof import('./../components/WangEditor/index.vue')['default']
+    WangEditor: typeof import('./../components/wangEditor/index.vue')['default']
   }
 }
