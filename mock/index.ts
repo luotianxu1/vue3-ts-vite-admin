@@ -178,7 +178,7 @@ export default [
 							redirect: "/directives/copyDirect",
 							meta: {
 								title: "自定义指令",
-								icon: "icon-setting",
+								icon: "icon-bianji",
 								isFull: false,
 								isHide: false,
 								isAffix: false,
@@ -191,7 +191,7 @@ export default [
 									component: "/directives/copyDirect/CopyDirect",
 									meta: {
 										title: "复制指令",
-										icon: "icon-yonghu",
+										icon: "icon-fuzhi",
 										isFull: false,
 										isHide: false,
 										isAffix: false,
@@ -204,7 +204,7 @@ export default [
 									component: "/directives/watermarkDirect/WatermarkDirect",
 									meta: {
 										title: "水印指令",
-										icon: "icon-yonghu",
+										icon: "icon-shuiyin",
 										isFull: false,
 										isHide: false,
 										isAffix: false,
@@ -217,7 +217,7 @@ export default [
 									component: "/directives/dragDirect/DragDirect",
 									meta: {
 										title: "拖拽指令",
-										icon: "icon-yonghu",
+										icon: "icon-yidong",
 										isFull: false,
 										isHide: false,
 										isAffix: false,
@@ -230,7 +230,7 @@ export default [
 									component: "/directives/debounceDirect/DebounceDirect",
 									meta: {
 										title: "防抖指令",
-										icon: "icon-yonghu",
+										icon: "icon-shaixuan",
 										isFull: false,
 										isHide: false,
 										isAffix: false,
@@ -243,7 +243,7 @@ export default [
 									component: "/directives/throttleDirect/ThrottleDirect",
 									meta: {
 										title: "节流指令",
-										icon: "icon-yonghu",
+										icon: "icon-shaixuan",
 										isFull: false,
 										isHide: false,
 										isAffix: false,
@@ -256,7 +256,7 @@ export default [
 									component: "/directives/longpressDirect/LongpressDirect",
 									meta: {
 										title: "长按指令",
-										icon: "icon-yonghu",
+										icon: "icon-changan",
 										isFull: false,
 										isHide: false,
 										isAffix: false,
@@ -271,7 +271,7 @@ export default [
 							redirect: "/function/bootPage",
 							meta: {
 								title: "常用功能",
-								icon: "icon-setting",
+								icon: "icon-gongnengdingyi",
 								isFull: false,
 								isHide: false,
 								isAffix: false,
@@ -284,7 +284,7 @@ export default [
 									component: "/function/guide/Guide",
 									meta: {
 										title: "引导页",
-										icon: "icon-yonghu",
+										icon: "icon-xinshouyindao",
 										isFull: false,
 										isHide: false,
 										isAffix: false,
@@ -297,7 +297,20 @@ export default [
 									component: "/function/svg/Svg",
 									meta: {
 										title: "Svg",
-										icon: "icon-yonghu",
+										icon: "icon-svg",
+										isFull: false,
+										isHide: false,
+										isAffix: false,
+										isKeepAlive: true
+									}
+								},
+								{
+									path: "/function/wangEditor",
+									name: "wangEditor",
+									component: "/function/wangEditor/WangEditor",
+									meta: {
+										title: "markDown编辑器",
+										icon: "icon-markdown",
 										isFull: false,
 										isHide: false,
 										isAffix: false,
