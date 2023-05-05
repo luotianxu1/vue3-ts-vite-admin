@@ -3,6 +3,7 @@
  * 按钮防抖指令，可自行扩展至input
  * 接收参数：function类型
  */
+import { ElMessage } from "element-plus"
 import type { Directive, DirectiveBinding } from "vue"
 
 interface ElType extends HTMLElement {

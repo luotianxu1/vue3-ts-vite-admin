@@ -4,6 +4,7 @@
  * 接收参数：string类型/Ref<string>类型/Reactive<string>类型
  */
 
+import { ElMessage } from "element-plus"
 import type { Directive, DirectiveBinding } from "vue"
 interface ElType extends HTMLElement {
 	copyData: string | number
