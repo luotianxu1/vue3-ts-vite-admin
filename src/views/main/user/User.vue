@@ -14,7 +14,7 @@
 	</div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup name="user">
 import { Delete, Edit } from "@element-plus/icons-vue"
 import type { IDepartment, IUserInfo } from "@/types"
 import type PageContent from "@/components/pageContent/index.vue"
@@ -30,7 +30,7 @@ import { getuserList } from "@/service/modules/user"
 import { getDepartmentList } from "@/service/modules/department"
 
 const userStore = UserStore()
-console.log(userStore.permissionsListGet)
+// console.log(userStore.permissionsListGet)
 
 const contentRef = ref<InstanceType<typeof PageContent>>()
 
@@ -64,7 +64,7 @@ const getList = async (formData = {}) => {
 	userList.value = res.data?.list
 	contentRef.value?.showTable(userList.value)
 }
-getList()
+// getList()
 
 // 查询
 const handleQueryClick = () => {

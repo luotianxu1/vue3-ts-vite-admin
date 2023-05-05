@@ -13,6 +13,7 @@ import { localCache } from "@utils/cache"
 import router from "@/router"
 import { getFlatArr, getShowMenuList, getAllBreadcrumbList, getAllPermissions } from "@/utils/route"
 import { ElNotification } from "element-plus"
+import { getTimeState } from "@/utils/global"
 
 export const UserStore = defineStore("UserStore", {
 	state: (): ILoginStore => ({
@@ -62,6 +63,13 @@ export const UserStore = defineStore("UserStore", {
 
 			// 跳转主页
 			router.push(GLOB_APP_HOME)
+
+			ElNotification({
+				title: getTimeState(),
+				message: "欢迎登录系统",
+				type: "success",
+				duration: 3000
+			})
 		},
 		/**
 		 * 退出登陆

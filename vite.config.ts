@@ -11,6 +11,7 @@ import Icons from "unplugin-icons/vite"
 import IconsResolver from "unplugin-icons/resolver"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import { resolve } from "path"
+import setupExtend from "vite-plugin-vue-setup-extend"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -44,6 +45,8 @@ export default defineConfig({
 		Icons({
 			autoInstall: true
 		}),
+		// setup语法糖设置名字
+		setupExtend(),
 		// 自动引入element-plus样式
 		createStyleImportPlugin({
 			resolves: [ElementPlusResolve()],

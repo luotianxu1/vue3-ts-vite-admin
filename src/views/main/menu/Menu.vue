@@ -9,7 +9,7 @@
 	</div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup name="userMenu">
 import { Delete, Edit } from "@element-plus/icons-vue"
 import type PageContent from "@/components/pageContent/index.vue"
 import { getUserMenuByRoleId } from "@/service/modules/login"

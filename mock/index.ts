@@ -115,7 +115,6 @@ export default [
 								icon: "icon-baobiao",
 								isFull: false,
 								isHide: false,
-								isAffix: false,
 								isKeepAlive: false
 							}
 						},
@@ -128,7 +127,6 @@ export default [
 								icon: "icon-setting",
 								isFull: false,
 								isHide: false,
-								isAffix: false,
 								isKeepAlive: false
 							},
 							children: [
@@ -141,7 +139,6 @@ export default [
 										icon: "icon-yonghu",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
 										isKeepAlive: true
 									},
 									children: [
@@ -153,14 +150,13 @@ export default [
 								},
 								{
 									path: "/main/menu",
-									name: "menu",
+									name: "userMenu",
 									component: "/main/menu/Menu",
 									meta: {
 										title: "菜单管理",
 										icon: "icon-caidan",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
 										isKeepAlive: true
 									},
 									children: [
@@ -181,7 +177,6 @@ export default [
 								icon: "icon-bianji",
 								isFull: false,
 								isHide: false,
-								isAffix: false,
 								isKeepAlive: false
 							},
 							children: [
@@ -194,8 +189,7 @@ export default [
 										icon: "icon-fuzhi",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								},
 								{
@@ -207,8 +201,7 @@ export default [
 										icon: "icon-shuiyin",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								},
 								{
@@ -220,8 +213,7 @@ export default [
 										icon: "icon-yidong",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								},
 								{
@@ -233,8 +225,7 @@ export default [
 										icon: "icon-shaixuan",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								},
 								{
@@ -246,8 +237,7 @@ export default [
 										icon: "icon-shaixuan",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								},
 								{
@@ -259,8 +249,7 @@ export default [
 										icon: "icon-changan",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								}
 							]
@@ -274,7 +263,6 @@ export default [
 								icon: "icon-gongnengdingyi",
 								isFull: false,
 								isHide: false,
-								isAffix: false,
 								isKeepAlive: false
 							},
 							children: [
@@ -287,8 +275,7 @@ export default [
 										icon: "icon-xinshouyindao",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								},
 								{
@@ -300,8 +287,7 @@ export default [
 										icon: "icon-svg",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								},
 								{
@@ -313,8 +299,7 @@ export default [
 										icon: "icon-markdown",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								},
 								{
@@ -326,8 +311,7 @@ export default [
 										icon: "icon-yidong",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								},
 								{
@@ -339,8 +323,7 @@ export default [
 										icon: "icon-kaifazhong",
 										isFull: false,
 										isHide: false,
-										isAffix: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									}
 								}
 							]

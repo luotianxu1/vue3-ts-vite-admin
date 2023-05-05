@@ -33,7 +33,6 @@ export interface IMetaProps {
 	isLink?: string
 	isHide: boolean
 	isFull: boolean
-	isAffix: boolean
 	isKeepAlive: boolean
 }
 
