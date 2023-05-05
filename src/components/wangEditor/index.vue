@@ -1,7 +1,14 @@
 <template>
 	<div :class="['editor-box', self_disabled ? 'editor-disabled' : '']">
 		<Toolbar class="editor-toolbar" :editor="editorRef" :default-config="toolbarConfig" :mode="mode" />
-		<Editor v-model="valueHtml" :style="{ height }" :default-config="editorConfig" :mode="mode" @onCreated="handleCreated" />
+		<Editor
+			v-model="valueHtml"
+			value=""
+			:style="{ height }"
+			:default-config="editorConfig"
+			:mode="mode"
+			@onCreated="handleCreated"
+		/>
 	</div>
 </template>
 <!-- https://www.wangeditor.com/ -->
@@ -14,7 +21,7 @@ import type { IEditorConfig, IToolbarConfig } from "@wangeditor/editor"
 i18nChangeLanguage("zh-CN")
 
 // 接收父组件参数，并设置默认值
-interface RichEditorProps {
+interface Props {
 	value: string // 富文本值 ==> 必传
 	toolbarConfig?: Partial<IToolbarConfig> // 工具栏配置 ==> 非必传（默认为空）
 	editorConfig?: Partial<IEditorConfig> // 编辑器配置 ==> 非必传（默认为空）
@@ -23,7 +30,7 @@ interface RichEditorProps {
 	disabled?: boolean // 是否禁用编辑器 ==> 非必传（默认为false）
 }
 
-const props = withDefaults(defineProps<RichEditorProps>(), {
+const props = withDefaults(defineProps<Props>(), {
 	toolbarConfig: () => {
 		return {
 			excludeKeys: []

@@ -291,9 +291,9 @@ export default [
 									}
 								},
 								{
-									path: "/function/wangEditor",
+									path: "/function/editor",
 									name: "wangEditor",
-									component: "/function/wangEditor/WangEditor",
+									component: "/function/editor/Editor",
 									meta: {
 										title: "富文本编辑器",
 										icon: "icon-markdown",
