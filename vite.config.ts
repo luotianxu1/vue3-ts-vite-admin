@@ -86,5 +86,13 @@ export default defineConfig({
 			"@utils": fileURLToPath(new URL("./src/utils", import.meta.url)),
 			"@global": fileURLToPath(new URL("./src/global", import.meta.url))
 		}
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				javascriptEnabled: true,
+				additionalData: '@import "@/assets/scss/variable.scss";'
+			}
+		}
 	}
 })
