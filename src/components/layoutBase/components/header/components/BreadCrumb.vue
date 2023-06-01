@@ -23,6 +23,8 @@ const userRouter = useRouter()
 const globalStore = GlobalStore()
 const userStore = UserStore()
 
+console.log(route.matched)
+
 // 获取系统首页路由
 const homeData = userStore.flatMenuListGet.filter(item => item.path === GLOB_APP_HOME)[0]
 

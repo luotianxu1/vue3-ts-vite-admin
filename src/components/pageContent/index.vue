@@ -72,7 +72,6 @@ defineExpose({ showTable })
 <style lang="scss" scoped>
 .content {
 	padding: 20px;
-	background-color: #fff;
 }
 
 .header {

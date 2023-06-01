@@ -13,7 +13,7 @@ import { localCache } from "@utils/cache"
 import router from "@/router"
 import { getFlatArr, getShowMenuList, getAllBreadcrumbList, getAllPermissions } from "@/utils/route"
 import { ElNotification } from "element-plus"
-import { getTimeState } from "@/utils/global"
+import { getTimeState } from "@/utils/time"
 
 export const UserStore = defineStore("UserStore", {
 	state: (): ILoginStore => ({
