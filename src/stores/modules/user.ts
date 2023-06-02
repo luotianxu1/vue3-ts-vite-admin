@@ -8,12 +8,13 @@ import {
 	GLOB_APP_LOGIN
 } from "@global/constants"
 import { accountLoginRequest, getUserInfoById, getUserMenuByRoleId } from "@/service/modules/login"
-import type { IAccountReq, ILoginStore } from "@/types"
+import type { IAccountReq } from "@/types"
 import { localCache } from "@utils/cache"
 import router from "@/router"
 import { getFlatArr, getShowMenuList, getAllBreadcrumbList, getAllPermissions } from "@/utils/route"
 import { ElNotification } from "element-plus"
 import { getTimeState } from "@/utils/time"
+import type { ILoginStore } from "../interface"
 
 export const UserStore = defineStore("UserStore", {
 	state: (): ILoginStore => ({

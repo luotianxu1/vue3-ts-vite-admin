@@ -3,7 +3,7 @@ import piniaPersistConfig from "@/utils/piniaPersist"
 import router from "@/router/index"
 import { GLOB_APP_HOME, DEFAULT_PRIMARY, TABS_BLACK_LIST } from "@/global/constants"
 import dayjs from "dayjs"
-import type { GlobalState, IRouterList, ThemeConfigProps } from "@/types"
+import type { GlobalState, IRouterList, ThemeConfigProps } from "../interface"
 
 export const GlobalStore = defineStore("GlobalState", {
 	state: (): GlobalState => ({

@@ -119,6 +119,18 @@ export default [
 							}
 						},
 						{
+							path: "/screen",
+							name: "screen",
+							component: "/screen/Screen",
+							meta: {
+								title: "大屏",
+								icon: "icon-baobiao",
+								isFull: true,
+								isHide: false,
+								isKeepAlive: false
+							}
+						},
+						{
 							path: "/main",
 							name: "main",
 							redirect: "/main/user",

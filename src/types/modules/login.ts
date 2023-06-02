@@ -1,5 +1,3 @@
-import type { IUserInfo } from "./user"
-
 // 登陆请求
 export interface IAccountReq {
 	name: string
@@ -16,13 +14,6 @@ export interface IAccountResult {
 // 菜单返回
 export interface IMenuListResult {
 	menu: IMenuOptions[]
-}
-
-// 登陆相关Store
-export interface ILoginStore {
-	token: string
-	userInfo: IUserInfo
-	userMenuList: IMenuOptions[]
 }
 
 // 路由
