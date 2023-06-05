@@ -10,8 +10,15 @@
 					<Sex class="sex"></Sex>
 					<Age class="age"></Age>
 				</div>
-				<div class="center">中间</div>
-				<div class="right">右侧</div>
+				<div class="center">
+					<Map class="map"></Map>
+					<Line class="line"></Line>
+				</div>
+				<div class="right">
+					<Rank class="rank"></Rank>
+					<Year class="year"></Year>
+					<Counter class="counter"></Counter>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -22,6 +29,11 @@ import Top from "./components/top/Top.vue"
 import Tourist from "./components/tourist/Tourist.vue"
 import Sex from "./components/sex/Sex.vue"
 import Age from "./components/age/Age.vue"
+import Line from "./components/line/Line.vue"
+import Map from "./components/map/Map.vue"
+import Rank from "./components/rank/Rank.vue"
+import Year from "./components/year/Year.vue"
+import Counter from "./components/counter/Counter.vue"
 
 let screen = ref<HTMLElement>()
 
@@ -49,9 +61,11 @@ const resize = () => {
 		screen.value.style.transform = `scale(${getScale()}) translate(-50%, -50%)`
 	}
 	// 使用了 scale 的echarts其实不需要需要重新计算缩放比例
-	Object.values(screen).forEach(chart => {
-		chart && chart.resize()
-	})
+	// Object.values(screen.value).forEach(chart => {
+	// 	console.log(chart)
+
+	// 	chart && chart.resize()
+	// })
 }
 </script>
 
@@ -80,6 +94,21 @@ const resize = () => {
 
 			.right {
 				flex: 1;
+				display: flex;
+				flex-direction: column;
+				margin-left: 20px;
+
+				.rank {
+					flex: 1.5;
+				}
+
+				.year {
+					flex: 1;
+				}
+
+				.counter {
+					flex: 1;
+				}
 			}
 
 			.left {
@@ -103,6 +132,17 @@ const resize = () => {
 
 			.center {
 				flex: 2;
+				display: flex;
+				flex-direction: column;
+				padding: 0 20px;
+
+				.map {
+					flex: 3;
+				}
+
+				.line {
+					flex: 1;
+				}
 			}
 		}
 	}

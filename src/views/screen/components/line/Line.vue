@@ -1,7 +1,7 @@
 <template>
 	<div class="box">
 		<div class="top">
-			<p class="title">年龄比例</p>
+			<p class="title">未来7天游客数量趋势图</p>
 			<p class="bg"></p>
 		</div>
 		<div class="charts" ref="charts"></div>
@@ -16,51 +16,49 @@ onMounted(() => {
 	if (!charts.value) return
 	let myCharts = echarts.init(charts.value)
 	myCharts.setOption({
-		tooltip: {
-			trigger: "item"
+		title: {
+			text: "访问量"
 		},
-		legend: {
-			right: 10,
-			top: 40,
-			orient: "vertical",
-			textStyle: {
-				color: "white",
-				fontSize: 14
+		xAxis: {
+			type: "category",
+			boundaryGap: false,
+			splitLine: {
+				show: false
+			},
+			axisLine: {
+				show: true
+			},
+			axisTick: {
+				show: true
+			},
+			data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+		},
+		yAxis: {
+			splitLine: {
+				show: false
+			},
+			axisLine: {
+				show: true
+			},
+			axisTick: {
+				show: true
 			}
 		},
 		series: [
 			{
-				name: "Access From",
-				type: "pie",
-				radius: ["40%", "70%"],
-				avoidLabelOverlap: false,
-				itemStyle: {
-					borderRadius: 10,
-					borderColor: "#fff",
-					borderWidth: 2
-				},
-				label: {
-					show: true,
-					position: "inside",
-					color: "white"
-				},
-				labelLine: {
-					show: false
-				},
-				data: [
-					{ value: 1048, name: "Search Engine" },
-					{ value: 735, name: "Direct" },
-					{ value: 580, name: "Email" },
-					{ value: 484, name: "Union Ads" },
-					{ value: 300, name: "Video Ads" }
-				]
+				type: "line",
+				data: [120, 240, 890, 99, 321, 66, 1200],
+				smooth: true,
+				areaStyle: {
+					color: "red"
+				}
 			}
 		],
 		grid: {
-			left: 0,
-			right: 0,
+			left: 40,
+			right: 20,
 			top: 0,
-			bottom: 0
+			bottom: 30
 		}
 	})
 })

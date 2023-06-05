@@ -1,7 +1,7 @@
 <template>
 	<div class="box">
 		<div class="top">
-			<p class="title">年龄比例</p>
+			<p class="title">性别比例</p>
 			<p class="bg"></p>
 		</div>
 		<div class="charts" ref="charts"></div>
@@ -16,51 +16,42 @@ onMounted(() => {
 	if (!charts.value) return
 	let myCharts = echarts.init(charts.value)
 	myCharts.setOption({
-		tooltip: {
-			trigger: "item"
-		},
-		legend: {
-			right: 10,
-			top: 40,
-			orient: "vertical",
+		title: {
+			text: "景区排行",
+			left: "50%",
 			textStyle: {
-				color: "white",
-				fontSize: 14
+				color: "yellowgreen",
+				fontSize: 20
+			},
+			subtext: "各大景区排行",
+			subtextStyle: {
+				color: "yellowgreen"
 			}
 		},
+		xAxis: {},
+		yAxis: {},
 		series: [
 			{
-				name: "Access From",
-				type: "pie",
-				radius: ["40%", "70%"],
-				avoidLabelOverlap: false,
-				itemStyle: {
-					borderRadius: 10,
-					borderColor: "#fff",
-					borderWidth: 2
-				},
+				type: "bar",
+				data: [10, 20, 30, 40, 50, 60, 70],
 				label: {
 					show: true,
-					position: "inside",
-					color: "white"
+					position: "insideTop"
 				},
-				labelLine: {
-					show: false
+				showBackground: true,
+				backgroundStyle: {
+					color: "black"
 				},
-				data: [
-					{ value: 1048, name: "Search Engine" },
-					{ value: 735, name: "Direct" },
-					{ value: 580, name: "Email" },
-					{ value: 484, name: "Union Ads" },
-					{ value: 300, name: "Video Ads" }
-				]
+				itemStyle: {
+					borderRadius: [10, 10, 0, 0]
+				}
 			}
 		],
 		grid: {
-			left: 0,
-			right: 0,
-			top: 0,
-			bottom: 0
+			left: 40,
+			right: 40,
+			top: 20,
+			bottom: 20
 		}
 	})
 })
@@ -90,8 +81,8 @@ onMounted(() => {
 	}
 
 	.charts {
+		height: 100%;
 		width: 100%;
-		height: 260px;
 	}
 }
 </style>
