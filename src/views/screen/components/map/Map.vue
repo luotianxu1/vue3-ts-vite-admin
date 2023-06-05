@@ -1,28 +1,26 @@
 <template>
-	<div class="box" ref="map"></div>
+	<div>
+		<BaseEcharts :option="options"></BaseEcharts>
+	</div>
 </template>
 
 <script lang="ts" setup>
 import * as echarts from "echarts"
 import chinaJSON from "@assets/json/chinajson.json"
-
-const map = ref<HTMLDivElement>()
+import type { EChartsOption } from "echarts"
 
 echarts.registerMap("china", chinaJSON as any)
 
+let options = ref<EChartsOption>()
 onMounted(() => {
-	if (!map.value) {
-		return
-	}
-	let myChart = echarts.init(map.value)
-	myChart.setOption({
+	options.value = {
 		geo: {
 			map: "china",
 			roam: true, // 鼠标缩放
 			left: 50,
-			top: 100,
+			top: 50,
 			right: 50,
-			bottom: 0,
+			bottom: -150,
 			label: {
 				show: true,
 				color: "white",
@@ -62,7 +60,7 @@ onMounted(() => {
 				}
 			}
 		]
-	})
+	}
 })
 </script>
 

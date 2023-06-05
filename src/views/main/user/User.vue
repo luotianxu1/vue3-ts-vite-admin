@@ -30,7 +30,7 @@ import { getuserList } from "@/service/modules/user"
 import { getDepartmentList } from "@/service/modules/department"
 
 const userStore = UserStore()
-console.log(userStore.permissionsListGet)
+// console.log(userStore.permissionsListGet)
 
 const contentRef = ref<InstanceType<typeof PageContent>>()
 

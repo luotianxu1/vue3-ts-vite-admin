@@ -1,97 +1,74 @@
 <template>
-	<div class="box">
-		<div class="top">
-			<p class="title">年龄比例</p>
-			<p class="bg"></p>
-		</div>
-		<div class="charts" ref="charts"></div>
-	</div>
+	<Box title="年龄比例">
+		<template #bottom>
+			<BaseEcharts :option="options"></BaseEcharts>
+		</template>
+	</Box>
 </template>
 
 <script lang="ts" setup>
-import * as echarts from "echarts"
+import Box from "../box/Box.vue"
+import type { EChartsOption } from "echarts"
 
-let charts = ref<HTMLDivElement>()
+let options = ref<EChartsOption>()
+
 onMounted(() => {
-	if (!charts.value) return
-	let myCharts = echarts.init(charts.value)
-	myCharts.setOption({
-		tooltip: {
-			trigger: "item"
-		},
-		legend: {
-			right: 10,
-			top: 40,
-			orient: "vertical",
-			textStyle: {
-				color: "white",
-				fontSize: 14
+	setTimeout(() => {
+		options.value = {
+			tooltip: {
+				trigger: "item"
+			},
+			legend: {
+				right: 10,
+				top: 40,
+				orient: "vertical",
+				textStyle: {
+					color: "white",
+					fontSize: 14
+				}
+			},
+			series: [
+				{
+					name: "Access From",
+					type: "pie",
+					radius: ["40%", "70%"],
+					avoidLabelOverlap: false,
+					itemStyle: {
+						borderRadius: 10,
+						borderColor: "#fff",
+						borderWidth: 2
+					},
+					label: {
+						show: true,
+						position: "inside",
+						color: "white"
+					},
+					labelLine: {
+						show: false
+					},
+					data: [
+						{ value: 1048, name: "Search Engine" },
+						{ value: 735, name: "Direct" },
+						{ value: 580, name: "Email" },
+						{ value: 484, name: "Union Ads" },
+						{ value: 300, name: "Video Ads" }
+					]
+				}
+			],
+			grid: {
+				left: 0,
+				right: 0,
+				top: 0,
+				bottom: 0
 			}
-		},
-		series: [
-			{
-				name: "Access From",
-				type: "pie",
-				radius: ["40%", "70%"],
-				avoidLabelOverlap: false,
-				itemStyle: {
-					borderRadius: 10,
-					borderColor: "#fff",
-					borderWidth: 2
-				},
-				label: {
-					show: true,
-					position: "inside",
-					color: "white"
-				},
-				labelLine: {
-					show: false
-				},
-				data: [
-					{ value: 1048, name: "Search Engine" },
-					{ value: 735, name: "Direct" },
-					{ value: 580, name: "Email" },
-					{ value: 484, name: "Union Ads" },
-					{ value: 300, name: "Video Ads" }
-				]
-			}
-		],
-		grid: {
-			left: 0,
-			right: 0,
-			top: 0,
-			bottom: 0
 		}
-	})
+	}, 1000)
 })
 </script>
 
 <style lang="scss" scoped>
-.box {
-	background: url(../../../../assets/images/screen/dataScreen-main-lb.png) no-repeat;
-	background-size: 100% 100%;
-	margin-top: 10px;
-
-	.top {
-		margin-left: 20px;
-
-		.title {
-			color: white;
-			font-size: 20px;
-		}
-
-		.bg {
-			width: 68px;
-			height: 7px;
-			background: url(../../../../assets/images/screen/dataScreen-title.png) no-repeat;
-			background-size: 100% 100%;
-			margin-top: 10px;
-		}
-	}
-
-	.charts {
-		width: 100%;
-		height: 260px;
-	}
+.charts {
+	width: 100%;
+	height: 260px;
 }
 </style>

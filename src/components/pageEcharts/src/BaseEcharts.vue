@@ -5,25 +5,39 @@
 <script lang="ts" setup>
 import * as echarts from "echarts"
 import type { EChartsOption } from "echarts"
+import "echarts-liquidfill"
 
 interface IProps {
-	option: EChartsOption
+	option: EChartsOption | undefined
 }
 
 const props = defineProps<IProps>()
 
-const echartsRef = ref<HTMLElement>()
+watch(
+	() => props.option,
+	newVal => {
+		echartsInstance.setOption(newVal || {})
+	}
+)
 
+const echartsRef = ref<HTMLElement>()
+let echartsInstance: echarts.ECharts
 onMounted(() => {
-	const echartsInstance = echarts.init(echartsRef.value!, "light", {
+	echartsInstance = echarts.init(echartsRef.value!, "light", {
 		renderer: "canvas"
 	})
-	echartsInstance.setOption(props.option)
 
-	window.addEventListener("resize", () => {
-		echartsInstance.resize()
-	})
+	window.addEventListener("resize", resize)
 })
+
+onUnmounted(() => {
+	window.removeEventListener("resize", resize)
+})
+
+const resize = () => {
+	if (!echartsRef.value) return
+	echartsInstance.resize()
+}
 </script>
 
 <style lang="scss" scoped>

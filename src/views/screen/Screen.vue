@@ -1,9 +1,7 @@
 <template>
 	<div class="container">
 		<div class="screen" ref="screen">
-			<div class="top">
-				<Top></Top>
-			</div>
+			<Top></Top>
 			<div class="bottom">
 				<div class="left">
 					<Tourist class="tourist"></Tourist>
@@ -83,12 +81,6 @@ const resize = () => {
 		width: 1920px;
 		height: 1080px;
 		transform-origin: left top;
-
-		.top {
-			width: 100%;
-			height: 40px;
-		}
-
 		.bottom {
 			display: flex;
 

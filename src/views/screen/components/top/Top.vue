@@ -58,6 +58,7 @@ onBeforeMount(() => {
 			line-height: 40px;
 			color: #29fcff;
 			font-size: 20px;
+			cursor: pointer;
 		}
 	}
 
@@ -93,11 +94,13 @@ onBeforeMount(() => {
 			line-height: 40px;
 			color: #29fcff;
 			font-size: 20px;
+			cursor: pointer;
 		}
 
 		.time {
 			color: #29fcff;
 			font-size: 20px;
+			margin-right: 10px;
 		}
 	}
 }

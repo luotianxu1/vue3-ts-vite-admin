@@ -1,21 +1,18 @@
 <template>
-	<div class="box">
-		<div class="top">
-			<p class="title">性别比例</p>
-			<p class="bg"></p>
-		</div>
-		<div class="charts" ref="charts"></div>
-	</div>
+	<Box title="性别比例">
+		<template #bottom>
+			<BaseEcharts :option="options"></BaseEcharts>
+		</template>
+	</Box>
 </template>
 
 <script lang="ts" setup>
-import * as echarts from "echarts"
+import Box from "../box/Box.vue"
+import type { EChartsOption } from "echarts"
 
-let charts = ref<HTMLDivElement>()
+let options = ref<EChartsOption>()
 onMounted(() => {
-	if (!charts.value) return
-	let myCharts = echarts.init(charts.value)
-	myCharts.setOption({
+	options.value = {
 		title: {
 			text: "景区排行",
 			left: "50%",
@@ -50,39 +47,16 @@ onMounted(() => {
 		grid: {
 			left: 40,
 			right: 40,
-			top: 20,
-			bottom: 20
+			top: 60,
+			bottom: 40
 		}
-	})
+	}
 })
 </script>
 
 <style lang="scss" scoped>
-.box {
-	background: url(../../../../assets/images/screen/dataScreen-main-lb.png) no-repeat;
-	background-size: 100% 100%;
-	margin-top: 10px;
-
-	.top {
-		margin-left: 20px;
-
-		.title {
-			color: white;
-			font-size: 20px;
-		}
-
-		.bg {
-			width: 68px;
-			height: 7px;
-			background: url(../../../../assets/images/screen/dataScreen-title.png) no-repeat;
-			background-size: 100% 100%;
-			margin-top: 10px;
-		}
-	}
-
-	.charts {
-		height: 100%;
-		width: 100%;
-	}
+.charts {
+	height: 100%;
+	width: 100%;
 }
 </style>
