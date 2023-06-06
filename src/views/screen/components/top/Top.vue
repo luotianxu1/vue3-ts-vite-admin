@@ -1,5 +1,5 @@
 <template>
-	<div class="top">
+	<div class="header">
 		<div class="left">
 			<span class="lbtn" @click="home">首页</span>
 		</div>
@@ -32,13 +32,13 @@ onMounted(() => {
 	}, 1000)
 })
 
-onBeforeMount(() => {
+onBeforeUnmount(() => {
 	clearInterval(interval)
 })
 </script>
 
 <style lang="scss" scoped>
-.top {
+.header {
 	width: 100%;
 	height: 40px;
 	display: flex;

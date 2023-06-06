@@ -10,18 +10,18 @@ import "echarts-liquidfill"
 interface IProps {
 	option: EChartsOption | undefined
 }
-
 const props = defineProps<IProps>()
+
+const echartsRef = ref<HTMLElement>()
+let echartsInstance: echarts.ECharts | null = null
 
 watch(
 	() => props.option,
 	newVal => {
-		echartsInstance.setOption(newVal || {})
+		echartsInstance?.setOption(newVal || {})
 	}
 )
 
-const echartsRef = ref<HTMLElement>()
-let echartsInstance: echarts.ECharts
 onMounted(() => {
 	echartsInstance = echarts.init(echartsRef.value!, "light", {
 		renderer: "canvas"
@@ -30,14 +30,23 @@ onMounted(() => {
 	window.addEventListener("resize", resize)
 })
 
-onUnmounted(() => {
+const resize = () => {
+	echartsInstance?.resize()
+}
+
+const dispose = () => {
+	echartsInstance?.dispose()
+}
+
+onBeforeUnmount(() => {
+	dispose()
 	window.removeEventListener("resize", resize)
 })
 
-const resize = () => {
-	if (!echartsRef.value) return
-	echartsInstance.resize()
-}
+defineExpose({
+	echartsInstance,
+	dispose
+})
 </script>
 
 <style lang="scss" scoped>

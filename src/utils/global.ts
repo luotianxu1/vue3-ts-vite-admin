@@ -12,3 +12,13 @@ export function isType(val: any) {
 	if (typeof val !== "object") return typeof val
 	else return Object.prototype.toString.call(val).slice(8, -1).toLocaleLowerCase()
 }
+
+/**
+ * @description 生成随机数
+ * @param {Number} min 最小值
+ * @param {Number} max 最大值
+ * @returns {Number}
+ */
+export function randomNum(min: number, max: number): number {
+	return Math.floor(Math.random() * (min - max) + max)
+}

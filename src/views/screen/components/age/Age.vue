@@ -10,59 +10,121 @@
 import Box from "../box/Box.vue"
 import type { EChartsOption } from "echarts"
 
+interface ChartProp {
+	value: number
+	name: string
+	percentage: string
+}
+
 let options = ref<EChartsOption>()
 
-onMounted(() => {
-	setTimeout(() => {
-		options.value = {
-			tooltip: {
-				trigger: "item"
+const initChart = (data: ChartProp[]) => {
+	const colors = ["#F6C95C", "#EF7D33", "#1F9393", "#184EA1", "#81C8EF", "#9270CA"]
+	options.value = {
+		color: colors,
+		tooltip: {
+			show: true,
+			trigger: "item",
+			formatter: "{b} <br/>占比：{d}%"
+		},
+		legend: {
+			orient: "vertical",
+			right: "20px",
+			top: "15px",
+			itemGap: 15,
+			itemWidth: 14,
+			formatter: function (name) {
+				let text = ""
+				data.forEach((val: ChartProp) => {
+					if (val.name === name) {
+						text = " " + name + "　 " + val.percentage
+					}
+				})
+				return text
 			},
-			legend: {
-				right: 10,
-				top: 40,
-				orient: "vertical",
-				textStyle: {
-					color: "white",
-					fontSize: 14
-				}
-			},
-			series: [
-				{
-					name: "Access From",
-					type: "pie",
-					radius: ["40%", "70%"],
-					avoidLabelOverlap: false,
-					itemStyle: {
-						borderRadius: 10,
-						borderColor: "#fff",
-						borderWidth: 2
-					},
-					label: {
-						show: true,
-						position: "inside",
-						color: "white"
-					},
-					labelLine: {
-						show: false
-					},
-					data: [
-						{ value: 1048, name: "Search Engine" },
-						{ value: 735, name: "Direct" },
-						{ value: 580, name: "Email" },
-						{ value: 484, name: "Union Ads" },
-						{ value: 300, name: "Video Ads" }
-					]
-				}
-			],
-			grid: {
-				left: 0,
-				right: 0,
-				top: 0,
-				bottom: 0
+			textStyle: {
+				color: "#fff"
 			}
-		}
-	}, 1000)
+		},
+		grid: {
+			top: "bottom",
+			left: 10,
+			bottom: 10
+		},
+		series: [
+			{
+				zlevel: 1,
+				// name: "年龄比例",
+				type: "pie",
+				selectedMode: "single",
+				radius: [50, 90],
+				center: ["35%", "50%"],
+				startAngle: 60,
+				label: {
+					position: "inside",
+					show: true,
+					color: "#fff",
+					formatter: function (params: any) {
+						return params.data.percentage
+					},
+					rich: {
+						b: {
+							fontSize: 16,
+							lineHeight: 30,
+							color: "#fff"
+						}
+					}
+				},
+				itemStyle: {
+					shadowColor: "rgba(0, 0, 0, 0.2)",
+					shadowBlur: 10
+				},
+				data: data.map((val: ChartProp, index: number) => {
+					return {
+						value: val.value,
+						name: val.name,
+						percentage: val.percentage,
+						itemStyle: {
+							borderWidth: 10,
+							shadowBlur: 20,
+							borderColor: colors[index],
+							borderRadius: 10
+						}
+					}
+				})
+			},
+			{
+				name: "",
+				type: "pie",
+				selectedMode: "single",
+				radius: [50, 90],
+				center: ["35%", "50%"],
+				startAngle: 60,
+				data: [
+					{
+						value: 1000,
+						name: "",
+						label: {
+							show: true,
+							formatter: "{a|本日总数}",
+							rich: {
+								a: {
+									align: "center",
+									color: "rgb(98,137,169)",
+									fontSize: 14
+								}
+							},
+							position: "center"
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+defineExpose({
+	initChart
 })
 </script>
 

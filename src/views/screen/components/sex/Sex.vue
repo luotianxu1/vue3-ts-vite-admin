@@ -9,10 +9,6 @@
 					<img src="../../../../assets/images/screen/woman.png" alt="" />
 				</div>
 			</div>
-			<div class="rate">
-				<p>男士58%</p>
-				<p>女士42%</p>
-			</div>
 			<div class="charts">
 				<BaseEcharts :option="options"></BaseEcharts>
 			</div>
@@ -24,49 +20,115 @@
 import type { EChartsOption } from "echarts"
 import Box from "../box/Box.vue"
 
+interface ChartProp {
+	man: number
+	woman: number
+}
+
 let options = ref<EChartsOption>()
-onMounted(() => {
+
+const initChart = (data: ChartProp) => {
 	options.value = {
-		title: {
-			text: "男女比例"
-		},
 		xAxis: {
-			show: false,
-			min: 0,
-			max: 100
+			type: "value",
+			show: false
 		},
-		yAxis: {
-			show: false,
-			type: "category"
+		grid: {
+			left: 0,
+			top: 0,
+			bottom: 0,
+			right: 0
 		},
+		yAxis: [
+			{
+				type: "category",
+				position: "left",
+				data: ["男生"],
+				axisTick: {
+					show: false
+				},
+				axisLine: {
+					show: false
+				},
+				axisLabel: {
+					show: false
+				}
+			},
+			{
+				type: "category",
+				position: "right",
+				data: ["女士"],
+				axisTick: {
+					show: false
+				},
+				axisLine: {
+					show: false
+				},
+				axisLabel: {
+					show: false,
+					padding: [0, 0, 40, -60],
+					fontSize: 12,
+					lineHeight: 60,
+					color: "rgba(255, 255, 255, 0.9)",
+					formatter: "{value}" + data.woman * 100 + "%",
+					rich: {
+						a: {
+							color: "transparent",
+							lineHeight: 30,
+							fontFamily: "digital",
+							fontSize: 12
+						}
+					}
+				}
+			}
+		],
 		series: [
 			{
 				type: "bar",
-				data: [58],
 				barWidth: 20,
-				z: 100,
+				data: [data.man],
+				z: 20,
 				itemStyle: {
-					borderRadius: 20
+					borderRadius: 10,
+					color: "#007AFE"
+				},
+				label: {
+					show: true,
+					color: "#E7E8ED",
+					position: "insideLeft",
+					offset: [0, -20],
+					fontSize: 12,
+					formatter: () => {
+						return `男士 ${data.man * 100}%`
+					}
 				}
 			},
 			{
 				type: "bar",
-				data: [100],
 				barWidth: 20,
+				data: [1],
 				barGap: "-100%",
 				itemStyle: {
-					color: "pink",
-					borderRadius: 20
+					borderRadius: 10,
+					color: "#FF4B7A"
+				},
+				label: {
+					show: true,
+					color: "#E7E8ED",
+					position: "insideRight",
+					offset: [0, -20],
+					fontSize: 12,
+					formatter: () => {
+						return `女士 ${data.woman * 100}%`
+					}
 				}
 			}
-		],
-		grid: {
-			left: 0,
-			right: 0,
-			top: 0,
-			bottom: 0
-		}
+		]
 	}
+}
+
+defineExpose({
+	initChart
 })
 </script>
 
@@ -96,13 +158,9 @@ onMounted(() => {
 	}
 }
 
-.rate {
-	display: flex;
-	justify-content: space-between;
-	color: white;
-}
-
 .charts {
 	height: 100px;
+	margin: 0 auto;
+	width: 80%;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
 	<div class="box">
-		<div class="top">
-			<p class="title">{{ props.title }}</p>
+		<div class="box-header">
+			<p class="box-title">{{ props.title }}</p>
 			<p class="bg"></p>
 			<slot name="subText"></slot>
 		</div>
-		<div class="bottom">
+		<div class="box-bottom">
 			<slot name="bottom"></slot>
 		</div>
 	</div>
@@ -28,11 +28,11 @@ const props = withDefaults(defineProps<Props>(), {
 	background-size: 100% 100%;
 	margin-top: 10px;
 
-	.top {
-		height: 60px;
-		padding: 0 20px;
+	.box-header {
+		height: 67px;
+		padding-right: 10px;
 
-		.title {
+		.box-title {
 			color: white;
 			font-size: 20px;
 		}
@@ -46,8 +46,9 @@ const props = withDefaults(defineProps<Props>(), {
 		}
 	}
 
-	.bottom {
-		flex: 1;
+	.box-bottom {
+		height: calc(100% - 67px);
+		width: 100%;
 	}
 }
 </style>
