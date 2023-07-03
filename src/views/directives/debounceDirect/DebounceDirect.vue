@@ -6,9 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from "element-plus"
+import Modal from "@utils/modal"
+
 const debounceClick = () => {
-	ElMessage.success("我是防抖按钮触发的事件 🍍🍓🍌")
+	Modal.msgSuccess("我是防抖按钮触发的事件 🍍🍓🍌")
 }
 </script>
 

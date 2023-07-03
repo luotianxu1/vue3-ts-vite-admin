@@ -41,11 +41,12 @@
 
 <script lang="ts" setup>
 import { User, Unlock, Key } from "@element-plus/icons-vue"
-import { type FormRules, type FormInstance, ElMessage } from "element-plus"
+import type { FormInstance, FormRules } from "element-plus"
 import CodeBox from "./components/CodeBox.vue"
 import { UserStore } from "@/stores/modules/user"
 import { localCache } from "@/utils/cache"
 import { CACHE_NAME, CACHE_PASSWORD } from "@/global/constants"
+import Modal from "@utils/modal"
 
 // 校验码
 const checkBoxRef = ref<InstanceType<typeof CodeBox>>()
@@ -82,7 +83,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 				form.remember
 			)
 		} else {
-			ElMessage.warning("请输入完整表单")
+			Modal.msgWarning("请输入完整表单")
 		}
 	})
 }

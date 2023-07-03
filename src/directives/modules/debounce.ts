@@ -3,8 +3,8 @@
  * 按钮防抖指令，可自行扩展至input
  * 接收参数：function类型
  */
-import { ElMessage } from "element-plus"
 import type { Directive, DirectiveBinding } from "vue"
+import Modal from "@utils/modal"
 
 interface ElType extends HTMLElement {
 	handleClick: () => any
@@ -12,7 +12,7 @@ interface ElType extends HTMLElement {
 const debounce: Directive = {
 	mounted(el: ElType, binding: DirectiveBinding) {
 		if (typeof binding.value !== "function") {
-			throw ElMessage.warning("请绑定函数！")
+			throw Modal.msgWarning("请绑定函数！")
 		}
 		let timer: any = null
 		el.handleClick = function () {

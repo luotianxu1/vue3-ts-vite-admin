@@ -104,7 +104,7 @@
 import { DEFAULT_PRIMARY } from "@/global/constants"
 import { useTheme } from "@/hooks/useTheme"
 import { GlobalStore } from "@/stores/modules/global"
-import { ElMessage } from "element-plus"
+import Modal from "@utils/modal"
 
 const drawer = ref(false)
 const open = () => {
@@ -132,7 +132,7 @@ const { changePrimary, changeGrey, switchDark } = useTheme()
 
 const changeColor = (color: string) => {
 	changePrimary(color)
-	ElMessage({ type: "success", message: color ? `主题颜色已设置为 ${color}` : `主题颜色已重置为 ${DEFAULT_PRIMARY}` })
+	Modal.msgSuccess(color ? `主题颜色已设置为 ${color}` : `主题颜色已重置为 ${DEFAULT_PRIMARY}`)
 }
 
 // 切换布局方式

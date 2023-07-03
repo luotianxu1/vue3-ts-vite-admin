@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ElMessage } from "element-plus"
 import screenfull from "screenfull"
+import Modal from "@utils/modal"
 
 const sf = screenfull
 
@@ -43,11 +43,7 @@ const change = () => {
 
 const click = () => {
 	if (!sf.isEnabled) {
-		ElMessage({
-			message: "您的浏览器不支持！",
-			type: "warning"
-		})
-		return false
+		return Modal.msgWarning("您的浏览器不支持！")
 	}
 	sf.toggle()
 }

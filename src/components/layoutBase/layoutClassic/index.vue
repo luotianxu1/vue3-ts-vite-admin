@@ -71,7 +71,8 @@ const menuList = computed(() => userStore.showMenuListGet)
 		justify-content: space-between;
 		height: 45px;
 		padding: 0 15px 0 0;
-		border-bottom: 1px solid var(--el-border-color);
+		box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+		// border-bottom: 1px solid var(--el-border-color);
 		.header-lf {
 			display: flex;
 			align-items: center;

@@ -70,10 +70,6 @@ defineExpose({ showTable })
 </script>
 
 <style lang="scss" scoped>
-.content {
-	padding: 20px;
-}
-
 .header {
 	display: flex;
 	justify-content: space-between;

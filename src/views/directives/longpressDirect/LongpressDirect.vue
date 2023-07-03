@@ -6,9 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from "element-plus"
+import Modal from "@utils/modal"
+
 const longpress = () => {
-	ElMessage.success("长按事件触发成功")
+	Modal.msgSuccess("长按事件触发成功")
 }
 </script>
 

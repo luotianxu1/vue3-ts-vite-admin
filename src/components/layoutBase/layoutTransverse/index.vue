@@ -73,7 +73,8 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 		justify-content: space-between;
 		height: 45px;
 		padding: 0 15px 0 0;
-		border-bottom: 1px solid var(--el-border-color);
+		box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+		// border-bottom: 1px solid var(--el-border-color);
 		.logo {
 			width: 210px;
 			margin-right: 30px;
@@ -94,7 +95,7 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 .el-menu {
 	flex: 1;
 	overflow: hidden;
-	border-bottom: 1px solid var(--el-border-color);
+	border-bottom: 0;
 	height: 45px;
 	.is-active {
 		border-bottom-color: var(--el-color-primary) !important;

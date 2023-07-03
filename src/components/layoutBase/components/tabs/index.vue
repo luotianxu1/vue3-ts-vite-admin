@@ -27,6 +27,7 @@
 import MoreButton from "./components/MoreButton.vue"
 import type { TabPaneName, TabsPaneContext } from "element-plus"
 import { GlobalStore } from "@/stores/modules/global"
+import { GLOB_APP_HOME } from "@/global/constants"
 
 const globalStore = GlobalStore()
 const tabsMenuList = computed(() => globalStore.routerList)
@@ -50,7 +51,7 @@ watch(
 			title: route.meta.title as string,
 			path: route.path,
 			icon: route.meta.icon as string,
-			close: true
+			close: route.path === GLOB_APP_HOME ? false : true
 		}
 		globalStore.addTabs(params)
 	},

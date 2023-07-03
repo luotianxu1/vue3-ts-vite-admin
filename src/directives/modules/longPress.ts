@@ -2,13 +2,13 @@
  * v-longpress
  * 长按指令，长按时触发事件
  */
-import { ElMessage } from "element-plus"
 import type { Directive, DirectiveBinding } from "vue"
+import Modal from "@utils/modal"
 
 const directive: Directive = {
 	mounted(el: HTMLElement, binding: DirectiveBinding) {
 		if (typeof binding.value !== "function") {
-			throw ElMessage.warning("请绑定函数！")
+			throw Modal.msgWarning("请绑定函数！")
 		}
 		// 定义变量
 		let pressTimer: any = null
