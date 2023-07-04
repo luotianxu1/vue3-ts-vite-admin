@@ -46,7 +46,7 @@ const goto = (val: string): void => {
 <style scoped lang="scss">
 /* breadcrumb-transform */
 .breadcrumb-enter-active {
-	transition: all 0.2s;
+	transition: all 0.5s;
 }
 .breadcrumb-enter-from,
 .breadcrumb-leave-active {
