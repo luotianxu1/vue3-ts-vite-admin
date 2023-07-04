@@ -207,30 +207,31 @@ defineExpose({
 <style lang="scss" scoped>
 .right {
 	float: right;
-	color: white;
 	font-size: 20px;
+	color: white;
 }
 
 .content {
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
 	flex-direction: column;
 }
+
 .number {
 	display: flex;
 	padding: 10px;
 
 	span {
-		flex: 1;
 		height: 40px;
-		text-align: center;
-		line-height: 40px;
-		background: url(../../../../assets/images/screen/total.png) no-repeat;
-		background-size: 100% 100%;
-		color: #29fcff;
 		margin-left: 5px;
 		font-size: 32px;
+		line-height: 40px;
+		color: #29fcff;
+		text-align: center;
+		background: url(../../../../assets/images/screen/total.png) no-repeat;
+		background-size: 100% 100%;
+		flex: 1;
 
 		&:first-child {
 			margin: 0;

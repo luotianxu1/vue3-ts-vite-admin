@@ -139,28 +139,29 @@ defineExpose({
 	justify-content: center;
 
 	.man {
+		display: flex;
 		width: 111px;
 		height: 115px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		margin: 20px;
 		background: url(../../../../assets/images/screen/man-bg.png);
-	}
-	.women {
-		width: 111px;
-		height: 115px;
-		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.women {
+		display: flex;
+		width: 111px;
+		height: 115px;
 		margin: 20px;
 		background: url(../../../../assets/images/screen/woman-bg.png);
+		align-items: center;
+		justify-content: center;
 	}
 }
 
 .charts {
+	width: 80%;
 	height: 100px;
 	margin: 0 auto;
-	width: 80%;
 }
 </style>

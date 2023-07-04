@@ -70,9 +70,9 @@ const handleCommit = () => {
 
 <style lang="scss" scoped>
 .search {
-	background-color: var(--el-menu-bg-color);
 	padding: 20px;
 	margin-bottom: 20px;
+	background-color: var(--el-menu-bg-color);
 }
 
 .btns {

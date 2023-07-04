@@ -26,9 +26,9 @@ const changAside = () => {
 }
 
 i {
+	margin-right: 20px;
 	font-size: 22px;
 	cursor: pointer;
-	margin-right: 20px;
 
 	&:hover {
 		color: var(--el-color-primary);

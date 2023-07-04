@@ -35,8 +35,8 @@ getMenuList()
 
 <style lang="scss" scoped>
 .user {
-	padding: 20px;
 	height: calc(100% - 40px);
+	padding: 20px;
 	overflow: auto;
 }
 </style>

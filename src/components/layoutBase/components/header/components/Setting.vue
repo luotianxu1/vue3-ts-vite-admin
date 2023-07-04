@@ -166,9 +166,9 @@ const changeLayout = (val: any) => {
 	flex-wrap: wrap;
 	justify-content: space-around;
 	padding: 10px 0 0;
+
 	.layout-item {
 		position: relative;
-		box-sizing: border-box;
 		width: 95px;
 		height: 67px;
 		padding: 6px;
@@ -176,20 +176,25 @@ const changeLayout = (val: any) => {
 		cursor: pointer;
 		border-radius: 5px;
 		box-shadow: 0 0 5px 1px var(--el-border-color-lighter);
+		box-sizing: border-box;
 		transition: all 0.2s;
+
 		.layout-dark {
 			background-color: var(--el-color-primary);
 			border-radius: 3px;
 		}
+
 		.layout-light {
 			background-color: var(--el-color-primary-light-5);
 			border-radius: 3px;
 		}
+
 		.layout-content {
 			background-color: var(--el-color-primary-light-8);
 			border: 1px dashed var(--el-color-primary);
 			border-radius: 3px;
 		}
+
 		.el-icon {
 			position: absolute;
 			right: 10px;
@@ -197,71 +202,90 @@ const changeLayout = (val: any) => {
 			color: var(--el-color-primary);
 			transition: all 0.2s;
 		}
+
 		&:hover {
 			box-shadow: 0 0 5px 1px var(--el-border-color-darker);
 		}
 	}
+
 	.is-active {
 		box-shadow: 0 0 0 2px var(--el-color-primary) !important;
 	}
+
 	.layout-vertical {
 		display: flex;
 		justify-content: space-between;
+
 		.layout-dark {
 			width: 20%;
 		}
+
 		.layout-container {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			width: 72%;
+
 			.layout-light {
 				height: 20%;
 			}
+
 			.layout-content {
 				height: 67%;
 			}
 		}
 	}
+
 	.layout-classic {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+
 		.layout-dark {
 			height: 22%;
 		}
+
 		.layout-container {
 			display: flex;
 			justify-content: space-between;
 			height: 70%;
+
 			.layout-light {
 				width: 20%;
 			}
+
 			.layout-content {
 				width: 70%;
 			}
 		}
 	}
+
 	.layout-transverse {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+
 		.layout-dark {
 			height: 20%;
 		}
+
 		.layout-content {
 			height: 67%;
 		}
 	}
+
 	.layout-columns {
 		display: flex;
 		justify-content: space-between;
+
 		.layout-dark {
 			width: 14%;
 		}
+
 		.layout-light {
 			width: 17%;
 		}
+
 		.layout-content {
 			width: 55%;
 		}
@@ -270,6 +294,7 @@ const changeLayout = (val: any) => {
 
 i {
 	font-size: 20px;
+
 	&:hover {
 		color: var(--el-color-primary);
 	}

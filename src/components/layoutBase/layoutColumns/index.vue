@@ -103,22 +103,25 @@ const changeSubMenu = (item: IMenuOptions) => {
 
 <style lang="scss" scoped>
 .el-header {
-	box-sizing: border-box;
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
 	height: 45px;
 	padding: 0 15px;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-		// border-bottom: 1px solid var(--el-border-color);
+	box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: space-between;
+	// border-bottom: 1px solid var(--el-border-color);
 }
+
 .el-footer {
 	height: auto;
 	padding: 0;
 }
+
 .el-container {
 	width: 100%;
 	height: 100%;
+
 	.aside-split {
 		display: flex;
 		flex-direction: column;
@@ -126,19 +129,24 @@ const changeSubMenu = (item: IMenuOptions) => {
 		width: 70px;
 		height: 100%;
 		border-right: 1px solid var(--el-border-color);
+
 		.logo {
-			box-sizing: border-box;
 			height: 45px;
 			border-bottom: 1px solid var(--el-border-color);
+			box-sizing: border-box;
+
 			img {
 				width: 30px;
 				object-fit: contain;
 			}
 		}
+
 		.el-scrollbar {
 			height: calc(100% - 55px);
+
 			.split-list {
 				flex: 1;
+
 				.split-item {
 					display: flex;
 					flex-direction: column;
@@ -147,12 +155,15 @@ const changeSubMenu = (item: IMenuOptions) => {
 					height: 70px;
 					cursor: pointer;
 					transition: all 0.3s ease;
+
 					&:hover {
 						background-color: var(--el-menu-hover-bg-color);
 					}
+
 					.el-icon {
 						font-size: 21px;
 					}
+
 					.title {
 						margin-top: 6px;
 						font-size: 12px;
@@ -162,6 +173,7 @@ const changeSubMenu = (item: IMenuOptions) => {
 			}
 		}
 	}
+
 	.el-aside {
 		display: flex;
 		flex-direction: column;
@@ -169,17 +181,21 @@ const changeSubMenu = (item: IMenuOptions) => {
 		overflow: hidden;
 		border-right: 1px solid var(--el-border-color);
 		transition: all 0.3s ease;
+
 		.el-scrollbar {
 			height: calc(100% - 55px);
+
 			.el-menu {
 				overflow-x: hidden;
 				border-right: none;
 			}
 		}
+
 		.logo {
-			box-sizing: border-box;
 			height: 45px;
 			border-bottom: 1px solid var(--el-border-color);
+			box-sizing: border-box;
+
 			span {
 				font-size: 20px;
 				font-weight: bold;
@@ -187,6 +203,7 @@ const changeSubMenu = (item: IMenuOptions) => {
 			}
 		}
 	}
+
 	.not-aside {
 		width: 0 !important;
 	}
@@ -194,7 +211,7 @@ const changeSubMenu = (item: IMenuOptions) => {
 
 .el-main {
 	padding: 0;
-	box-sizing: border-box;
 	overflow: hidden;
+	box-sizing: border-box;
 }
 </style>

@@ -9,19 +9,19 @@
 
 <style lang="scss" scoped>
 .chartCard {
+	display: flex;
 	width: 100%;
 	height: 280px;
-	display: flex;
-	flex-direction: column;
 	background-color: rgba(255, 255, 255, 1);
 	border-radius: 5px;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0470588235294118);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.0470588235294118);
+	flex-direction: column;
 
 	.header {
-		flex: 1;
-		line-height: 30px;
 		padding: 0 10px;
+		line-height: 30px;
 		border-bottom: 1px solid #ccc;
+		flex: 1;
 	}
 }
 </style>

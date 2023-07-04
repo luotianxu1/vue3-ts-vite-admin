@@ -173,19 +173,19 @@ defineExpose({
 
 <style lang="scss" scoped>
 .content {
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
 	flex-direction: column;
 
 	.header {
-		box-sizing: border-box;
 		display: flex;
 		height: 36px;
 		margin: 10px 10px 0;
 		line-height: 36px;
 		background: url("../../../../assets/images/screen/rankingChart-bg.png") no-repeat;
 		background-size: 100% 100%;
+		box-sizing: border-box;
 
 		span {
 			width: 18%;
@@ -194,9 +194,11 @@ defineExpose({
 			font-weight: bold;
 			color: #fdbc52;
 			text-align: center;
+
 			&:nth-child(2) {
 				margin-left: 4px;
 			}
+
 			&:last-child {
 				width: 20%;
 				margin-left: 60px;
@@ -204,6 +206,7 @@ defineExpose({
 		}
 	}
 }
+
 .charts {
 	flex: 1;
 }

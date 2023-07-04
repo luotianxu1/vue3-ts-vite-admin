@@ -48,6 +48,7 @@ const goto = (val: string): void => {
 .breadcrumb-enter-active {
 	transition: all 0.5s;
 }
+
 .breadcrumb-enter-from,
 .breadcrumb-leave-active {
 	opacity: 0;
@@ -55,7 +56,7 @@ const goto = (val: string): void => {
 }
 
 :deep(.el-breadcrumb__inner .el-link__inner .link) {
-	color: var(--el-text-color-regular);
 	font-weight: 400;
+	color: var(--el-text-color-regular);
 }
 </style>

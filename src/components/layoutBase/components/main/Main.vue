@@ -37,14 +37,16 @@ eventHub.on("refresh", () => {
 .fade-transform-enter-active {
 	transition: all 0.5s;
 }
+
 .fade-transform-enter-from {
 	opacity: 0;
-	transition: all 0.5s;
 	transform: translateX(-30px);
+	transition: all 0.5s;
 }
+
 .fade-transform-leave-to {
 	opacity: 0;
-	transition: all 0.5s;
 	transform: translateX(30px);
+	transition: all 0.5s;
 }
 </style>

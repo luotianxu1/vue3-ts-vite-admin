@@ -55,8 +55,8 @@ getList()
 
 <style lang="scss" scoped>
 .dashboard {
-	padding: 20px;
 	height: 100%;
+	padding: 20px;
 	overflow: auto;
 }
 </style>

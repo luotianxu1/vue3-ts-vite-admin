@@ -22,6 +22,7 @@
 
 i {
 	font-size: 20px;
+
 	&:hover {
 		color: var(--el-color-primary);
 	}

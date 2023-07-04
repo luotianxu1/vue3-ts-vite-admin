@@ -172,8 +172,8 @@ defineExpose({
 <style lang="scss" scoped>
 .content {
 	position: relative;
-	padding-top: 40px;
 	display: flex;
+	padding-top: 40px;
 }
 
 .title {
@@ -181,17 +181,17 @@ defineExpose({
 	top: 45px;
 	left: 0;
 	z-index: 99;
-	box-sizing: border-box;
 	display: flex;
-	align-items: center;
 	width: 270px;
 	height: 25px;
 	padding-left: 30px;
 	font-size: 14px;
-	color: #ffffff;
 	letter-spacing: 5px;
+	color: #fff;
 	background: url(../../../../assets/images/screen/map-title-bg.png) no-repeat;
 	background-size: 100% 100%;
+	box-sizing: border-box;
+	align-items: center;
 }
 
 .charts {

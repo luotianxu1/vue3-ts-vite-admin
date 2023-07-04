@@ -47,34 +47,35 @@ const onSelectChange = (path: RouteLocationRaw) => {
 	font-size: 0 !important;
 
 	i {
-		cursor: pointer;
-		vertical-align: middle;
 		font-size: 20px;
+		vertical-align: middle;
+		cursor: pointer;
+
 		&:hover {
 			color: var(--el-color-primary);
 		}
 	}
 
 	.header-search-select {
-		font-size: 18px;
-		transition: width 0.2s;
+		display: inline-block;
 		width: 0;
 		overflow: hidden;
+		font-size: 18px;
+		vertical-align: middle;
 		background: transparent;
 		border-radius: 0;
-		display: inline-block;
-		vertical-align: middle;
+		transition: width 0.2s;
 	}
 
 	::v-deep(.el-select .el-input .el-input__wrapper),
 	::v-deep(.el-select .el-input.is-focus .el-input__wrapper) {
-		border-radius: 0;
-		border: 0;
-		padding-left: 0;
 		padding-right: 0;
-		box-shadow: none !important;
-		border-bottom: 1px solid #d9d9d9;
+		padding-left: 0;
 		vertical-align: middle;
+		border: 0;
+		border-bottom: 1px solid #d9d9d9;
+		border-radius: 0;
+		box-shadow: none !important;
 	}
 }
 

@@ -60,8 +60,8 @@ const menuList = computed(() => userStore.showMenuListGet)
 <style lang="scss" scoped>
 .el-main {
 	padding: 0;
-	box-sizing: border-box;
 	overflow: hidden;
+	box-sizing: border-box;
 }
 
 .el-footer {
@@ -72,6 +72,7 @@ const menuList = computed(() => userStore.showMenuListGet)
 .el-container {
 	width: 100%;
 	height: 100%;
+
 	.el-aside {
 		width: auto;
 		overflow: inherit;
@@ -82,21 +83,26 @@ const menuList = computed(() => userStore.showMenuListGet)
 			flex-direction: column;
 			height: 100%;
 			transition: all 0.3s ease;
+
 			.el-scrollbar {
 				height: calc(100% - 55px);
+
 				.el-menu {
 					overflow-x: hidden;
 					border-right: none;
 				}
 			}
+
 			.logo {
-				box-sizing: border-box;
 				height: 45px;
+				box-sizing: border-box;
+
 				span {
 					font-size: 20px;
 					font-weight: bold;
 					white-space: nowrap;
 				}
+
 				img {
 					width: 30px;
 					object-fit: contain;
@@ -105,14 +111,15 @@ const menuList = computed(() => userStore.showMenuListGet)
 			}
 		}
 	}
+
 	.el-header {
-		box-sizing: border-box;
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
 		height: 45px;
 		padding: 0 15px;
 		box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: space-between;
 		// border-bottom: 1px solid var(--el-border-color);
 	}
 }

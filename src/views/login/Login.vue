@@ -93,25 +93,25 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 .login {
 	width: 100%;
 	height: 100%;
+	color: #666;
+	background-attachment: scroll;
 	background-image: url("../../assets/svg/login-base.svg");
 	background-position: right top;
 	background-repeat: no-repeat;
-	background-attachment: scroll;
 	background-size: cover;
 	background-origin: border-box;
-	color: #666666;
 
 	.login-box {
-		width: 800px;
-		height: 540px;
-		display: flex;
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		display: flex;
+		width: 800px;
+		height: 540px;
 		background-color: rgba(255, 255, 255, 1);
 		border-radius: 5px;
-		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.149019607843137);
+		transform: translate(-50%, -50%);
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.149019607843137);
 
 		.left {
 			position: relative;
@@ -121,9 +121,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 			.company {
 				position: absolute;
 				top: 0;
-				font-weight: 700;
-				font-size: 20px;
 				margin-top: 80px;
+				font-size: 20px;
+				font-weight: 700;
 			}
 		}
 
@@ -149,8 +149,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 			}
 
 			.password {
-				width: 100%;
 				display: flex;
+				width: 100%;
 				align-items: center;
 				justify-content: space-between;
 			}

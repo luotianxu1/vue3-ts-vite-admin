@@ -37,14 +37,15 @@ const handleClickMenu = (item: { path: RouteLocationRaw }) => {
 
 <style scoped lang="scss">
 i {
-	font-size: 18px;
 	padding: 0 5px;
+	font-size: 18px;
 }
 
 .el-menu-item {
 	&:hover {
 		color: var(--el-menu-hover-text-color);
 	}
+
 	&.is-active {
 		color: var(--el-menu-active-color) !important;
 		background-color: var(--el-color-primary-light-9) !important;

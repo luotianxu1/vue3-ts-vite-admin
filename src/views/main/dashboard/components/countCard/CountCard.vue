@@ -43,11 +43,11 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .countCard {
+	padding: 15px;
+	line-height: 30px;
+	text-align: left;
 	background-color: rgba(255, 255, 255, 1);
 	border-radius: 5px;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0470588235294118);
-	text-align: left;
-	line-height: 30px;
-	padding: 15px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.0470588235294118);
 }
 </style>

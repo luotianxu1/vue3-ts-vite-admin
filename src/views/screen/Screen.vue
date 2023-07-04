@@ -243,13 +243,13 @@ onBeforeUnmount(() => {
 	background-size: cover;
 
 	.screen {
-		display: flex;
-		flex-direction: column;
 		position: fixed;
-		left: 50%;
 		top: 50%;
+		left: 50%;
+		display: flex;
 		width: 1920px;
 		height: 1080px;
+		flex-direction: column;
 		transform-origin: left top;
 
 		.bottom {
@@ -258,8 +258,8 @@ onBeforeUnmount(() => {
 			padding: 12px 42px 20px;
 
 			.right {
-				width: 394px;
 				display: flex;
+				width: 394px;
 				flex-direction: column;
 
 				.item {
@@ -268,8 +268,8 @@ onBeforeUnmount(() => {
 			}
 
 			.left {
-				width: 394px;
 				display: flex;
+				width: 394px;
 				flex-direction: column;
 
 				.item {

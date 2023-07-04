@@ -21,9 +21,11 @@ const dialogVisible = ref(false)
 .card {
 	margin: 10px;
 }
+
 .el-button {
 	margin-top: 20px;
 }
+
 :deep(.el-dialog__body) {
 	height: 700px !important;
 	overflow: auto;

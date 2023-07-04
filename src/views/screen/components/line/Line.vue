@@ -193,17 +193,19 @@ defineExpose({
 
 <style lang="scss" scoped>
 :deep(.lineChart-bg) {
-	box-sizing: border-box;
 	display: flex;
-	align-items: center;
 	width: 180px;
 	height: 60px;
 	padding-left: 20px;
 	background: url("../../../../assets/images/screen/line-bg.png") no-repeat;
 	background-size: 100% 100%;
+	box-sizing: border-box;
+	align-items: center;
+
 	span {
 		font-size: 12px;
 		color: rgb(255 255 255 / 80%);
+
 		i {
 			font-style: normal;
 			color: #f5b348;

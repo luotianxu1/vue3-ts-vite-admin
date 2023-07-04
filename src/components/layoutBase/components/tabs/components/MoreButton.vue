@@ -60,35 +60,43 @@ const refresh = () => {
 	:deep(.tabs-menu) {
 		position: relative;
 		width: 100%;
+
 		.el-dropdown {
 			position: absolute;
 			top: 8px;
 			right: 13px;
 		}
+
 		.tabs-icon {
 			top: 2px;
 		}
+
 		.el-tabs__nav-wrap {
 			position: absolute;
 			width: calc(100% - 120px);
 		}
+
 		.el-tabs--card > .el-tabs__header {
-			box-sizing: border-box;
 			height: 40px;
 			padding: 0 10px;
 			margin: 0;
+			box-sizing: border-box;
 		}
+
 		.el-tabs--card > .el-tabs__header .el-tabs__nav {
 			border: none;
 		}
+
 		.el-tabs--card > .el-tabs__header .el-tabs__item {
-			color: #cccccc;
+			color: #ccc;
 			border: none;
 		}
+
 		.el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
 			color: hsl(219, 69%, 56%);
 			border-bottom: 2px solid hsl(219, 69%, 56%);
 		}
+
 		.el-tabs__item .is-icon-close svg {
 			margin-top: 0.5px;
 		}

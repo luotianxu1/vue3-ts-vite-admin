@@ -8,17 +8,18 @@
 
 <style lang="scss" scoped>
 .footer {
-	height: 30px;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	height: 30px;
 	background-color: var(--el-bg-color);
 	border-top: 1px solid var(--el-border-color);
+	align-items: center;
+	justify-content: center;
+
 	span {
 		font-size: 14px;
-		text-decoration: none;
 		letter-spacing: 0.5px;
 		color: var(--el-text-color-secondary);
+		text-decoration: none;
 	}
 }
 </style>

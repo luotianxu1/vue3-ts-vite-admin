@@ -39,9 +39,9 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .header {
+	display: flex;
 	width: 100%;
 	height: 40px;
-	display: flex;
 
 	.left {
 		flex: 1.5;
@@ -49,16 +49,16 @@ onBeforeUnmount(() => {
 		background-size: cover;
 
 		.lbtn {
+			float: right;
 			width: 150px;
 			height: 40px;
-			float: right;
-			background: url(../../../../assets/images/screen/dataScreen-header-btn-bg-l.png) no-repeat;
-			background-size: 100% 100%;
-			text-align: center;
+			font-size: 20px;
 			line-height: 40px;
 			color: #29fcff;
-			font-size: 20px;
+			text-align: center;
 			cursor: pointer;
+			background: url(../../../../assets/images/screen/dataScreen-header-btn-bg-l.png) no-repeat;
+			background-size: 100% 100%;
 		}
 	}
 
@@ -68,39 +68,39 @@ onBeforeUnmount(() => {
 		.title {
 			width: 100%;
 			height: 74px;
-			background: url(../../../../assets/images/screen/dataScreen-header-center-bg.png) no-repeat;
-			background-size: 100% 100%;
-			text-align: center;
+			font-size: 30px;
 			line-height: 74px;
 			color: #29fcff;
-			font-size: 30px;
+			text-align: center;
+			background: url(../../../../assets/images/screen/dataScreen-header-center-bg.png) no-repeat;
+			background-size: 100% 100%;
 		}
 	}
 
 	.right {
-		flex: 1.5;
+		display: flex;
 		background: url(../../../../assets/images/screen/dataScreen-header-left-bg.png) no-repeat;
 		background-size: cover;
-		display: flex;
+		flex: 1.5;
 		justify-content: space-between;
 		align-items: center;
 
 		.rbtn {
 			width: 150px;
 			height: 40px;
-			background: url(../../../../assets/images/screen/dataScreen-header-btn-bg-r.png) no-repeat;
-			background-size: 100% 100%;
-			text-align: center;
+			font-size: 20px;
 			line-height: 40px;
 			color: #29fcff;
-			font-size: 20px;
+			text-align: center;
 			cursor: pointer;
+			background: url(../../../../assets/images/screen/dataScreen-header-btn-bg-r.png) no-repeat;
+			background-size: 100% 100%;
 		}
 
 		.time {
-			color: #29fcff;
-			font-size: 20px;
 			margin-right: 10px;
+			font-size: 20px;
+			color: #29fcff;
 		}
 	}
 }

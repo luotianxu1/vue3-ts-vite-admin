@@ -23,32 +23,32 @@ const props = withDefaults(defineProps<Props>(), {
 <style lang="scss" scoped>
 .box {
 	display: flex;
-	flex-direction: column;
+	margin-top: 10px;
 	background: url(../../../../assets/images/screen/dataScreen-main-lb.png) no-repeat;
 	background-size: 100% 100%;
-	margin-top: 10px;
+	flex-direction: column;
 
 	.box-header {
 		height: 67px;
 		padding-right: 10px;
 
 		.box-title {
-			color: white;
 			font-size: 20px;
+			color: white;
 		}
 
 		.bg {
 			width: 68px;
 			height: 7px;
+			margin-top: 10px;
 			background: url(../../../../assets/images/screen/dataScreen-title.png) no-repeat;
 			background-size: 100% 100%;
-			margin-top: 10px;
 		}
 	}
 
 	.box-bottom {
-		height: calc(100% - 67px);
 		width: 100%;
+		height: calc(100% - 67px);
 	}
 }
 </style>

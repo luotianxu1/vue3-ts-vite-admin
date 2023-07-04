@@ -66,23 +66,26 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 .el-container {
 	width: 100%;
 	height: 100%;
+
 	.el-header {
-		box-sizing: border-box;
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
 		height: 45px;
 		padding: 0 15px 0 0;
 		box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: space-between;
 		// border-bottom: 1px solid var(--el-border-color);
 		.logo {
 			width: 210px;
 			margin-right: 30px;
+
 			span {
 				font-size: 20px;
 				font-weight: bold;
 				white-space: nowrap;
 			}
+
 			img {
 				width: 30px;
 				object-fit: contain;
@@ -93,22 +96,24 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 }
 
 .el-menu {
-	flex: 1;
+	height: 45px;
 	overflow: hidden;
 	border-bottom: 0;
-	height: 45px;
+	flex: 1;
+
 	.is-active {
 		border-bottom-color: var(--el-color-primary) !important;
+
 		&:hover {
-			color: #ffffff !important;
+			color: #fff !important;
 		}
 	}
 }
 
 .el-main {
 	padding: 0;
-	box-sizing: border-box;
 	overflow: hidden;
+	box-sizing: border-box;
 }
 
 .el-footer {

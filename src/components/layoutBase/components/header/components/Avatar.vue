@@ -76,8 +76,8 @@ const handleCommand = (command: any) => {
 			}
 
 			span:nth-child(2) {
-				font-size: 12px;
 				margin-top: 4px;
+				font-size: 12px;
 			}
 		}
 	}
