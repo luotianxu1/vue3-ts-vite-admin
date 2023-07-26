@@ -36,9 +36,25 @@ onMounted(() => {
 	padding: 15px;
 	line-height: 30px;
 	text-align: left;
-	background-color: var(--el-bg-color-overlay);
+	background-color: var(--base-color);
 	border-radius: 5px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.0470588235294118);
+
+	.card-title {
+		position: relative;
+		padding-left: 15px;
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 5px;
+			height: 100%;
+			background-color: var(--el-color-primary);
+			border-radius: 10px;
+			content: "";
+		}
+	}
 
 	.card-number {
 		margin: 10px 0;

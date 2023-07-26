@@ -72,6 +72,8 @@ const removeTab = (activeTabPath: TabPaneName) => {
 
 <style scoped lang="scss">
 .tabs-box {
+	background-color: var(--base-color);
+
 	:deep(.tabs-menu) {
 		position: relative;
 		width: 100%;

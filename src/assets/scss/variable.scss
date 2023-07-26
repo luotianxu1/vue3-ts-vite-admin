@@ -1,2 +1,9 @@
-// scss全局变量
-$color: red;
+:root {
+	--base-bg: #f3f8fb;
+	--base-color: #fff;
+}
+
+.dark {
+	--base-bg: #00010f;
+	--base-color: #1e2a3a;
+}

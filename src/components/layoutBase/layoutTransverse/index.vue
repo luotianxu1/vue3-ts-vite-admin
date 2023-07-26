@@ -71,11 +71,13 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 		display: flex;
 		height: 45px;
 		padding: 0 15px 0 0;
+		background-color: var(--base-color);
+		border-bottom: 1px solid var(--el-border-color-light);
 		box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 		box-sizing: border-box;
 		align-items: center;
 		justify-content: space-between;
-		// border-bottom: 1px solid var(--el-border-color);
+
 		.logo {
 			width: 210px;
 			margin-right: 30px;
@@ -88,8 +90,8 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 
 			img {
 				width: 30px;
-				object-fit: contain;
 				margin-right: 6px;
+				object-fit: contain;
 			}
 		}
 	}

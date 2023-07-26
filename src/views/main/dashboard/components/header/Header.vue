@@ -16,8 +16,6 @@ import CountCard from "../countCard/CountCard.vue"
 let amountList = ref<IDashboardItem[]>()
 const getList = async () => {
 	const res = await getDashboardList({})
-	console.log(res)
-
 	amountList.value = res.data?.list
 }
 getList()

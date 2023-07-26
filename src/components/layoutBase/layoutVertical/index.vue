@@ -76,13 +76,14 @@ const menuList = computed(() => userStore.showMenuListGet)
 	.el-aside {
 		width: auto;
 		overflow: inherit;
+		background-color: var(--base-color);
 		border-right: 1px solid var(--el-border-color);
 
 		.menu {
 			display: flex;
-			flex-direction: column;
 			height: 100%;
 			transition: all 0.3s ease;
+			flex-direction: column;
 
 			.el-scrollbar {
 				height: calc(100% - 55px);
@@ -105,8 +106,8 @@ const menuList = computed(() => userStore.showMenuListGet)
 
 				img {
 					width: 30px;
-					object-fit: contain;
 					margin-right: 6px;
+					object-fit: contain;
 				}
 			}
 		}
@@ -116,11 +117,12 @@ const menuList = computed(() => userStore.showMenuListGet)
 		display: flex;
 		height: 45px;
 		padding: 0 15px;
+		background-color: var(--base-color);
+		border-bottom: 1px solid var(--el-border-color-light);
 		box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 		box-sizing: border-box;
 		align-items: center;
 		justify-content: space-between;
-		// border-bottom: 1px solid var(--el-border-color);
 	}
 }
 </style>

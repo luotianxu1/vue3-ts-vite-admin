@@ -72,7 +72,7 @@ const handleCommit = () => {
 .search {
 	padding: 20px;
 	margin-bottom: 20px;
-	background-color: var(--el-menu-bg-color);
+	background-color: var(--base-color);
 }
 
 .btns {

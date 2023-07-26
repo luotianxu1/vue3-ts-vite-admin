@@ -1,8 +1,6 @@
-v
 <template>
 	<div class="content">
 		<div class="header">
-			<h3 class="title">{{ contentConfig?.header?.title ?? "数据列表" }}</h3>
 			<el-button type="primary" @click="handleAddBtnClick">新建用户</el-button>
 		</div>
 		<div class="table">
@@ -70,13 +68,14 @@ defineExpose({ showTable })
 </script>
 
 <style lang="scss" scoped>
-.header {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
-}
+.content {
+	padding: 20px;
+	background-color: var(--base-color);
 
-.title {
-	font-size: 22px;
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
 }
 </style>

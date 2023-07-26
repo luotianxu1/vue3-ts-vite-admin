@@ -11,6 +11,7 @@
 	display: flex;
 	height: 30px;
 	background-color: var(--el-bg-color);
+	background-color: var(--base-color);
 	border-top: 1px solid var(--el-border-color);
 	align-items: center;
 	justify-content: center;

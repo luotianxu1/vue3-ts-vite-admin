@@ -106,11 +106,12 @@ const changeSubMenu = (item: IMenuOptions) => {
 	display: flex;
 	height: 45px;
 	padding: 0 15px;
+	background-color: var(--base-color);
+	border-bottom: 1px solid var(--el-border-color-light);
 	box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 	box-sizing: border-box;
 	align-items: center;
 	justify-content: space-between;
-	// border-bottom: 1px solid var(--el-border-color);
 }
 
 .el-footer {
@@ -176,11 +177,12 @@ const changeSubMenu = (item: IMenuOptions) => {
 
 	.el-aside {
 		display: flex;
-		flex-direction: column;
 		height: 100%;
 		overflow: hidden;
+		background-color: var(--base-color);
 		border-right: 1px solid var(--el-border-color);
 		transition: all 0.3s ease;
+		flex-direction: column;
 
 		.el-scrollbar {
 			height: calc(100% - 55px);
