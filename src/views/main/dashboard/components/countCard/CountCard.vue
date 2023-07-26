@@ -1,15 +1,18 @@
 <template>
-	<div class="countCard">
-		<div>{{ props.title }}</div>
-		<div ref="countRef">{{ props.number }}</div>
-		<div>
-			<span>{{ props.subTitle }}{{ props.value }}</span>
+	<div class="card">
+		<div class="card-title">{{ props.title }}</div>
+		<div class="card-number" ref="countRef">{{ props.number }}</div>
+		<div class="card-qushi">
+			<span>{{ props.subTitle }}</span>
+			<span :class="props.value > 0 ? 'red' : 'green'">
+				{{ props.value }}%
+				<i class="iconfont" :class="props.value > 0 ? 'icon-shangsheng' : 'icon-xiajiang'"></i>
+			</span>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-// import gsap from "gsap"
 import { CountUp } from "countup.js"
 
 interface IProps {
@@ -21,33 +24,41 @@ interface IProps {
 }
 const props = defineProps<IProps>()
 
-// 1、使用gsap
-// const data = reactive({
-// 	num: 0
-// })
-// const animateToValue = () => {
-// 	gsap.to(data, {
-// 		num: props.number,
-// 		duration: 1
-// 	})
-// }
-// animateToValue()
-
-// 2、使用countup.js
 const countRef = ref<HTMLElement>()
 onMounted(() => {
-	const countUp1 = new CountUp(countRef.value!, props.number)
-	countUp1.start()
+	const countUp = new CountUp(countRef.value!, props.number)
+	countUp.start()
 })
 </script>
 
 <style lang="scss" scoped>
-.countCard {
+.card {
 	padding: 15px;
 	line-height: 30px;
 	text-align: left;
-	background-color: rgba(255, 255, 255, 1);
+	background-color: var(--el-bg-color-overlay);
 	border-radius: 5px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.0470588235294118);
+
+	.card-number {
+		margin: 10px 0;
+		font-size: 26px;
+		font-weight: 600;
+		letter-spacing: 2px;
+	}
+
+	.card-qushi {
+		display: flex;
+		font-size: 14px;
+		align-items: center;
+	}
+}
+
+.red {
+	color: #f56c6c;
+}
+
+.green {
+	color: #94d870;
 }
 </style>

@@ -24,7 +24,8 @@ const draggable: Directive = {
 				let x = event.pageX - disX
 				let y = event.pageY - disY
 				const maxX = parseInt(window.getComputedStyle(el.parentNode).width, 10) - parseInt(window.getComputedStyle(el).width, 10)
-				const maxY = parseInt(window.getComputedStyle(el.parentNode).height, 10) - parseInt(window.getComputedStyle(el).height, 10)
+				const maxY =
+					parseInt(window.getComputedStyle(el.parentNode).height, 10) - parseInt(window.getComputedStyle(el).height, 10)
 				if (x < 0) {
 					x = 0
 				} else if (x > maxX) {
