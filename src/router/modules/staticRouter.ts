@@ -18,7 +18,7 @@ export const staticRouter: RouteRecordRaw[] = [
 	{
 		path: "/base",
 		name: "base",
-		component: () => import("@/components/layoutBase/index.vue"),
+		component: () => import("@/components/layout/index.vue"),
 		redirect: GLOB_APP_HOME,
 		children: []
 	},

@@ -2,10 +2,7 @@
 <template>
 	<el-container class="layout">
 		<el-header>
-			<div class="logo flx-center">
-				<img :src="url" alt="logo" />
-				<span>管理系统模板</span>
-			</div>
+			<Company></Company>
 			<el-menu
 				mode="horizontal"
 				:collapse="globalStore.themeConfig.isCollapse"
@@ -44,6 +41,7 @@
 <script setup lang="ts">
 import Main from "../components/main/Main.vue"
 import HeaderRight from "../components/header/HeaderRight.vue"
+import Company from "../components/header/components/Company.vue"
 import { GlobalStore } from "@/stores/modules/global"
 import { UserStore } from "@/stores/modules/user"
 import type { IMenuOptions } from "@/types"
@@ -53,9 +51,6 @@ const globalStore = GlobalStore()
 const userStore = UserStore()
 const menuList = computed(() => userStore.showMenuListGet)
 
-// 图标
-const url = ref("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png")
-
 const handleClickMenu = (subItem: IMenuOptions) => {
 	if (subItem.meta.isLink) return window.open(subItem.meta.isLink, "_blank")
 	router.push(subItem.path)
@@ -63,45 +58,16 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 </script>
 
 <style lang="scss" scoped>
-.el-container {
-	width: 100%;
-	height: 100%;
-
-	.el-header {
-		display: flex;
-		height: 45px;
-		padding: 0 15px 0 0;
-		background-color: var(--base-color);
-		border-bottom: 1px solid var(--el-border-color-light);
-		box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-		box-sizing: border-box;
-		align-items: center;
-		justify-content: space-between;
-
-		.logo {
-			width: 210px;
-			margin-right: 30px;
-
-			span {
-				font-size: 20px;
-				font-weight: bold;
-				white-space: nowrap;
-			}
-
-			img {
-				width: 30px;
-				margin-right: 6px;
-				object-fit: contain;
-			}
-		}
-	}
+.el-header {
+	padding-left: 0;
 }
 
 .el-menu {
 	height: 45px;
 	overflow: hidden;
-	border-bottom: 0;
+	// border-bottom: 0;
 	flex: 1;
+	border-bottom: 1px solid var(--el-border-color-light);
 
 	.is-active {
 		border-bottom-color: var(--el-color-primary) !important;
@@ -110,16 +76,5 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 			color: #fff !important;
 		}
 	}
-}
-
-.el-main {
-	padding: 0;
-	overflow: hidden;
-	box-sizing: border-box;
-}
-
-.el-footer {
-	height: auto;
-	padding: 0;
 }
 </style>

@@ -21,9 +21,7 @@
 			</el-scrollbar>
 		</div>
 		<el-aside :class="{ 'not-aside': !subMenu.length }" :style="{ width: isCollapse ? '65px' : '210px' }">
-			<div class="logo flx-center">
-				<span v-show="subMenu.length">{{ isCollapse ? "" : "管理系统模板" }}</span>
-			</div>
+			<Company :showImg="false"></Company>
 			<el-scrollbar>
 				<el-menu
 					:collapse="globalStore.themeConfig.isCollapse"
@@ -56,6 +54,7 @@
 import Main from "../components/main/Main.vue"
 import HeaderLeft from "../components/header/HeaderLeft.vue"
 import HeaderRight from "../components/header/HeaderRight.vue"
+import Company from "../components/header/components/Company.vue"
 import Tabs from "../components/tabs/index.vue"
 import Footer from "../components/footer/index.vue"
 import { GlobalStore } from "@/stores/modules/global"
@@ -102,118 +101,90 @@ const changeSubMenu = (item: IMenuOptions) => {
 </script>
 
 <style lang="scss" scoped>
-.el-header {
+.aside-split {
 	display: flex;
-	height: 45px;
-	padding: 0 15px;
-	background-color: var(--base-color);
-	border-bottom: 1px solid var(--el-border-color-light);
-	box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-	box-sizing: border-box;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.el-footer {
-	height: auto;
-	padding: 0;
-}
-
-.el-container {
-	width: 100%;
+	flex-direction: column;
+	flex-shrink: 0;
+	width: 70px;
 	height: 100%;
+	border-right: 1px solid var(--el-border-color);
 
-	.aside-split {
-		display: flex;
-		flex-direction: column;
-		flex-shrink: 0;
-		width: 70px;
-		height: 100%;
-		border-right: 1px solid var(--el-border-color);
+	.logo {
+		height: 45px;
+		border-bottom: 1px solid var(--el-border-color);
+		box-sizing: border-box;
 
-		.logo {
-			height: 45px;
-			border-bottom: 1px solid var(--el-border-color);
-			box-sizing: border-box;
-
-			img {
-				width: 30px;
-				object-fit: contain;
-			}
+		img {
+			width: 30px;
+			object-fit: contain;
 		}
+	}
 
-		.el-scrollbar {
-			height: calc(100% - 55px);
+	.el-scrollbar {
+		height: calc(100% - 55px);
 
-			.split-list {
-				flex: 1;
+		.split-list {
+			flex: 1;
 
-				.split-item {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-					height: 70px;
-					cursor: pointer;
-					transition: all 0.3s ease;
+			.split-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 70px;
+				cursor: pointer;
+				transition: all 0.3s ease;
 
-					&:hover {
-						background-color: var(--el-menu-hover-bg-color);
-					}
+				&:hover {
+					background-color: var(--el-menu-hover-bg-color);
+				}
 
-					.el-icon {
-						font-size: 21px;
-					}
+				.el-icon {
+					font-size: 21px;
+				}
 
-					.title {
-						margin-top: 6px;
-						font-size: 12px;
-						transform: scale(0.96);
-					}
+				.title {
+					margin-top: 6px;
+					font-size: 12px;
+					transform: scale(0.96);
 				}
 			}
 		}
 	}
+}
 
-	.el-aside {
-		display: flex;
-		height: 100%;
-		overflow: hidden;
-		background-color: var(--base-color);
-		border-right: 1px solid var(--el-border-color);
-		transition: all 0.3s ease;
-		flex-direction: column;
+.el-aside {
+	display: flex;
+	height: 100%;
+	overflow: hidden;
+	background-color: var(--base-color);
+	border-right: 1px solid var(--el-border-color);
+	transition: all 0.3s ease;
+	flex-direction: column;
 
-		.el-scrollbar {
-			height: calc(100% - 55px);
+	.el-scrollbar {
+		height: calc(100% - 55px);
 
-			.el-menu {
-				overflow-x: hidden;
-				border-right: none;
-			}
-		}
-
-		.logo {
-			height: 45px;
-			border-bottom: 1px solid var(--el-border-color);
-			box-sizing: border-box;
-
-			span {
-				font-size: 20px;
-				font-weight: bold;
-				white-space: nowrap;
-			}
+		.el-menu {
+			overflow-x: hidden;
+			border-right: none;
 		}
 	}
 
-	.not-aside {
-		width: 0 !important;
+	.logo {
+		height: 45px;
+		border-bottom: 1px solid var(--el-border-color);
+		box-sizing: border-box;
+
+		span {
+			font-size: 20px;
+			font-weight: bold;
+			white-space: nowrap;
+		}
 	}
 }
 
-.el-main {
-	padding: 0;
-	overflow: hidden;
-	box-sizing: border-box;
+.not-aside {
+	width: 0 !important;
 }
 </style>

@@ -28,7 +28,7 @@ import Select from "./components/Select.vue"
 		cursor: pointer;
 
 		&:last-child {
-			padding-left: 0 !important;
+			border-left: 1px solid var(--el-border-color-light);
 		}
 	}
 }
