@@ -18,7 +18,7 @@
 							</span>
 						</div>
 					</div>
-					<div class="card-right" style="width: 100px; height: 100px;">
+					<div class="card-right">
 						<BaseEcharts :option="item.option"></BaseEcharts>
 					</div>
 				</div>
