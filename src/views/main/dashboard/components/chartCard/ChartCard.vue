@@ -22,7 +22,6 @@ const props = defineProps<IProps>()
 <style lang="scss" scoped>
 .card {
 	display: flex;
-	height: 310px;
 	padding: 15px;
 	overflow: hidden;
 	line-height: 30px;

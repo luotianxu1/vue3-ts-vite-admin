@@ -42,17 +42,36 @@ const countRef = ref<HTMLElement>()
 const options = ref<EChartsOption>()
 let echartsOptions: EChartsOption = {
 	grid: {
-		top: 20,
+		top: 30,
 		left: 0,
 		bottom: 0,
-		right: 0
+		right: -4,
+		containLabel: true
 	},
 	xAxis: {
 		show: false,
+		axisLine: {
+			show: false
+		},
+		axisTick: {
+			show: false
+		},
+		axisLabel: {
+			show: false
+		},
 		type: "category",
 		data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 	},
 	yAxis: {
+		axisLine: {
+			show: false
+		},
+		axisTick: {
+			show: false
+		},
+		axisLabel: {
+			show: false
+		},
 		show: false,
 		type: "value"
 	},
@@ -108,6 +127,9 @@ onMounted(() => {
 
 	.card-header {
 		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		padding-left: 15px;
 
 		&::before {
@@ -123,7 +145,6 @@ onMounted(() => {
 		}
 
 		i {
-			color: var(--el-text-color-placeholder);
 			cursor: pointer;
 		}
 	}

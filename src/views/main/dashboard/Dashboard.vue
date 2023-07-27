@@ -4,25 +4,25 @@
 		<el-row :gutter="8" style="margin-top: 10px">
 			<!-- 实时数据 -->
 			<el-col :span="16">
-				<RealTimeData></RealTimeData>
+				<RealTimeData class="item"></RealTimeData>
 			</el-col>
 			<!-- 公告 -->
 			<el-col :span="8">
-				<Announcement></Announcement>
+				<Announcement class="item"></Announcement>
 			</el-col>
 		</el-row>
 		<el-row :gutter="8" style="margin-top: 10px">
 			<!-- 商品订单分布占比 -->
 			<el-col :span="8">
-				<OrderDistribution></OrderDistribution>
+				<OrderDistribution class="item"></OrderDistribution>
 			</el-col>
 			<!-- 月销售品牌排行 -->
 			<el-col :span="8">
-				<MonthlySales></MonthlySales>
+				<MonthlySales class="item"></MonthlySales>
 			</el-col>
 			<!-- 常用功能 -->
 			<el-col :span="8">
-				<CommonFunction></CommonFunction>
+				<CommonFunction class="item"></CommonFunction>
 			</el-col>
 		</el-row>
 	</div>
@@ -42,5 +42,9 @@ import RealTimeData from "./components/realTimeData/RealTimeData.vue"
 	height: 100%;
 	padding: 20px;
 	overflow: auto;
+}
+
+.item {
+	height: 310px;
 }
 </style>

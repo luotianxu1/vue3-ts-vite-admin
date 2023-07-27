@@ -1,7 +1,28 @@
 <template>
 	<el-row :gutter="10">
 		<el-col :span="6" v-for="(item, index) in amountList" :key="index">
-			<CountCard v-bind="item"></CountCard>
+			<ChartCard :title="item.title">
+				<template #sub>
+					<el-tooltip :content="item.title" placement="top-start">
+						<i class="iconfont icon-tishi"></i>
+					</el-tooltip>
+				</template>
+				<div class="card">
+					<div class="card-left">
+						<div class="card-number" ref="countRef">{{ item.number }}</div>
+						<div class="card-qushi">
+							<span>{{ item.subTitle }}</span>
+							<span :class="item.value > 0 ? 'red' : 'green'">
+								{{ item.value }}%
+								<i class="iconfont" :class="item.value > 0 ? 'icon-shangsheng' : 'icon-xiajiang'"></i>
+							</span>
+						</div>
+					</div>
+					<div class="card-right" style="width: 100px; height: 100px;">
+						<BaseEcharts :option="item.option"></BaseEcharts>
+					</div>
+				</div>
+			</ChartCard>
 		</el-col>
 	</el-row>
 </template>
@@ -9,14 +30,132 @@
 <script lang="ts" setup>
 import { getDashboardList } from "@/service/modules/dahboard"
 import type { IDashboardItem } from "@/types"
-import CountCard from "../countCard/CountCard.vue"
+import type { EChartsOption } from "echarts"
+import ChartCard from "../chartCard/ChartCard.vue"
 
-let amountList = ref<IDashboardItem[]>()
+interface ICardData extends IDashboardItem {
+	option?: EChartsOption
+}
+
+let echartsOptions: EChartsOption = {
+	grid: {
+		top: 30,
+		left: 0,
+		bottom: 0,
+		right: -4,
+		containLabel: true
+	},
+	xAxis: {
+		show: false,
+		axisLine: {
+			show: false
+		},
+		axisTick: {
+			show: false
+		},
+		axisLabel: {
+			show: false
+		},
+		type: "category",
+		data: []
+	},
+	yAxis: {
+		axisLine: {
+			show: false
+		},
+		axisTick: {
+			show: false
+		},
+		axisLabel: {
+			show: false
+		},
+		show: false,
+		type: "value"
+	},
+	series: [
+		{
+			data: [],
+			type: "line",
+			smooth: true,
+			lineStyle: {
+				width: 2
+			},
+			areaStyle: {
+				opacity: 0.8,
+				color: "rgb(240, 244, 255)"
+			}
+		}
+	]
+}
+
+let amountList = ref<ICardData[]>()
 const getList = async () => {
 	const res = await getDashboardList({})
-	amountList.value = res.data?.list
+	if (!res.data) return
+	amountList.value = res.data.list
+	amountList.value.forEach(item => {
+		item.option = JSON.parse(JSON.stringify(echartsOptions))
+		;(item.option!.xAxis! as any).data = item.week.map(item => item.title)
+		item.option!.series![0].data = item.week.map((data, index) => {
+			if (index === item.week!.length - 1) {
+				return {
+					value: data.value,
+					symbolSize: 6,
+					itemStyle: {
+						color: item.value > 0 ? "red" : "green"
+					}
+				}
+			} else {
+				return {
+					value: data.value,
+					symbolSize: 0
+				}
+			}
+		})
+		item.option!.series![0].lineStyle.color = item.value > 0 ? "red" : "green"
+	})
 }
 getList()
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card {
+	flex: 1;
+	display: flex;
+
+	.card-left {
+		width: 50%;
+
+		.card-number {
+			margin: 5px 0;
+			font-size: 24px;
+			font-weight: 600;
+			letter-spacing: 2px;
+		}
+
+		.card-qushi {
+			display: flex;
+			font-size: 14px;
+			align-items: center;
+
+			> span {
+				&:nth-child(2) {
+					padding-left: 5px;
+				}
+			}
+		}
+	}
+
+	.card-right {
+		flex: 1;
+	}
+}
+
+.red {
+	color: #f56c6c;
+}
+
+.green {
+	color: #94d870;
+}
+</style>

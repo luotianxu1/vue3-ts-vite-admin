@@ -1,5 +1,12 @@
 <template>
 	<ChartCard title="实时数据">
+		<template #sub>
+			<el-radio-group v-model="radio1" size="small">
+				<el-radio-button label="近5年" />
+				<el-radio-button label="近1年" />
+				<el-radio-button label="近1月" />
+			</el-radio-group>
+		</template>
 		<BaseEcharts :option="realTimeOptions"></BaseEcharts>
 	</ChartCard>
 </template>
@@ -7,6 +14,8 @@
 <script lang="ts" setup>
 import type { EChartsOption } from "echarts"
 import ChartCard from "../chartCard/ChartCard.vue"
+
+const radio1 = ref("近5年")
 
 const realTimeOptions = ref<EChartsOption>()
 const realTimeOptionsBase: EChartsOption = {
@@ -105,7 +114,6 @@ const realTimeOptionsBase: EChartsOption = {
 					x2: 0,
 					y2: 1,
 					colorStops: [
-						// 渐变颜色
 						{
 							offset: 0,
 							color: "rgba(61, 132, 247, 0.6)"

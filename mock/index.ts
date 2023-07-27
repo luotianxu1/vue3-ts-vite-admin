@@ -384,7 +384,15 @@ export default [
 							number: 714400,
 							subTitle: "同比昨日",
 							value: 1.6,
-							week: [714400, 614400, 814400, 714400, 314400, 814400, 714400]
+							week: [
+								{ title: "周一", value: 714400 },
+								{ title: "周二", value: 500000 },
+								{ title: "周三", value: 714400 },
+								{ title: "周四", value: 814400 },
+								{ title: "周五", value: 300000 },
+								{ title: "周六", value: 814400 },
+								{ title: "周日", value: 714400 }
+							]
 						},
 						{
 							title: "今日订单量(元)",
@@ -392,7 +400,15 @@ export default [
 							number: 5960,
 							subTitle: "同比昨日",
 							value: -0.5,
-							week: [714400, 614400, 814400, 714400, 314400, 814400, 714400]
+							week: [
+								{ title: "周一", value: 700000 },
+								{ title: "周二", value: 600000 },
+								{ title: "周三", value: 714400 },
+								{ title: "周四", value: 814400 },
+								{ title: "周五", value: 314400 },
+								{ title: "周六", value: 814400 },
+								{ title: "周日", value: 714400 }
+							]
 						},
 						{
 							title: "今日浏览量",
@@ -400,7 +416,15 @@ export default [
 							number: 12218,
 							subTitle: "同比昨日",
 							value: -0.5,
-							week: [714400, 614400, 814400, 714400, 314400, 814400, 714400]
+							week: [
+								{ title: "周一", value: 714400 },
+								{ title: "周二", value: 614400 },
+								{ title: "周三", value: 714400 },
+								{ title: "周四", value: 0 },
+								{ title: "周五", value: 314400 },
+								{ title: "周六", value: 814400 },
+								{ title: "周日", value: 714400 }
+							]
 						},
 						{
 							title: "新增会员",
@@ -408,7 +432,15 @@ export default [
 							number: 2452,
 							subTitle: "同比昨日",
 							value: 4.0,
-							week: [714400, 614400, 814400, 714400, 314400, 814400, 714400]
+							week: [
+								{ title: "周一", value: 714400 },
+								{ title: "周二", value: 614400 },
+								{ title: "周三", value: 714400 },
+								{ title: "周四", value: 814400 },
+								{ title: "周五", value: 314400 },
+								{ title: "周六", value: 814400 },
+								{ title: "周日", value: 714400 }
+							]
 						}
 					]
 				}

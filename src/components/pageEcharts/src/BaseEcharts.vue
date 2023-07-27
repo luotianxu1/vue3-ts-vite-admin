@@ -18,16 +18,27 @@ let echartsInstance: echarts.ECharts | null = null
 watch(
 	() => props.option,
 	newVal => {
-		echartsInstance?.setOption(newVal || {})
+		nextTick(() => {
+			echartsInstance?.setOption(newVal || {})
+		})
+	},
+	{
+		immediate: true
 	}
 )
 
+let resizeObserver: ResizeObserver
 onMounted(() => {
-	echartsInstance = echarts.init(echartsRef.value!, "light", {
+	if (!echartsRef.value) return
+	echartsInstance = echarts.init(echartsRef.value, "light", {
 		renderer: "canvas"
 	})
 
-	window.addEventListener("resize", resize)
+	// 监听元素
+	resizeObserver = new ResizeObserver(() => {
+		resize()
+	})
+	resizeObserver.observe(echartsRef.value)
 })
 
 const resize = () => {
@@ -39,8 +50,8 @@ const dispose = () => {
 }
 
 onBeforeUnmount(() => {
+	resizeObserver.disconnect()
 	dispose()
-	window.removeEventListener("resize", resize)
 })
 
 defineExpose({

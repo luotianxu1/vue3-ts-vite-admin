@@ -5,7 +5,7 @@ export interface IDashboardItem {
 	number: number
 	subTitle: string
 	value: number
-	week: number[]
+	week: { title: string; value: number }[]
 }
 
 // 查询首页顶部数据
