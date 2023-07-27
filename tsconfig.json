@@ -11,7 +11,8 @@
 			"@global/*": ["./src/global/*"]
 		},
 		"types": ["element-plus/global"],
-		"typeRoots": ["./node_modules/@types/", "./src/types/"]
+		"typeRoots": ["./node_modules/@types/", "./src/types/"],
+		"suppressImplicitAnyIndexErrors": true
 	},
 	"references": [
 		{

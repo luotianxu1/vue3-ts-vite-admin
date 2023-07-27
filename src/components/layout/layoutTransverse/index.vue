@@ -65,7 +65,6 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 .el-menu {
 	height: 45px;
 	overflow: hidden;
-	// border-bottom: 0;
 	flex: 1;
 	border-bottom: 1px solid var(--el-border-color-light);
 

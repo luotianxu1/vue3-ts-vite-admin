@@ -383,28 +383,32 @@ export default [
 							tips: "stringy",
 							number: 714400,
 							subTitle: "同比昨日",
-							value: 1.6
+							value: 1.6,
+							week: [714400, 614400, 814400, 714400, 314400, 814400, 714400]
 						},
 						{
 							title: "今日订单量(元)",
 							tips: "stringy",
 							number: 5960,
 							subTitle: "同比昨日",
-							value: -0.5
+							value: -0.5,
+							week: [714400, 614400, 814400, 714400, 314400, 814400, 714400]
 						},
 						{
 							title: "今日浏览量",
 							tips: "stringy",
 							number: 12218,
 							subTitle: "同比昨日",
-							value: -0.5
+							value: -0.5,
+							week: [714400, 614400, 814400, 714400, 314400, 814400, 714400]
 						},
 						{
 							title: "新增会员",
 							tips: "stringy",
 							number: 2452,
 							subTitle: "同比昨日",
-							value: 4.0
+							value: 4.0,
+							week: [714400, 614400, 814400, 714400, 314400, 814400, 714400]
 						}
 					]
 				}

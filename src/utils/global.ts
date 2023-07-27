@@ -14,11 +14,21 @@ export function isType(val: any) {
 }
 
 /**
- * @description 生成随机数
+ * 生成随机数
  * @param {Number} min 最小值
  * @param {Number} max 最大值
  * @returns {Number}
  */
 export function randomNum(min: number, max: number): number {
 	return Math.floor(Math.random() * (min - max) + max)
+}
+
+/**
+ * 判断是否在对象内
+ * @param key
+ * @param object
+ * @returns
+ */
+export function isValidKey(key: string | number | symbol, object: object): key is keyof typeof object {
+	return key in object
 }

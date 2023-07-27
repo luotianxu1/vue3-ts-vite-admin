@@ -1,10 +1,8 @@
 <template>
 	<el-row :gutter="10">
-		<template v-for="(item, index) in amountList" :key="index">
-			<el-col :span="6">
-				<CountCard v-bind="item"></CountCard>
-			</el-col>
-		</template>
+		<el-col :span="6" v-for="(item, index) in amountList" :key="index">
+			<CountCard v-bind="item"></CountCard>
+		</el-col>
 	</el-row>
 </template>
 

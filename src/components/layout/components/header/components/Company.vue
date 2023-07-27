@@ -9,7 +9,7 @@
 import { GlobalStore } from "@/stores/modules/global"
 
 interface Props {
-	showImg: boolean
+	showImg?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
 	showImg: true

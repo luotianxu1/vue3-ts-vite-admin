@@ -1,3 +1,14 @@
+.placeholder {
+	color: var(--el-text-color-placeholder);
+}
+
+.link {
+	&:hover {
+		color: var(--el-color-primary);
+		cursor: pointer;
+	}
+}
+
 :root {
 	--base-bg: #f3f8fb;
 	--base-color: #fff;
