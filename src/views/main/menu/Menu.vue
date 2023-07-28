@@ -22,7 +22,7 @@ const contentRef = ref<InstanceType<typeof PageContent>>()
 const menuList = ref<IMenuOptions[]>([])
 const getMenuList = async () => {
 	const res = await getUserMenuByRoleId("0")
-	menuList.value = res.data?.menu ?? []
+	menuList.value = res.data.menu ?? []
 	contentRef.value?.showTable(menuList.value)
 }
 

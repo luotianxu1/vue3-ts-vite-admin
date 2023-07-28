@@ -1,21 +1,31 @@
 <template>
-	<ChartCard title="实时数据">
+	<Card title="实时数据">
 		<template #sub>
-			<el-radio-group v-model="radio1" size="small">
-				<el-radio-button label="近5年" />
-				<el-radio-button label="近1年" />
-				<el-radio-button label="近1月" />
+			<el-radio-group v-model="radioValue" size="small">
+				<el-radio-button v-for="(item, value) in radioList" :key="value" :label="value" />
 			</el-radio-group>
 		</template>
 		<BaseEcharts :option="realTimeOptions"></BaseEcharts>
-	</ChartCard>
+	</Card>
 </template>
 
 <script lang="ts" setup>
 import type { EChartsOption } from "echarts"
-import ChartCard from "../chartCard/ChartCard.vue"
+import Card from "@components/card/Card.vue"
+import type { IRealTimeDataItem } from "@/types/modules/dashboard"
 
-const radio1 = ref("近5年")
+interface IProps {
+	realTimeData: IRealTimeDataItem[]
+}
+const props = defineProps<IProps>()
+
+const radioList = {
+	近5年: "fiveYear",
+	近1年: "oneYear",
+	近1月: "oneMonth"
+}
+
+const radioValue = ref("近5年")
 
 const realTimeOptions = ref<EChartsOption>()
 const realTimeOptionsBase: EChartsOption = {
@@ -129,20 +139,19 @@ const realTimeOptionsBase: EChartsOption = {
 		}
 	]
 }
-const realTimeData = [
-	{ time: "2019", catering: "58", retail: "95" },
-	{ time: "2020", catering: "76", retail: "30" },
-	{ time: "2021", catering: "98", retail: "170" },
-	{ time: "2022", catering: "77", retail: "60" },
-	{ time: "2023", catering: "85", retail: "210" }
-]
 
-onMounted(() => {
-	;(realTimeOptionsBase as any).xAxis.data = realTimeData.map(item => item.time)
-	realTimeOptionsBase.series![0].data = realTimeData.map(item => item.catering)
-	realTimeOptionsBase.series![1].data = realTimeData.map(item => item.retail)
-	realTimeOptions.value = realTimeOptionsBase
-})
+watch(
+	() => [props.realTimeData, radioValue.value],
+	() => {
+		let realTimeData = props.realTimeData.filter(item => item.time === radioList[radioValue.value])[0]?.data
+		if (realTimeData) {
+			;(realTimeOptionsBase as any).xAxis.data = realTimeData.map(item => item.time)
+			realTimeOptionsBase.series![0].data = realTimeData.map(item => item.catering)
+			realTimeOptionsBase.series![1].data = realTimeData.map(item => item.retail)
+			realTimeOptions.value = JSON.parse(JSON.stringify(realTimeOptionsBase))
+		}
+	}
+)
 </script>
 
 <style lang="scss" scoped></style>

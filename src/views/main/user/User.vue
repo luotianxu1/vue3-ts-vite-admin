@@ -38,7 +38,7 @@ const contentRef = ref<InstanceType<typeof PageContent>>()
 let departmentList = ref<IDepartment[]>([])
 const queryDepartment = async () => {
 	const res = await getDepartmentList({})
-	departmentList.value = res.data?.list ?? []
+	departmentList.value = res.data.list ?? []
 }
 queryDepartment()
 
@@ -61,7 +61,7 @@ const modalConfigRef = computed(() => {
 const userList = ref<IUserInfo[]>()
 const getList = async (formData = {}) => {
 	const res = await getUserList(formData)
-	userList.value = res.data?.list
+	userList.value = res.data.list
 	contentRef.value?.showTable(userList.value)
 }
 // getList()

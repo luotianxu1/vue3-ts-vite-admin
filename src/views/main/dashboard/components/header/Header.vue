@@ -1,10 +1,10 @@
 <template>
 	<el-row :gutter="10">
 		<el-col :span="6" v-for="(item, index) in amountList" :key="index">
-			<ChartCard :title="item.title">
+			<Card :title="item.title">
 				<template #sub>
 					<el-tooltip :content="item.title" placement="top-start">
-						<i class="iconfont icon-tishi"></i>
+						<i class="iconfont icon-tishi icon"></i>
 					</el-tooltip>
 				</template>
 				<div class="card">
@@ -22,21 +22,24 @@
 						<BaseEcharts :option="item.option"></BaseEcharts>
 					</div>
 				</div>
-			</ChartCard>
+			</Card>
 		</el-col>
 	</el-row>
 </template>
 
 <script lang="ts" setup>
-import { getDashboardList } from "@/service/modules/dahboard"
-import type { IDashboardItem } from "@/types"
+import type { ITodaysDataItem } from "@/types"
 import type { EChartsOption } from "echarts"
-import ChartCard from "../chartCard/ChartCard.vue"
+import Card from "@components/card/Card.vue"
 
-interface ICardData extends IDashboardItem {
+interface IProps {
+	todaysData: ITodaysDataItem[]
+}
+const props = defineProps<IProps>()
+
+interface ICardData extends ITodaysDataItem {
 	option?: EChartsOption
 }
-
 let echartsOptions: EChartsOption = {
 	grid: {
 		top: 30,
@@ -89,33 +92,33 @@ let echartsOptions: EChartsOption = {
 }
 
 let amountList = ref<ICardData[]>()
-const getList = async () => {
-	const res = await getDashboardList({})
-	if (!res.data) return
-	amountList.value = res.data.list
-	amountList.value.forEach(item => {
-		item.option = JSON.parse(JSON.stringify(echartsOptions))
-		;(item.option!.xAxis! as any).data = item.week.map(item => item.title)
-		item.option!.series![0].data = item.week.map((data, index) => {
-			if (index === item.week!.length - 1) {
-				return {
-					value: data.value,
-					symbolSize: 6,
-					itemStyle: {
-						color: item.value > 0 ? "red" : "green"
+watch(
+	() => props.todaysData,
+	newVal => {
+		amountList.value = newVal
+		amountList.value.forEach(item => {
+			item.option = JSON.parse(JSON.stringify(echartsOptions))
+			;(item.option!.xAxis! as any).data = item.week.map(item => item.title)
+			item.option!.series![0].data = item.week.map((data, index) => {
+				if (index === item.week!.length - 1) {
+					return {
+						value: data.value,
+						symbolSize: 6,
+						itemStyle: {
+							color: item.value > 0 ? "red" : "green"
+						}
+					}
+				} else {
+					return {
+						value: data.value,
+						symbolSize: 0
 					}
 				}
-			} else {
-				return {
-					value: data.value,
-					symbolSize: 0
-				}
-			}
+			})
+			item.option!.series![0].lineStyle.color = item.value > 0 ? "red" : "green"
 		})
-		item.option!.series![0].lineStyle.color = item.value > 0 ? "red" : "green"
-	})
-}
-getList()
+	}
+)
 </script>
 
 <style lang="scss" scoped>
@@ -148,6 +151,12 @@ getList()
 
 	.card-right {
 		flex: 1;
+	}
+}
+
+.icon {
+	&:hover {
+		cursor: pointer;
 	}
 }
 

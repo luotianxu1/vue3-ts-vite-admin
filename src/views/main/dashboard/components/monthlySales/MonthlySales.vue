@@ -1,15 +1,16 @@
 <template>
-	<ChartCard title="月销售品牌排行">
+	<Card title="月销售品牌排行">
 		<template #sub>
 			<span class="placeholder link">更多</span>
 		</template>
 		<BaseEcharts :option="salesRankOptions"></BaseEcharts>
-	</ChartCard>
+	</Card>
 </template>
 
 <script lang="ts" setup>
 import type { EChartsOption } from "echarts"
-import ChartCard from "../chartCard/ChartCard.vue"
+import Card from "@components/card/Card.vue"
+import type { ISalesRankOptionsDataItem } from "@/types/modules/dashboard"
 
 // 月销售排行
 const salesRankOptions = ref<EChartsOption>()
@@ -95,22 +96,23 @@ const salesRankOptionsBase: EChartsOption = {
 		}
 	]
 }
-const salesRankDatas = [
-	{ name: "佳能", percent: "58", total: "158111", finished: "82311" },
-	{ name: "松下", percent: "76", total: "16522", finished: "9873" },
-	{ name: "索尼", percent: "98", total: "5823", finished: "5500" },
-	{ name: "尼康", percent: "77", total: "3244", finished: "2355" },
-	{ name: "富士", percent: "85", total: "15344", finished: "12009" }
-]
 
-onMounted(() => {
-	// 月销售排行
-	salesRankOptionsBase.yAxis![0].data = salesRankDatas.map(item => item.name)
-	salesRankOptionsBase.yAxis![1].data = salesRankDatas.map(item => item.finished)
-	salesRankOptionsBase.series![0].data = new Array(salesRankDatas.length).fill(100)
-	salesRankOptionsBase.series![1].data = salesRankDatas.map(item => item.percent)
-	salesRankOptions.value = salesRankOptionsBase
-})
+interface IProps {
+	salesRankOptionsData: ISalesRankOptionsDataItem[]
+}
+const props = defineProps<IProps>()
+
+watch(
+	() => props.salesRankOptionsData,
+	newVal => {
+		// 月销售排行
+		salesRankOptionsBase.yAxis![0].data = newVal.map(item => item.name)
+		salesRankOptionsBase.yAxis![1].data = newVal.map(item => item.finished)
+		salesRankOptionsBase.series![0].data = new Array(newVal.length).fill(100)
+		salesRankOptionsBase.series![1].data = newVal.map(item => item.percent)
+		salesRankOptions.value = salesRankOptionsBase
+	}
+)
 </script>
 
 <style lang="scss" scoped></style>

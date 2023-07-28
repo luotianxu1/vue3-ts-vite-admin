@@ -1,48 +1,27 @@
 <template>
-	<ChartCard title="常用功能">
+	<Card title="常用功能">
 		<template #sub>
 			<span class="placeholder link">自定义</span>
 		</template>
 		<div class="function">
-			<div v-for="(item, index) in list" :key="index">
+			<div v-for="(item, index) in $props.commonFunctionData" :key="index">
 				<div class="circle">
 					<i class="iconfont" :class="item.icon"></i>
 				</div>
 				{{ item.title }}
 			</div>
 		</div>
-	</ChartCard>
+	</Card>
 </template>
 
 <script lang="ts" setup>
-import ChartCard from "../chartCard/ChartCard.vue"
+import type { ICommonFunctionItem } from "@/types/modules/dashboard"
+import Card from "@components/card/Card.vue"
 
-const list = [
-	{
-		icon: "icon-xinzeng",
-		title: "发布商品"
-	},
-	{
-		icon: "icon-myCenter",
-		title: "客户管理"
-	},
-	{
-		icon: "icon-shop",
-		title: "商品管理"
-	},
-	{
-		icon: "icon-jiaoseguanli",
-		title: "售后管理"
-	},
-	{
-		icon: "icon-dianhua",
-		title: "客服对话"
-	},
-	{
-		icon: "icon-shopping",
-		title: "全部订单"
-	}
-]
+interface IProps {
+	commonFunctionData: ICommonFunctionItem[]
+}
+const props = defineProps<IProps>()
 </script>
 
 <style lang="scss" scoped>

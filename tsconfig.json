@@ -8,7 +8,8 @@
 			"@views/*": ["./src/views/*"],
 			"@stores/*": ["./src/stores/*"],
 			"@utils/*": ["./src/utils/*"],
-			"@global/*": ["./src/global/*"]
+			"@global/*": ["./src/global/*"],
+			"@components/*": ["./src/components/*"]
 		},
 		"types": ["element-plus/global"],
 		"typeRoots": ["./node_modules/@types/", "./src/types/"],

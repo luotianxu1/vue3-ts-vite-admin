@@ -1,19 +1,30 @@
 <template>
-	<ChartCard title="公告">
+	<Card title="公告">
 		<template #sub>
 			<span class="placeholder link">详情</span>
 		</template>
 		<el-scrollbar>
-			<div v-for="(i, index) in 90" :key="index" class="message">
-				<span><el-tag type="success">消息</el-tag> <span>系统新版本，新功能介绍</span></span>
-				<span class="placeholder">2022-11-04</span>
+			<div v-for="(item, index) in props.announcementData" :key="index" class="message">
+				<div class="message-left ellipsis">
+					<el-tag :type="item.type === 1 ? 'success' : item.type === 2 ? 'warning' : 'danger'">
+						{{ item.type === 1 ? "系统" : item.type === 2 ? "消息" : "提醒" }}
+					</el-tag>
+					<span>{{ item.content }}</span>
+				</div>
+				<div class="placeholder">{{ item.time }}</div>
 			</div>
 		</el-scrollbar>
-	</ChartCard>
+	</Card>
 </template>
 
 <script lang="ts" setup>
-import ChartCard from "../chartCard/ChartCard.vue"
+import type { IAnnouncementDataItem } from "@/types/modules/dashboard"
+import Card from "@components/card/Card.vue"
+
+interface IProps {
+	announcementData: IAnnouncementDataItem[]
+}
+const props = defineProps<IProps>()
 </script>
 
 <style lang="scss" scoped>
@@ -22,9 +33,11 @@ import ChartCard from "../chartCard/ChartCard.vue"
 	align-items: center;
 	justify-content: space-between;
 
-	> span {
-		&:nth-child(1) {
-			> span {
+	.message-left {
+		max-width: 80%;
+
+		> span {
+			&:nth-child(2) {
 				margin-left: 10px;
 			}
 		}
