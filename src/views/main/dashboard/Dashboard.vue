@@ -57,7 +57,6 @@ const salesRankOptionsData = ref<ISalesRankOptionsDataItem[]>([])
 const commonFunctionData = ref<ICommonFunctionItem[]>([])
 const getDashboardData = async () => {
 	const res = await getDashboardDataList({})
-	console.log(res)
 
 	todaysData.value = res.data.todaysData
 	realTimeData.value = res.data.realTimeData

@@ -35,8 +35,6 @@ const props = defineProps<IProps>()
 watch(
 	() => props.orderDistributionData,
 	newVal => {
-		console.log(newVal)
-
 		orderDistributionOptionsBase.series![0].data = newVal
 		orderDistributionOptions.value = orderDistributionOptionsBase
 	}
