@@ -29,7 +29,6 @@
 		height: 45px;
 		background-color: var(--base-color);
 		border-bottom: 1px solid var(--el-border-color-light);
-		box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 	}
 
 	.el-main {
@@ -41,6 +40,10 @@
 	.el-footer {
 		height: auto;
 		padding: 0;
+	}
+
+	.el-aside {
+		background-color: var(--base-color);
 	}
 }
 

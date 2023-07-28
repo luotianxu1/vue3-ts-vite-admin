@@ -157,8 +157,6 @@ const changeSubMenu = (item: IMenuOptions) => {
 	display: flex;
 	height: 100%;
 	overflow: hidden;
-	background-color: var(--base-color);
-	border-right: 1px solid var(--el-border-color);
 	transition: all 0.3s ease;
 	flex-direction: column;
 

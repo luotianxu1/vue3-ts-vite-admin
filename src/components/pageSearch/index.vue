@@ -70,9 +70,11 @@ const handleCommit = () => {
 
 <style lang="scss" scoped>
 .search {
-	padding: 20px;
-	margin-bottom: 20px;
+	padding: 15px;
+	margin-bottom: 10px;
 	background-color: var(--base-color);
+	border-radius: 6px;
+	box-shadow: 0 0 12px #0000000d;
 }
 
 .btns {

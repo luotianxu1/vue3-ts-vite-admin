@@ -66,7 +66,7 @@ const handleClickMenu = (subItem: IMenuOptions) => {
 	height: 45px;
 	overflow: hidden;
 	flex: 1;
-	border-bottom: 1px solid var(--el-border-color-light);
+	// border-bottom: 1px solid var(--el-border-color-light);
 
 	.is-active {
 		border-bottom-color: var(--el-color-primary) !important;

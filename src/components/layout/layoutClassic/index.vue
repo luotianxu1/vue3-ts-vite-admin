@@ -68,8 +68,6 @@ const menuList = computed(() => userStore.showMenuListGet)
 .el-aside {
 	width: auto;
 	overflow: inherit;
-	background-color: var(--base-color);
-	border-right: 1px solid var(--el-border-color);
 	transition: all 0.3s ease;
 
 	.menu {

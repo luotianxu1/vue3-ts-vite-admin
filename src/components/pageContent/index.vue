@@ -69,13 +69,19 @@ defineExpose({ showTable })
 
 <style lang="scss" scoped>
 .content {
-	padding: 20px;
+	padding: 15px;
 	background-color: var(--base-color);
+	border-radius: 6px;
+	box-shadow: 0 0 12px #0000000d;
 
 	.header {
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-end;
+	}
+
+	.table {
+		margin: 15px 0;
 	}
 }
 </style>

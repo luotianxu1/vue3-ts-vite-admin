@@ -97,6 +97,7 @@ const removeTab = (activeTabPath: TabPaneName) => {
 			height: 40px;
 			padding: 0 10px;
 			margin: 0;
+			border: 0;
 			box-sizing: border-box;
 		}
 
