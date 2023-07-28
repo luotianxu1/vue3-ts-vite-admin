@@ -26,7 +26,7 @@ import modalConfig from "./config/modalConfig"
 import useModalContent from "@/hooks/usePageModal"
 import { UserStore } from "@/stores/modules/user"
 
-import { getuserList } from "@/service/modules/user"
+import { getUserList } from "@/service/modules/user"
 import { getDepartmentList } from "@/service/modules/department"
 
 const userStore = UserStore()
@@ -60,7 +60,7 @@ const modalConfigRef = computed(() => {
 // 获取用户列表
 const userList = ref<IUserInfo[]>()
 const getList = async (formData = {}) => {
-	const res = await getuserList(formData)
+	const res = await getUserList(formData)
 	userList.value = res.data?.list
 	contentRef.value?.showTable(userList.value)
 }
