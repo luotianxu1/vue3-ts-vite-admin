@@ -80,8 +80,10 @@ const handleDeleteBtnClick = (id: any) => {
 
 <style lang="scss" scoped>
 .user {
+	display: flex;
 	height: 100%;
-	padding: 20px;
-	overflow: auto;
+	padding: 12px;
+	overflow: hidden;
+	flex-direction: column;
 }
 </style>

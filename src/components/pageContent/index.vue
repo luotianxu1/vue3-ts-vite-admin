@@ -69,10 +69,14 @@ defineExpose({ showTable })
 
 <style lang="scss" scoped>
 .content {
+	display: flex;
 	padding: 15px;
+	overflow: hidden;
 	background-color: var(--base-color);
 	border-radius: 6px;
 	box-shadow: 0 0 12px #0000000d;
+	flex: 1;
+	flex-direction: column;
 
 	.header {
 		display: flex;
@@ -81,7 +85,13 @@ defineExpose({ showTable })
 	}
 
 	.table {
-		margin: 15px 0;
+		margin: 10px 0;
+		overflow: hidden;
+		flex: 1;
+
+		.el-table {
+			height: 100%;
+		}
 	}
 }
 </style>
