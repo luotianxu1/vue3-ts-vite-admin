@@ -34,7 +34,7 @@ const props = defineProps<IProps>()
 	justify-content: space-between;
 
 	.message-left {
-		max-width: 80%;
+		max-width: 70%;
 
 		> span {
 			&:nth-child(2) {

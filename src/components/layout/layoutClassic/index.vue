@@ -62,6 +62,10 @@ const menuList = computed(() => userStore.showMenuListGet)
 	.header-lf {
 		display: flex;
 		align-items: center;
+
+		.left {
+			margin-left: 20px;
+		}
 	}
 }
 

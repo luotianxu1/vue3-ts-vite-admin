@@ -3,7 +3,7 @@
 		<el-icon @click="changAside" id="collapseIcon">
 			<i class="iconfont" :class="globalStore.themeConfig.isCollapse ? 'icon-mulushousuo ' : 'icon-muluzhankai'"></i>
 		</el-icon>
-		<BreadCrumb id="breadcrumb" v-if="globalStore.themeConfig.breadcrumb"></BreadCrumb>
+		<BreadCrumb class="breadCrumb" id="breadcrumb" v-if="globalStore.themeConfig.breadcrumb"></BreadCrumb>
 	</div>
 </template>
 
@@ -24,7 +24,6 @@ const changAside = () => {
 }
 
 i {
-	margin-right: 20px;
 	font-size: 20px;
 	font-weight: 600;
 	cursor: pointer;
@@ -32,5 +31,9 @@ i {
 	&:hover {
 		color: var(--el-color-primary);
 	}
+}
+
+.breadCrumb {
+	margin-left: 20px;
 }
 </style>
