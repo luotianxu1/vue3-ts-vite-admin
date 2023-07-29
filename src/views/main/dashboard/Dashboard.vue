@@ -1,7 +1,9 @@
 <template>
 	<div class="dashboard">
-		<Header :todaysData="todaysData"></Header>
-		<el-row :gutter="8" class="row" style="margin-top: 10px">
+		<el-row :gutter="8">
+			<HeaderItem v-for="(item, index) in todaysData" :key="index" :todaysData="item"></HeaderItem>
+		</el-row>
+		<el-row :gutter="8" class="row">
 			<!-- 实时数据 -->
 			<el-col :span="16">
 				<RealTimeData class="item" :realTimeData="realTimeData"></RealTimeData>
@@ -11,7 +13,7 @@
 				<Announcement class="item" :announcementData="announcementData"></Announcement>
 			</el-col>
 		</el-row>
-		<el-row :gutter="8" class="row" style="margin-top: 10px">
+		<el-row :gutter="8" class="row">
 			<!-- 商品订单分布占比 -->
 			<el-col :span="8">
 				<OrderDistribution class="item" :orderDistributionData="orderDistributionData"></OrderDistribution>
@@ -29,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import Header from "./components/header/Header.vue"
+import HeaderItem from "./components/headerItem/HeaderItem.vue"
 import CommonFunction from "./components/commonFunction/CommonFunction.vue"
 import MonthlySales from "./components/monthlySales/MonthlySales.vue"
 import Announcement from "./components/announcement/Announcement.vue"
@@ -70,11 +72,15 @@ const getDashboardData = async () => {
 <style lang="scss" scoped>
 .dashboard {
 	height: 100%;
-	padding: 20px;
+	padding: 15px;
 	overflow: auto;
 }
 
 .item {
 	height: 310px;
+}
+
+.row {
+	margin-top: 10px;
 }
 </style>
