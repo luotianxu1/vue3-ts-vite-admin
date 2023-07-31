@@ -1,0 +1,178 @@
+<template>
+	<div class="card search" v-show="isShowSearch">
+		<el-input></el-input>
+	</div>
+	<div class="card table">
+		<div class="table-header">
+			<div class="table-header-left">
+				<slot name="tableHeader" :selected-list-ids="selectedListIds" :selected-list="selectedList" :is-selected="isSelected">
+				</slot>
+			</div>
+			<div class="table-header-right" v-if="toolButton">
+				<slot name="toolButton">
+					<el-button :icon="Refresh" circle @click="getTableList" />
+					<el-button :icon="Operation" circle @click="openColSetting" />
+					<el-button :icon="Search" circle @click="isShowSearch = !isShowSearch" />
+				</slot>
+			</div>
+		</div>
+		<div class="table-main">
+			<el-table ref="tableRef" :data="data ?? tableData" :border="border" :row-key="rowKey" @selection-change="selectionChange">
+				<slot></slot>
+				<template v-for="(item, index) in tableColumns" :key="index">
+					<el-table-column
+						v-if="item.type && ['selection', 'index'].includes(item.type)"
+						v-bind="item"
+						:align="item.align ?? 'center'"
+					>
+					</el-table-column>
+					<el-table-column v-if="!item.type && item.prop && item.isShow" v-bind="item" :align="item.align ?? 'center'">
+					</el-table-column>
+				</template>
+				<!-- 插入表格最后一行之后的插槽 -->
+				<template #append>
+					<slot name="append"> </slot>
+				</template>
+				<!-- 无数据 -->
+				<template #empty>
+					<div class="table-empty">
+						<slot name="empty">
+							<div>暂无数据</div>
+						</slot>
+					</div>
+				</template>
+			</el-table>
+		</div>
+		<div class="table-page">
+			<Pagination
+				v-if="pagination"
+				:pageable="pageable"
+				:handle-size-change="handleSizeChange"
+				:handle-current-change="handleCurrentChange"
+			></Pagination>
+		</div>
+	</div>
+	<ColSetting v-if="toolButton" ref="colSettingRef" v-model:col-setting="colSetting" />
+</template>
+
+<script lang="ts" setup name="ProTable">
+import { Refresh, Operation, Search } from "@element-plus/icons-vue"
+import Pagination from "@/components/proTable/components/Pagination.vue"
+import ColSetting from "@/components/proTable/components/ColSetting.vue"
+import { useSelection } from "@/hooks/useSelection"
+import { useTable } from "@/hooks/useTable"
+import type { ElTable } from "element-plus"
+import type { ColumnProps } from "@/components/ProTable/interface"
+
+export interface ProTableProps {
+	columns: ColumnProps[] // 列配置项  ==> 必传
+	data?: any[] // 静态 table data 数据，若存在则不会使用 requestApi 返回的 data ==> 非必传
+	requestApi?: (params: any) => Promise<any> // 请求表格数据的 api ==> 非必传
+	requestAuto?: boolean // 是否自动执行请求 api ==> 非必传（默认为true）
+	title?: string // 表格标题，目前只在打印的时候用到 ==> 非必传
+	pagination?: boolean // 是否需要分页组件 ==> 非必传（默认为true）
+	toolButton?: boolean // 是否显示表格功能按钮 ==> 非必传（默认为true）
+	initParam?: any // 初始化请求参数 ==> 非必传（默认为{}）
+	border?: boolean // 是否带有纵向边框 ==> 非必传（默认为true）
+	rowKey?: string // 行数据的 Key，用来优化 Table 的渲染，当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
+}
+const props = withDefaults(defineProps<ProTableProps>(), {
+	columns: () => [],
+	requestAuto: true,
+	pagination: true,
+	toolButton: true,
+	initParam: {},
+	border: true,
+	rowKey: "id"
+})
+
+// 是否显示搜索模块
+const isShowSearch = ref(true)
+
+// 表格 DOM 元素
+const tableRef = ref<InstanceType<typeof ElTable>>()
+
+// 表格多选 Hooks
+const { isSelected, selectedList, selectedListIds, selectionChange } = useSelection(props.rowKey)
+
+// 表格操作 Hooks
+const { tableData, pageable, searchParam, searchInitParam, getTableList, search, reset, handleSizeChange, handleCurrentChange } =
+	useTable(props.requestApi, props.initParam, props.pagination)
+
+// 初始化请求
+onMounted(() => props.requestAuto && getTableList())
+
+// 监听页面 initParam 改化，重新获取表格数据
+watch(() => props.initParam, getTableList, { deep: true })
+
+// 接收 columns 并设置为响应式
+const tableColumns = ref<ColumnProps[]>(props.columns)
+// 扁平化 columns
+const flatColumns = ref<ColumnProps[]>()
+const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) => {
+	columns.forEach(async col => {
+		if (col._children?.length) flatArr.push(...flatColumnsFunc(col._children))
+		flatArr.push(col)
+		// 给每一项 column 添加 isShow
+		col.isShow = col.isShow ?? true
+	})
+	return flatArr.filter(item => !item._children?.length)
+}
+flatColumns.value = flatColumnsFunc(tableColumns.value)
+
+// 列设置 ==> 过滤掉不需要设置的列
+const colSettingRef = ref<InstanceType<typeof ColSetting>>()
+const colSetting = tableColumns.value!.filter(
+	item => !["selection", "index"].includes(item.type) && item.prop !== "operation" && item.isShow
+)
+const openColSetting = () => colSettingRef.value!.openColSetting()
+</script>
+<style lang="scss" scoped>
+.search {
+	padding: 18px 18px 0;
+	margin-bottom: 10px;
+}
+
+.table {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+
+	.table-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.el-button {
+			margin-bottom: 15px;
+		}
+	}
+
+	.table-main {
+		flex: 1;
+		display: flex;
+		overflow: hidden;
+
+		.el-table {
+			height: 100%;
+		}
+	}
+
+	.table-page {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		margin-top: 15px;
+	}
+}
+
+.card {
+	padding: 20px;
+	overflow-x: hidden;
+	background-color: var(--el-bg-color);
+	border: 1px solid var(--el-border-color-light);
+	border-radius: 6px;
+	box-shadow: 0 0 12px rgb(0 0 0 / 5%);
+	box-sizing: border-box;
+}
+</style>

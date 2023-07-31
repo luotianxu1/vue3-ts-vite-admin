@@ -1,89 +1,55 @@
 <template>
 	<div class="user">
-		<PageSearch :search-config="searchConfig" @query-click="handleQueryClick"></PageSearch>
-		<PageContent :content-config="contentConfig" ref="contentRef" @new-btn-click="handleNewBtnClick">
-			<template #status="scope">
-				<el-tag :type="scope.row.status ? 'success' : 'danger'">{{ scope.row.status ? "启用" : "禁用" }}</el-tag>
+		<ProTable ref="proTable" title="用户列表" :columns="columns" :request-api="getTableList">
+			<template #tableHeader="scope">
+				<el-button type="primary" :icon="CirclePlus"> 新增用户 </el-button>
+				<el-button type="primary" :icon="Upload" plain> 批量添加用户 </el-button>
+				<el-button type="primary" :icon="Download" plain> 导出用户数据 </el-button>
+				<el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected"> 批量删除用户 </el-button>
 			</template>
-			<template #btn="scope">
-				<el-button link type="primary" :icon="Edit" @click="handleEditBtnClick(scope.row)">编辑</el-button>
-				<el-button link type="danger" :icon="Delete" @click="handleDeleteBtnClick(scope.row.id)">删除</el-button>
+			<template #operation>
+				<el-button type="primary" link :icon="View"> 查看 </el-button>
+				<el-button type="primary" link :icon="EditPen"> 编辑 </el-button>
+				<el-button type="primary" link :icon="Refresh"> 重置密码 </el-button>
+				<el-button type="primary" link :icon="Delete"> 删除 </el-button>
 			</template>
-		</PageContent>
-		<PageModal :modal-config="modalConfigRef" ref="userMoadlRef"></PageModal>
+		</ProTable>
 	</div>
 </template>
 
 <script lang="ts" setup name="user">
-import { Delete, Edit } from "@element-plus/icons-vue"
-import type { IDepartment, IUserInfo } from "@/types"
-import type PageContent from "@/components/pageContent/index.vue"
-
-import searchConfig from "./config/searchConfig"
-import contentConfig from "./config/contentConfig"
-import modalConfig from "./config/modalConfig"
-
-import useModalContent from "@/hooks/usePageModal"
-import { UserStore } from "@/stores/modules/user"
-
+import { CirclePlus, Delete, Download, Upload, View, EditPen, Refresh } from "@element-plus/icons-vue"
 import { getUserList } from "@/service/modules/user"
-import { getDepartmentList } from "@/service/modules/department"
+import type { ColumnProps } from "@/components/ProTable/interface"
 
-const userStore = UserStore()
-// console.log(userStore.permissionsListGet)
-
-const contentRef = ref<InstanceType<typeof PageContent>>()
-
-// 获取部门列表
-let departmentList = ref<IDepartment[]>([])
-const queryDepartment = async () => {
-	const res = await getDepartmentList({})
-	departmentList.value = res.data.list ?? []
+const getTableList = (formData = {}) => {
+	return getUserList(formData)
 }
-queryDepartment()
 
-// 动态向新增弹窗添加值
-const modalConfigRef = computed(() => {
-	modalConfig.formItems.forEach(item => {
-		if (item.prop === "department") {
-			item.options = departmentList.value.map(department => {
-				return {
-					label: department.name,
-					value: department.id
-				}
-			})
-		}
-	})
-	return modalConfig
+onMounted(() => {
+	// getTableList()
 })
 
-// 获取用户列表
-const userList = ref<IUserInfo[]>()
-const getList = async (formData = {}) => {
-	const res = await getUserList(formData)
-	userList.value = res.data.list
-	contentRef.value?.showTable(userList.value)
-}
-// getList()
-
-// 查询
-const handleQueryClick = () => {
-	getList()
-}
-
-const { userMoadlRef, handleEditBtnClick, handleNewBtnClick } = useModalContent()
-
-const handleDeleteBtnClick = (id: any) => {
-	console.log(id)
-}
+// 表格配置项
+const columns: ColumnProps<any>[] = [
+	{ type: "selection", fixed: "left", width: 80 },
+	{ type: "index", label: "#", width: 80 },
+	{ prop: "name", label: "用户名" },
+	{ prop: "age", label: "年龄" },
+	{ prop: "phone", label: "手机号" },
+	{ prop: "email", label: "邮箱" },
+	{ prop: "addTime", label: "添加时间" },
+	{ prop: "editTime", label: "修改时间" },
+	{ prop: "operation", label: "操作", fixed: "right", width: 330 }
+]
 </script>
 
 <style lang="scss" scoped>
 .user {
 	display: flex;
+	width: 100%;
 	height: 100%;
-	padding: 12px;
-	overflow: hidden;
+	padding: 15px;
 	flex-direction: column;
 }
 </style>
