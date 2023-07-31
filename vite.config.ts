@@ -28,7 +28,7 @@ export default defineConfig({
 			imports: ["vue", "vue-router", "pinia"],
 			dts: "src/types/auto-imports.d.ts",
 			eslintrc: {
-				enabled: true, // Default `false`
+				enabled: false, // 启用生成。生成一次就可以，避免每次工程启动都生成，一旦生成配置文件之后，最好把 enable 关掉，即改成 false。
 				filepath: "./.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`
 				globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
 			}

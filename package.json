@@ -4,9 +4,9 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite",
-		"build": "run-p type-check build-only",
+		"build": "vite build",
 		"preview": "vite preview",
-		"build-only": "vite build",
+		"commit": "git add . & git-cz",
 		"type-check": "vue-tsc --noEmit",
 		"lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
 		"lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
