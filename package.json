@@ -12,7 +12,7 @@
 		"lint:eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
 		"lint:prettier": "prettier --write \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
 		"lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
-		"format": "prettier --write src/",
+		"lint:lint-staged": "lint-staged",
 		"prepare": "husky install"
 	},
 	"dependencies": {
@@ -59,6 +59,7 @@
 		"eslint": "^8.34.0",
 		"eslint-plugin-vue": "^9.9.0",
 		"husky": "^7.0.1",
+		"lint-staged": "^13.2.3",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^2.8.4",
 		"sass": "^1.58.3",
@@ -82,18 +83,5 @@
 		"commitizen": {
 			"path": "node_modules/cz-customizable"
 		}
-	},
-	"lint-staged": {
-		"src/**/*.{ts,js,vue}": [
-			"eslint --fix",
-			"prettier --write",
-			"stylelint --fix",
-			"git add"
-		],
-		"*.{scss,less,styl,html}": [
-			"stylelint --fix",
-			"prettier --write",
-			"git add"
-		]
 	}
 }
