@@ -16,7 +16,7 @@
 
 <script lang="ts" setup name="user">
 import { Delete, Edit } from "@element-plus/icons-vue"
-import type { IDepartment, IUserInfo } from "@/types"
+import type { Department, User } from "@/types"
 import type PageContent from "@/components/pageContent/index.vue"
 
 import searchConfig from "./config/searchConfig"
@@ -35,7 +35,7 @@ const userStore = UserStore()
 const contentRef = ref<InstanceType<typeof PageContent>>()
 
 // 获取部门列表
-let departmentList = ref<IDepartment[]>([])
+let departmentList = ref<Department.IDepartmentInfo[]>([])
 const queryDepartment = async () => {
 	const res = await getDepartmentList({})
 	departmentList.value = res.data.list ?? []
@@ -58,7 +58,7 @@ const modalConfigRef = computed(() => {
 })
 
 // 获取用户列表
-const userList = ref<IUserInfo[]>()
+const userList = ref<User.IUserInfo[]>()
 const getList = async (formData = {}) => {
 	const res = await getUserList(formData)
 	userList.value = res.data.list

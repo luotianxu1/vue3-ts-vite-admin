@@ -28,9 +28,9 @@ const userList = mockjs.mock({
 })
 
 export const userApiList: MockMethod[] = [
-	// 用户列表
+	// 查询用户列表
 	{
-		url: "/testApi/userList",
+		url: "/testApi/user/list",
 		method: "post",
 		response: (data: any) => {
 			const req = data.body
@@ -46,6 +46,21 @@ export const userApiList: MockMethod[] = [
 					pageSize: pageSize,
 					total: userList.list.length
 				}
+			}
+		}
+	},
+	// 查询用户性别字典
+	{
+		url: "/testApi/user/gender",
+		method: "post",
+		response: () => {
+			return {
+				status: 200,
+				message: "查询用户性别字典成功",
+				data: [
+					{ genderLabel: "男", genderValue: 1 },
+					{ genderLabel: "女", genderValue: 2 }
+				]
 			}
 		}
 	}

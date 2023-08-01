@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { IAnnouncementDataItem } from "@/types/modules/dashboard"
+import type { Dashboard } from "@/types/modules/dashboard"
 import Card from "@components/card/Card.vue"
 
 interface IProps {
-	announcementData: IAnnouncementDataItem[]
+	announcementData: Dashboard.IAnnouncementDataItem[]
 }
 const props = defineProps<IProps>()
 </script>

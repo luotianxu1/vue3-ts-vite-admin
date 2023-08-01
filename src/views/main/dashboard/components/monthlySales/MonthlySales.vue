@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import type { EChartsOption } from "echarts"
 import Card from "@components/card/Card.vue"
-import type { ISalesRankOptionsDataItem } from "@/types/modules/dashboard"
+import type { Dashboard } from "@/types/modules/dashboard"
 
 // 月销售排行
 const salesRankOptions = ref<EChartsOption>()
@@ -98,7 +98,7 @@ const salesRankOptionsBase: EChartsOption = {
 }
 
 interface IProps {
-	salesRankOptionsData: ISalesRankOptionsDataItem[]
+	salesRankOptionsData: Dashboard.ISalesRankOptionsDataItem[]
 }
 const props = defineProps<IProps>()
 

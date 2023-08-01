@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts" name="ColSetting">
-import type { ColumnProps } from "@/components/ProTable/interface"
+import type { ColumnProps } from "@/components/proTable/interface"
 
 defineProps<{ colSetting: ColumnProps[] }>()
 

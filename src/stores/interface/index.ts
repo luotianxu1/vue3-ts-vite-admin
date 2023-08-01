@@ -1,11 +1,10 @@
-import type { IMenuOptions } from "@/types/modules/login"
-import type { IUserInfo } from "@/types/modules/user"
+import type { User, Menu } from "@/types"
 
 // 登陆相关Store
 export interface ILoginStore {
 	token: string
-	userInfo: IUserInfo
-	userMenuList: IMenuOptions[]
+	userInfo: User.IUserInfo
+	userMenuList: Menu.IMenuOptions[]
 }
 
 export interface GlobalState {

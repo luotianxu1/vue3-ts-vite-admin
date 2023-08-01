@@ -15,11 +15,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { ICommonFunctionItem } from "@/types/modules/dashboard"
+import type { Dashboard } from "@/types/modules/dashboard"
 import Card from "@components/card/Card.vue"
 
 interface IProps {
-	commonFunctionData: ICommonFunctionItem[]
+	commonFunctionData: Dashboard.ICommonFunctionItem[]
 }
 const props = defineProps<IProps>()
 </script>

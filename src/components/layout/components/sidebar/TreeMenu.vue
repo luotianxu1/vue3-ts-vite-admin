@@ -18,11 +18,11 @@
 
 <script lang="ts" setup>
 import router from "@/router"
-import type { IMenuOptions } from "@/types"
+import type { Menu } from "@/types"
 import type { RouteLocationRaw } from "vue-router"
 
 interface Props {
-	treeData: Array<IMenuOptions>
+	treeData: Array<Menu.IMenuOptions>
 }
 
 const props = withDefaults(defineProps<Props>(), {

@@ -1,12 +1,12 @@
-import type { IMenuOptions } from "@/types"
+import type { Menu } from "@/types"
 
 /**
  * 扁平化数组
  */
-export function getFlatArr(menuList: IMenuOptions[]) {
-	const newMenuList: IMenuOptions[] = JSON.parse(JSON.stringify(menuList))
-	return newMenuList.reduce((pre: IMenuOptions[], current: IMenuOptions) => {
-		let flatArr: IMenuOptions[]
+export function getFlatArr(menuList: Menu.IMenuOptions[]) {
+	const newMenuList: Menu.IMenuOptions[] = JSON.parse(JSON.stringify(menuList))
+	return newMenuList.reduce((pre: Menu.IMenuOptions[], current: Menu.IMenuOptions) => {
+		let flatArr: Menu.IMenuOptions[]
 		if (current.permission) {
 			flatArr = [...pre]
 		} else {
@@ -22,8 +22,8 @@ export function getFlatArr(menuList: IMenuOptions[]) {
  * @param menuList
  * @returns
  */
-export function getShowMenuList(menuList: IMenuOptions[]) {
-	const newMenuList: IMenuOptions[] = JSON.parse(JSON.stringify(menuList))
+export function getShowMenuList(menuList: Menu.IMenuOptions[]) {
+	const newMenuList: Menu.IMenuOptions[] = JSON.parse(JSON.stringify(menuList))
 	return newMenuList.filter(item => {
 		item.children?.length && (item.children = getShowMenuList(item.children))
 		return !item.meta?.isHide && !item.permission
@@ -37,7 +37,7 @@ export function getShowMenuList(menuList: IMenuOptions[]) {
  * @param parent
  * @returns
  */
-export const getAllBreadcrumbList = (menuList: IMenuOptions[], result: { [key: string]: any } = {}, parent = []) => {
+export const getAllBreadcrumbList = (menuList: Menu.IMenuOptions[], result: { [key: string]: any } = {}, parent = []) => {
 	for (const item of menuList) {
 		result[item.path] = [...parent, item]
 		if (item.children) getAllBreadcrumbList(item.children, result, result[item.path])
@@ -50,7 +50,7 @@ export const getAllBreadcrumbList = (menuList: IMenuOptions[], result: { [key: s
  * @param menuList
  * @returns
  */
-export const getAllPermissions = (menuList: IMenuOptions[]) => {
+export const getAllPermissions = (menuList: Menu.IMenuOptions[]) => {
 	const permissionsList: string[] = []
 	const recurseGetPermission = (menus: any[]) => {
 		for (const item of menus) {

@@ -44,14 +44,14 @@ import HeaderRight from "../components/header/HeaderRight.vue"
 import Company from "../components/header/components/Company.vue"
 import { GlobalStore } from "@/stores/modules/global"
 import { UserStore } from "@/stores/modules/user"
-import type { IMenuOptions } from "@/types"
+import type { Menu } from "@/types"
 
 const router = useRouter()
 const globalStore = GlobalStore()
 const userStore = UserStore()
 const menuList = computed(() => userStore.showMenuListGet)
 
-const handleClickMenu = (subItem: IMenuOptions) => {
+const handleClickMenu = (subItem: Menu.IMenuOptions) => {
 	if (subItem.meta.isLink) return window.open(subItem.meta.isLink, "_blank")
 	router.push(subItem.path)
 }

@@ -1,8 +1,8 @@
 import api from "../index"
-import type { IAccountReq, IAccountResult, IResponseData, IUserInfo, IMenuListResult } from "@/types"
+import type { Login, IResponseData, User, Menu } from "@/types"
 
-export function accountLoginRequest(account: IAccountReq) {
-	return api.post<IResponseData<IAccountResult>>({
+export function accountLoginRequest(account: Login.IReqLogin) {
+	return api.post<IResponseData<Login.IResLogin>>({
 		url: "/login",
 		data: account
 		//   interceptors: {
@@ -15,7 +15,7 @@ export function accountLoginRequest(account: IAccountReq) {
 }
 
 export function getUserInfoById(id: string) {
-	return api.post<IResponseData<IUserInfo>>({
+	return api.post<IResponseData<User.IUserInfo>>({
 		url: "/users",
 		data: {
 			id
@@ -24,7 +24,7 @@ export function getUserInfoById(id: string) {
 }
 
 export function getUserMenuByRoleId(id: string) {
-	return api.post<IResponseData<IMenuListResult>>({
+	return api.post<IResponseData<Menu.IResMenuList>>({
 		url: "/menu",
 		data: {
 			id

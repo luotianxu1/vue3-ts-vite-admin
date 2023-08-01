@@ -1,9 +1,9 @@
-import type { ITodaysDataList, IResponseData } from "@/types"
+import type { IResponseData, Dashboard } from "@/types"
 import api from "../index"
 
 // 首页顶部列表
 export function getDashboardDataList(data: any) {
-	return api.post<IResponseData<ITodaysDataList>>({
+	return api.post<IResponseData<Dashboard.IResDashBoardDataList>>({
 		url: "/count/list",
 		data: data
 	})

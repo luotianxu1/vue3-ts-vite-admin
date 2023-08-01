@@ -25,12 +25,12 @@
 	</el-col>
 </template>
 <script lang="ts" setup>
-import type { ITodaysDataItem } from "@/types"
+import type { Dashboard } from "@/types/modules/dashboard"
 import type { EChartsOption } from "echarts"
 import { CountUp } from "countup.js"
 
 interface IProps {
-	todaysData: ITodaysDataItem
+	todaysData: Dashboard.ITodaysDataItem
 }
 const props = defineProps<IProps>()
 const echartsOption = ref<EChartsOption>()

@@ -13,13 +13,13 @@
 import { Delete, Edit } from "@element-plus/icons-vue"
 import type PageContent from "@/components/pageContent/index.vue"
 import { getUserMenuByRoleId } from "@/service/modules/login"
-import type { IMenuOptions } from "@/types"
+import type { Menu } from "@/types"
 
 import contentConfig from "./config/contentConfig"
 
 const contentRef = ref<InstanceType<typeof PageContent>>()
 
-const menuList = ref<IMenuOptions[]>([])
+const menuList = ref<Menu.IMenuOptions[]>([])
 const getMenuList = async () => {
 	const res = await getUserMenuByRoleId("0")
 	menuList.value = res.data.menu ?? []

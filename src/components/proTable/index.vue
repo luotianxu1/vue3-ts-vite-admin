@@ -26,8 +26,13 @@
 						:align="item.align ?? 'center'"
 					>
 					</el-table-column>
-					<el-table-column v-if="!item.type && item.prop && item.isShow" v-bind="item" :align="item.align ?? 'center'">
-					</el-table-column>
+					<TableColumn v-if="!item.type && item.prop && item.isShow" :column="item">
+						<!-- <template v-for="slot in Object.keys($slots)" #[slot]="scope">
+							<slot :name="slot" v-bind="scope"></slot>
+						</template> -->
+					</TableColumn>
+					<!-- <el-table-column v-if="!item.type && item.prop && item.isShow" v-bind="item" :align="item.align ?? 'center'">
+					</el-table-column> -->
 				</template>
 				<!-- 插入表格最后一行之后的插槽 -->
 				<template #append>
@@ -59,10 +64,11 @@
 import { Refresh, Operation, Search } from "@element-plus/icons-vue"
 import Pagination from "@/components/proTable/components/Pagination.vue"
 import ColSetting from "@/components/proTable/components/ColSetting.vue"
+import TableColumn from "@/components/proTable/components/TableColumn.vue"
 import { useSelection } from "@/hooks/useSelection"
 import { useTable } from "@/hooks/useTable"
 import type { ElTable } from "element-plus"
-import type { ColumnProps } from "@/components/ProTable/interface"
+import type { ColumnProps } from "@/components/proTable/interface"
 
 export interface ProTableProps {
 	columns: ColumnProps[] // 列配置项  ==> 必传
@@ -107,6 +113,18 @@ watch(() => props.initParam, getTableList, { deep: true })
 
 // 接收 columns 并设置为响应式
 const tableColumns = ref<ColumnProps[]>(props.columns)
+
+// 定义 enumMap 存储 enum 值（避免异步请求无法格式化单元格内容 || 无法填充搜索下拉选择）
+const enumMap = ref(new Map<string, { [key: string]: any }[]>())
+provide("enumMap", enumMap)
+const setEnumMap = async (col: ColumnProps) => {
+	if (!col.enum) return
+	// 如果当前 enum 为后台数据需要请求数据，则调用该请求接口，并存储到 enumMap
+	if (typeof col.enum !== "function") return enumMap.value.set(col.prop!, col.enum!)
+	const { data } = await col.enum()
+	enumMap.value.set(col.prop!, data)
+}
+
 // 扁平化 columns
 const flatColumns = ref<ColumnProps[]>()
 const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) => {
@@ -115,6 +133,9 @@ const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) =>
 		flatArr.push(col)
 		// 给每一项 column 添加 isShow
 		col.isShow = col.isShow ?? true
+
+		// 设置 enumMap
+		setEnumMap(col)
 	})
 	return flatArr.filter(item => !item._children?.length)
 }
@@ -123,13 +144,12 @@ flatColumns.value = flatColumnsFunc(tableColumns.value)
 // 列设置 ==> 过滤掉不需要设置的列
 const colSettingRef = ref<InstanceType<typeof ColSetting>>()
 const colSetting = tableColumns.value!.filter(
-	item => !["selection", "index"].includes(item.type) && item.prop !== "operation" && item.isShow
+	item => !["selection", "index"].includes(item.type!) && item.prop !== "operation" && item.isShow
 )
 const openColSetting = () => colSettingRef.value!.openColSetting()
 </script>
 <style lang="scss" scoped>
 .search {
-	padding: 18px 18px 0;
 	margin-bottom: 10px;
 }
 
@@ -164,15 +184,5 @@ const openColSetting = () => colSettingRef.value!.openColSetting()
 		justify-content: flex-end;
 		margin-top: 15px;
 	}
-}
-
-.card {
-	padding: 20px;
-	overflow-x: hidden;
-	background-color: var(--el-bg-color);
-	border: 1px solid var(--el-border-color-light);
-	border-radius: 6px;
-	box-shadow: 0 0 12px rgb(0 0 0 / 5%);
-	box-sizing: border-box;
 }
 </style>

@@ -7,10 +7,10 @@
 <script lang="ts" setup>
 import type { EChartsOption } from "echarts"
 import Card from "@components/card/Card.vue"
-import type { IOrderDistributionDataItem } from "@/types/modules/dashboard"
+import type { Dashboard } from "@/types/modules/dashboard"
 
 interface IProps {
-	orderDistributionData: IOrderDistributionDataItem[]
+	orderDistributionData: Dashboard.IOrderDistributionDataItem[]
 }
 
 const orderDistributionOptions = ref<EChartsOption>()

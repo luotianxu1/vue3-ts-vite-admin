@@ -59,7 +59,7 @@ import Tabs from "../components/tabs/index.vue"
 import Footer from "../components/footer/index.vue"
 import { GlobalStore } from "@/stores/modules/global"
 import { UserStore } from "@/stores/modules/user"
-import type { IMenuOptions } from "@/types"
+import type { Menu } from "@/types"
 
 const route = useRoute()
 const router = useRouter()
@@ -71,7 +71,7 @@ const isCollapse = computed(() => globalStore.themeConfig.isCollapse)
 // 图标
 const url = ref("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png")
 
-const subMenu = ref<IMenuOptions[]>([])
+const subMenu = ref<Menu.IMenuOptions[]>([])
 const splitActive = ref<string>("")
 watch(
 	() => [menuList, route],
@@ -80,7 +80,7 @@ watch(
 		if (!menuList.value.length) return
 		splitActive.value = route.path
 		const menuItem = menuList.value.filter(
-			(item: IMenuOptions) => route.path === item.path || `/${route.path.split("/")[1]}` === item.path
+			(item: Menu.IMenuOptions) => route.path === item.path || `/${route.path.split("/")[1]}` === item.path
 		)
 		if (menuItem[0].children?.length) return (subMenu.value = menuItem[0].children)
 		subMenu.value = []
@@ -92,7 +92,7 @@ watch(
 )
 
 // 切换 SubMenu
-const changeSubMenu = (item: IMenuOptions) => {
+const changeSubMenu = (item: Menu.IMenuOptions) => {
 	splitActive.value = item.path
 	if (item.children?.length) return (subMenu.value = item.children)
 	subMenu.value = []

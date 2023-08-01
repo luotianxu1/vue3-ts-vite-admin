@@ -12,10 +12,10 @@
 <script lang="ts" setup>
 import type { EChartsOption } from "echarts"
 import Card from "@components/card/Card.vue"
-import type { IRealTimeDataItem } from "@/types/modules/dashboard"
+import type { Dashboard } from "@/types/modules/dashboard"
 
 interface IProps {
-	realTimeData: IRealTimeDataItem[]
+	realTimeData: Dashboard.IRealTimeDataItem[]
 }
 const props = defineProps<IProps>()
 

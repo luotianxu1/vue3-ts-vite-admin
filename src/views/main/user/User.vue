@@ -7,6 +7,9 @@
 				<el-button type="primary" :icon="Download" plain> 导出用户数据 </el-button>
 				<el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected"> 批量删除用户 </el-button>
 			</template>
+			<template #append>
+				<span style="color: var(--el-color-primary)">我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
+			</template>
 			<template #operation>
 				<el-button type="primary" link :icon="View"> 查看 </el-button>
 				<el-button type="primary" link :icon="EditPen"> 编辑 </el-button>
@@ -20,7 +23,7 @@
 <script lang="ts" setup name="user">
 import { CirclePlus, Delete, Download, Upload, View, EditPen, Refresh } from "@element-plus/icons-vue"
 import { getUserList } from "@/service/modules/user"
-import type { ColumnProps } from "@/components/ProTable/interface"
+import type { ColumnProps } from "@/components/proTable/interface"
 
 const getTableList = (formData = {}) => {
 	return getUserList(formData)
@@ -35,7 +38,7 @@ const columns: ColumnProps<any>[] = [
 	{ type: "selection", fixed: "left", width: 80 },
 	{ type: "index", label: "#", width: 80 },
 	{ prop: "name", label: "用户名" },
-	{ prop: "age", label: "年龄" },
+	{ prop: "age", label: "年龄", enum: [] },
 	{ prop: "phone", label: "手机号" },
 	{ prop: "email", label: "邮箱" },
 	{ prop: "addTime", label: "添加时间" },

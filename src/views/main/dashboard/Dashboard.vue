@@ -38,25 +38,18 @@ import Announcement from "./components/announcement/Announcement.vue"
 import OrderDistribution from "./components/orderDistribution/OrderDistribution.vue"
 import RealTimeData from "./components/realTimeData/RealTimeData.vue"
 import { getDashboardDataList } from "@/service/modules/dahboard"
-import type {
-	IAnnouncementDataItem,
-	ICommonFunctionItem,
-	IOrderDistributionDataItem,
-	IRealTimeDataItem,
-	ISalesRankOptionsDataItem,
-	ITodaysDataItem
-} from "@/types/modules/dashboard"
+import type { Dashboard } from "@/types/modules/dashboard"
 
 onMounted(() => {
 	getDashboardData()
 })
 
-const todaysData = ref<ITodaysDataItem[]>([])
-const realTimeData = ref<IRealTimeDataItem[]>([])
-const announcementData = ref<IAnnouncementDataItem[]>([])
-const orderDistributionData = ref<IOrderDistributionDataItem[]>([])
-const salesRankOptionsData = ref<ISalesRankOptionsDataItem[]>([])
-const commonFunctionData = ref<ICommonFunctionItem[]>([])
+const todaysData = ref<Dashboard.ITodaysDataItem[]>([])
+const realTimeData = ref<Dashboard.IRealTimeDataItem[]>([])
+const announcementData = ref<Dashboard.IAnnouncementDataItem[]>([])
+const orderDistributionData = ref<Dashboard.IOrderDistributionDataItem[]>([])
+const salesRankOptionsData = ref<Dashboard.ISalesRankOptionsDataItem[]>([])
+const commonFunctionData = ref<Dashboard.ICommonFunctionItem[]>([])
 const getDashboardData = async () => {
 	const res = await getDashboardDataList({})
 
