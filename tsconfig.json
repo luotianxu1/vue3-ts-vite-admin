@@ -12,7 +12,6 @@
 		"lib": ["ESNext", "DOM"],
 		"skipLibCheck": true,
 		"noEmit": true,
-		"suppressImplicitAnyIndexErrors": true,
 		"paths": {
 			"@/*": ["./src/*"],
 			"@assets/*": ["./src/assets/*"],
@@ -22,14 +21,9 @@
 			"@global/*": ["./src/global/*"],
 			"@components/*": ["./src/components/*"]
 		},
-		"types": ["vite/client", "element-plus/global"],
+		"types": ["element-plus/global"],
 		"typeRoots": ["./node_modules/@types/", "./src/types/"]
 	},
-	"references": [
-		{
-			"path": "./tsconfig.node.json"
-		}
-	],
 	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
 	"exclude": ["node_modules", "dist"]
 }

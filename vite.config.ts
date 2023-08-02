@@ -4,8 +4,6 @@ import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import AutoImport from "unplugin-auto-import/vite"
 import Components from "unplugin-vue-components/vite"
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
-import { createStyleImportPlugin, ElementPlusResolve } from "vite-plugin-style-import"
 import { viteMockServe } from "vite-plugin-mock"
 import Icons from "unplugin-icons/vite"
 import IconsResolver from "unplugin-icons/resolver"
@@ -19,12 +17,6 @@ export default defineConfig({
 		vue(),
 		vueJsx(),
 		AutoImport({
-			resolvers: [
-				ElementPlusResolver(),
-				IconsResolver({
-					prefix: "Icon"
-				})
-			],
 			imports: ["vue", "vue-router", "pinia"],
 			dts: "src/types/auto-imports.d.ts",
 			eslintrc: {
@@ -35,7 +27,6 @@ export default defineConfig({
 		}),
 		Components({
 			resolvers: [
-				ElementPlusResolver(),
 				IconsResolver({
 					enabledCollections: ["ep"]
 				})
@@ -47,19 +38,6 @@ export default defineConfig({
 		}),
 		// setup语法糖设置名字
 		setupExtend(),
-		// 自动引入element-plus样式
-		createStyleImportPlugin({
-			resolves: [ElementPlusResolve()],
-			libs: [
-				{
-					libraryName: "element-plus",
-					esModule: true,
-					resolveStyle: name => {
-						return `element-plus/theme-chalk/${name}.css`
-					}
-				}
-			]
-		}),
 		viteMockServe(),
 		// 生产环境mock
 		viteMockServe({

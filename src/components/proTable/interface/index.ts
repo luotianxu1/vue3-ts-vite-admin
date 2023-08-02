@@ -1,5 +1,6 @@
 import type { VNode, ComponentPublicInstance } from "vue"
 import type { TableColumnCtx } from "element-plus/es/components/table/src/table-column/defaults"
+import { BreakPoint, Responsive } from "@/components/grid/interface"
 
 export interface EnumProps {
 	label?: string // 选项框显示的文字
@@ -42,6 +43,14 @@ export type FieldNamesProps = {
 	children?: string
 }
 
+export type SearchRenderScope = {
+	searchParam: { [key: string]: any }
+	placeholder: string
+	clearable: boolean
+	options: EnumProps[]
+	data: EnumProps[]
+}
+
 export type SearchProps = {
 	el?: SearchType // 当前项搜索框的类型
 	props?: any // 搜索项参数，根据 element plus 官方文档来传递，该属性所有值会透传到组件
@@ -50,7 +59,8 @@ export type SearchProps = {
 	span?: number // 搜索项所占用的列数，默认为1列
 	offset?: number // 搜索字段左侧偏移列数
 	defaultValue?: string | number | boolean | any[] // 搜索项默认值
-}
+	render?: (scope: SearchRenderScope) => VNode // 自定义搜索内容渲染（tsx语法）
+} & Partial<Record<BreakPoint, Responsive>>
 
 export interface ColumnProps<T = any> extends Partial<Omit<TableColumnCtx<T>, "children" | "renderCell" | "renderHeader">> {
 	tag?: boolean // 是否是标签展示

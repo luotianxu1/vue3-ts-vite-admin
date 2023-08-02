@@ -1,7 +1,12 @@
 <template>
-	<div class="card search" v-show="isShowSearch">
-		<el-input></el-input>
-	</div>
+	<SearchForm
+		v-show="isShowSearch"
+		:search="search"
+		:reset="reset"
+		:columns="searchColumns"
+		:search-param="searchParam"
+		:search-col="searchCol"
+	></SearchForm>
 	<div class="card table">
 		<div class="table-header">
 			<div class="table-header-left">
@@ -60,14 +65,17 @@
 </template>
 
 <script lang="ts" setup name="ProTable">
+import SearchForm from "@components/searchForm/index.vue"
 import { Refresh, Operation, Search } from "@element-plus/icons-vue"
 import Pagination from "@/components/proTable/components/Pagination.vue"
 import ColSetting from "@/components/proTable/components/ColSetting.vue"
 import TableColumn from "@/components/proTable/components/TableColumn.vue"
 import { useSelection } from "@/hooks/useSelection"
 import { useTable } from "@/hooks/useTable"
+import { handleProp } from "./utils"
 import type { ElTable } from "element-plus"
 import type { ColumnProps } from "@/components/proTable/interface"
+import type { BreakPoint } from "@components/grid/interface"
 
 export interface ProTableProps {
 	columns: ColumnProps[] // 列配置项  ==> 必传
@@ -80,6 +88,7 @@ export interface ProTableProps {
 	initParam?: any // 初始化请求参数 ==> 非必传（默认为{}）
 	border?: boolean // 是否带有纵向边框 ==> 非必传（默认为true）
 	rowKey?: string // 行数据的 Key，用来优化 Table 的渲染，当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
+	searchCol?: number | Record<BreakPoint, number> // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
 }
 const props = withDefaults(defineProps<ProTableProps>(), {
 	columns: () => [],
@@ -88,7 +97,8 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 	toolButton: true,
 	initParam: {},
 	border: true,
-	rowKey: "id"
+	rowKey: "id",
+	searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
 })
 
 // 是否显示搜索模块
@@ -148,12 +158,22 @@ const colSetting = tableColumns.value!.filter(
 	item => !["selection", "index"].includes(item.type!) && item.prop !== "operation" && item.isShow
 )
 const openColSetting = () => colSettingRef.value!.openColSetting()
+
+// 过滤需要搜索的配置项
+const searchColumns = flatColumns.value.filter(item => item.search?.el || item.search?.render)
+
+// 设置搜索表单排序默认值 && 设置搜索表单项的默认值
+searchColumns.forEach((column, index) => {
+	column.search!.order = column.search!.order ?? index + 2
+	if (column.search?.defaultValue !== undefined && column.search?.defaultValue !== null) {
+		searchInitParam.value[column.search.key ?? handleProp(column.prop!)] = column.search?.defaultValue
+		searchParam.value[column.search.key ?? handleProp(column.prop!)] = column.search?.defaultValue
+	}
+})
+// 排序搜索表单项
+searchColumns.sort((a, b) => a.search!.order! - b.search!.order!)
 </script>
 <style lang="scss" scoped>
-.search {
-	margin-bottom: 10px;
-}
-
 .table {
 	display: flex;
 	flex-direction: column;

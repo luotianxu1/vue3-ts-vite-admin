@@ -38,10 +38,17 @@ const getTableList = (formData = {}) => {
 const columns: ColumnProps<any>[] = [
 	{ type: "selection", fixed: "left", width: 50 },
 	{ type: "index", label: "#", width: 50 },
-	{ prop: "name", label: "用户名", width: 100 },
-	{ prop: "gender", label: "性别", width: 70, enum: getUserGender, fieldNames: { label: "genderLabel", value: "genderValue" } },
+	{ prop: "name", label: "用户名", width: 100, search: { el: "input" } },
+	{
+		prop: "gender",
+		label: "性别",
+		width: 70,
+		enum: getUserGender,
+		fieldNames: { label: "genderLabel", value: "genderValue" },
+		search: { el: "select", props: { filterable: true } }
+	},
 	{ prop: "age", label: "年龄", width: 70 },
-	{ prop: "phone", label: "手机号", width: 150 },
+	{ prop: "phone", label: "手机号", width: 150, search: { el: "input" } },
 	{ prop: "email", label: "邮箱", width: 300 },
 	{
 		prop: "status",
@@ -55,6 +62,7 @@ const columns: ColumnProps<any>[] = [
 			label: "statusLabel",
 			value: "statusValue"
 		},
+		search: { el: "tree-select", props: { filterable: true } },
 		render: scope => {
 			return (
 				<el-switch
@@ -81,7 +89,17 @@ const columns: ColumnProps<any>[] = [
 			return <el-button type="primary">{scope.column.label}</el-button>
 		}
 	},
-	{ prop: "createTime", label: "添加时间", width: 180 },
+	{
+		prop: "createTime",
+		label: "添加时间",
+		width: 180,
+		search: {
+			el: "date-picker",
+			span: 2,
+			props: { type: "datetimerange", valueFormat: "YYYY-MM-DD HH:mm:ss" },
+			defaultValue: ["2022-11-12 11:35:00", "2022-12-12 11:35:00"]
+		}
+	},
 	{ prop: "editTime", label: "修改时间", width: 180 },
 	{ prop: "operation", label: "操作", fixed: "right", width: 310 }
 ]
