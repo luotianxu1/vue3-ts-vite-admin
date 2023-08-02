@@ -15,3 +15,10 @@ export function getUserGender() {
 		url: "/user/gender"
 	})
 }
+
+// 获取用户角色字典
+export function getUserType() {
+	return api.post<IResponseData<User.IResUserList>>({
+		url: "/user/type"
+	})
+}

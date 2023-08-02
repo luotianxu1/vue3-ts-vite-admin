@@ -2,10 +2,12 @@
 	<RenderTableColumn v-bind="column"></RenderTableColumn>
 </template>
 <script lang="tsx" setup name="TableColumn">
-import type { ColumnProps, RenderScope } from "@/components/proTable/interface"
-import { filterEnum, formatValue, handleRowAccordingToProp } from "@components/proTable/utils/index"
+import type { ColumnProps, HeaderRenderScope, RenderScope } from "@/components/proTable/interface"
+import { filterEnum, formatValue, handleProp, handleRowAccordingToProp } from "@components/proTable/utils/index"
 
 defineProps<{ column: ColumnProps }>()
+
+const slots = useSlots()
 
 const enumMap = inject("enumMap", ref(new Map()))
 
@@ -27,8 +29,15 @@ const RenderTableColumn = (item: ColumnProps) => {
 				>
 					{{
 						default: (scope: RenderScope<any>) => {
+							if (item._children) return item._children.map(child => RenderTableColumn(child))
 							if (item.render) return item.render(scope)
+							if (slots[handleProp(item.prop!)]) return slots[handleProp(item.prop!)]!(scope)
 							return renderCellData(item, scope)
+						},
+						header: (scope: HeaderRenderScope<any>) => {
+							if (item.headerRender) return item.headerRender(scope)
+							if (slots[`${handleProp(item.prop!)}Header`]) return slots[`${handleProp(item.prop!)}Header`]!(scope)
+							return item.label
 						}
 					}}
 				</el-table-column>

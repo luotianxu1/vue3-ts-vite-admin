@@ -19,20 +19,19 @@
 		<div class="table-main">
 			<el-table ref="tableRef" :data="data ?? tableData" :border="border" :row-key="rowKey" @selection-change="selectionChange">
 				<slot></slot>
-				<template v-for="(item, index) in tableColumns" :key="index">
+				<template v-for="item in tableColumns" :key="item">
 					<el-table-column
 						v-if="item.type && ['selection', 'index'].includes(item.type)"
 						v-bind="item"
 						:align="item.align ?? 'center'"
+						:reserve-selection="item.type == 'selection'"
 					>
 					</el-table-column>
 					<TableColumn v-if="!item.type && item.prop && item.isShow" :column="item">
-						<!-- <template v-for="slot in Object.keys($slots)" #[slot]="scope">
+						<template v-for="slot in Object.keys($slots)" #[slot]="scope">
 							<slot :name="slot" v-bind="scope"></slot>
-						</template> -->
+						</template>
 					</TableColumn>
-					<!-- <el-table-column v-if="!item.type && item.prop && item.isShow" v-bind="item" :align="item.align ?? 'center'">
-					</el-table-column> -->
 				</template>
 				<!-- 插入表格最后一行之后的插槽 -->
 				<template #append>

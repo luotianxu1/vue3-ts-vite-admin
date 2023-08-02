@@ -7,6 +7,11 @@
 				<el-button type="primary" :icon="Download" plain> 导出用户数据 </el-button>
 				<el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected"> 批量删除用户 </el-button>
 			</template>
+			<template #nameHeader="scope">
+				<el-button type="primary">
+					{{ scope.column.label }}
+				</el-button>
+			</template>
 			<template #append>
 				<span style="color: var(--el-color-primary)">我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
 			</template>
@@ -20,7 +25,7 @@
 	</div>
 </template>
 
-<script lang="ts" setup name="user">
+<script lang="tsx" setup name="user">
 import { CirclePlus, Delete, Download, Upload, View, EditPen, Refresh } from "@element-plus/icons-vue"
 import { getUserGender, getUserList } from "@/service/modules/user"
 import type { ColumnProps } from "@/components/proTable/interface"
@@ -31,16 +36,17 @@ const getTableList = (formData = {}) => {
 
 // 表格配置项
 const columns: ColumnProps<any>[] = [
-	{ type: "selection", fixed: "left", width: 80 },
-	{ type: "index", label: "#", width: 80 },
-	{ prop: "name", label: "用户名" },
-	{ prop: "gender", label: "性别", enum: getUserGender, fieldNames: { label: "genderLabel", value: "genderValue" } },
-	{ prop: "age", label: "年龄" },
-	{ prop: "phone", label: "手机号" },
-	{ prop: "email", label: "邮箱" },
+	{ type: "selection", fixed: "left", width: 50 },
+	{ type: "index", label: "#", width: 50 },
+	{ prop: "name", label: "用户名", width: 100 },
+	{ prop: "gender", label: "性别", width: 70, enum: getUserGender, fieldNames: { label: "genderLabel", value: "genderValue" } },
+	{ prop: "age", label: "年龄", width: 70 },
+	{ prop: "phone", label: "手机号", width: 150 },
+	{ prop: "email", label: "邮箱", width: 300 },
 	{
 		prop: "status",
 		label: "状态",
+		width: 140,
 		enum: [
 			{ statusLabel: "启用", statusValue: 1 },
 			{ statusLabel: "禁用", statusValue: 0 }
@@ -48,11 +54,36 @@ const columns: ColumnProps<any>[] = [
 		fieldNames: {
 			label: "statusLabel",
 			value: "statusValue"
+		},
+		render: scope => {
+			return (
+				<el-switch
+					model-value={scope.row.status}
+					active-text={scope.row.status ? "启用" : "禁用"}
+					active-value={1}
+					inactive-value={0}
+				/>
+			)
 		}
 	},
-	{ prop: "createTime", label: "添加时间" },
-	{ prop: "editTime", label: "修改时间" },
-	{ prop: "operation", label: "操作", fixed: "right", width: 330 }
+	{
+		prop: "type",
+		label: "角色",
+		width: 120,
+		render: scope => {
+			return (
+				<el-tag type={scope.row.type === 0 ? "danger" : scope.row.type === 1 ? "success" : "info"}>
+					{scope.row.type === 0 ? "超级管理员" : scope.row.type === 1 ? "管理员" : "用户"}
+				</el-tag>
+			)
+		},
+		headerRender: scope => {
+			return <el-button type="primary">{scope.column.label}</el-button>
+		}
+	},
+	{ prop: "createTime", label: "添加时间", width: 180 },
+	{ prop: "editTime", label: "修改时间", width: 180 },
+	{ prop: "operation", label: "操作", fixed: "right", width: 310 }
 ]
 </script>
 

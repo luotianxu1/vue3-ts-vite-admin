@@ -64,16 +64,32 @@ export const userApiList: MockMethod[] = [
 			}
 		}
 	},
+	// 查询用户状态字典
 	{
 		url: "/testApi/user/status",
 		method: "post",
 		response: () => {
 			return {
 				status: 200,
-				message: "查询用户性别字典成功",
+				message: "查询用户状态字典成功",
 				data: [
-					{ genderLabel: "男", genderValue: 1 },
-					{ genderLabel: "女", genderValue: 0 }
+					{ statusLabel: "启用", genderValue: 1 },
+					{ statusLabel: "禁用", genderValue: 0 }
+				]
+			}
+		}
+	},
+	// 查询用户角色字典成功
+	{
+		url: "/testApi/user/type",
+		method: "post",
+		response: () => {
+			return {
+				status: 200,
+				message: "查询用户角色字典成功",
+				data: [
+					{ typeLabel: "启用", typeValue: 1 },
+					{ typeLabel: "禁用", typeValue: 0 }
 				]
 			}
 		}

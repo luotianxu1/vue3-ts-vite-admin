@@ -1,7 +1,18 @@
 {
-	"extends": "@vue/tsconfig/tsconfig.web.json",
 	"compilerOptions": {
 		"baseUrl": ".",
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"jsx": "preserve",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"lib": ["ESNext", "DOM"],
+		"skipLibCheck": true,
+		"noEmit": true,
+		"suppressImplicitAnyIndexErrors": true,
 		"paths": {
 			"@/*": ["./src/*"],
 			"@assets/*": ["./src/assets/*"],
@@ -11,15 +22,14 @@
 			"@global/*": ["./src/global/*"],
 			"@components/*": ["./src/components/*"]
 		},
-		"types": ["element-plus/global"],
-		"typeRoots": ["./node_modules/@types/", "./src/types/"],
-		"suppressImplicitAnyIndexErrors": true
+		"types": ["vite/client", "element-plus/global"],
+		"typeRoots": ["./node_modules/@types/", "./src/types/"]
 	},
 	"references": [
 		{
 			"path": "./tsconfig.node.json"
 		}
 	],
-	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-	"exclude": ["node_modules"]
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
+	"exclude": ["node_modules", "dist"]
 }
