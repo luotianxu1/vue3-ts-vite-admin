@@ -6,10 +6,10 @@
 					<i class="iconfont icon-tishi icon"></i>
 				</el-tooltip>
 			</template>
-			<div class="card">
-				<div class="card-left">
-					<div class="card-number" ref="countRef">{{ props.todaysData.number }}</div>
-					<div class="card-qushi">
+			<div class="content">
+				<div class="content-left">
+					<div class="content-number" ref="countRef">{{ props.todaysData.number }}</div>
+					<div class="content-qushi">
 						<span>{{ props.todaysData.subTitle }}</span>
 						<span :class="props.todaysData.value > 0 ? 'red' : 'green'">
 							{{ todaysData.value }}%
@@ -17,7 +17,7 @@
 						</span>
 					</div>
 				</div>
-				<div class="card-right">
+				<div class="content-right">
 					<BaseEcharts :option="echartsOption"></BaseEcharts>
 				</div>
 			</div>
@@ -123,21 +123,21 @@ watch(
 )
 </script>
 <style lang="scss" scoped>
-.card {
+.content {
 	flex: 1;
 	display: flex;
 
-	.card-left {
+	.content-left {
 		width: 50%;
 
-		.card-number {
+		.content-number {
 			margin: 5px 0;
 			font-size: 24px;
 			font-weight: 600;
 			letter-spacing: 2px;
 		}
 
-		.card-qushi {
+		.content-qushi {
 			display: flex;
 			font-size: 14px;
 			align-items: center;
@@ -150,7 +150,7 @@ watch(
 		}
 	}
 
-	.card-right {
+	.content-right {
 		flex: 1;
 	}
 }

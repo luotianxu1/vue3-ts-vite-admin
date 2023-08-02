@@ -92,5 +92,6 @@ const showCollapse = computed(() => {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	margin-bottom: 20px;
 }
 </style>
