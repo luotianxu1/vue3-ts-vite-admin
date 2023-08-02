@@ -6,8 +6,8 @@
 
 <script setup lang="ts">
 import { GlobalStore } from "@/stores/modules/global"
-import zhCn from "element-plus/lib/locale/lang/zh-cn"
-import en from "element-plus/lib/locale/lang/en"
+import en from "element-plus/es/locale/lang/en"
+import zhCn from "element-plus/es/locale/lang/zh-cn"
 import { useI18n } from "vue-i18n"
 
 const { locale } = useI18n()

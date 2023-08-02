@@ -14,14 +14,14 @@ const userList = mockjs.mock({
 			id: "@id",
 			name: "@cname",
 			age: "@integer( 18, 60)",
-			sex: "@integer( 0, 1)",
+			gender: "@integer( 0, 1)",
 			phone: "@phone",
 			email: "@email",
 			city: "@county(true)",
 			status: "@integer( 0, 1)",
 			type: "@integer( 0, 2)",
 			img: Random.image("200x100"),
-			addTime: "@datetime",
+			createTime: "@datetime",
 			editTime: "@datetime"
 		}
 	]
@@ -59,7 +59,21 @@ export const userApiList: MockMethod[] = [
 				message: "查询用户性别字典成功",
 				data: [
 					{ genderLabel: "男", genderValue: 1 },
-					{ genderLabel: "女", genderValue: 2 }
+					{ genderLabel: "女", genderValue: 0 }
+				]
+			}
+		}
+	},
+	{
+		url: "/testApi/user/status",
+		method: "post",
+		response: () => {
+			return {
+				status: 200,
+				message: "查询用户性别字典成功",
+				data: [
+					{ genderLabel: "男", genderValue: 1 },
+					{ genderLabel: "女", genderValue: 0 }
 				]
 			}
 		}

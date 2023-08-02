@@ -1,3 +1,4 @@
+import type { VNode, ComponentPublicInstance } from "vue"
 import type { TableColumnCtx } from "element-plus/es/components/table/src/table-column/defaults"
 
 export interface EnumProps {

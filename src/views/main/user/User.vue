@@ -22,26 +22,35 @@
 
 <script lang="ts" setup name="user">
 import { CirclePlus, Delete, Download, Upload, View, EditPen, Refresh } from "@element-plus/icons-vue"
-import { getUserList } from "@/service/modules/user"
+import { getUserGender, getUserList } from "@/service/modules/user"
 import type { ColumnProps } from "@/components/proTable/interface"
 
 const getTableList = (formData = {}) => {
 	return getUserList(formData)
 }
 
-onMounted(() => {
-	// getTableList()
-})
-
 // 表格配置项
 const columns: ColumnProps<any>[] = [
 	{ type: "selection", fixed: "left", width: 80 },
 	{ type: "index", label: "#", width: 80 },
 	{ prop: "name", label: "用户名" },
-	{ prop: "age", label: "年龄", enum: [] },
+	{ prop: "gender", label: "性别", enum: getUserGender, fieldNames: { label: "genderLabel", value: "genderValue" } },
+	{ prop: "age", label: "年龄" },
 	{ prop: "phone", label: "手机号" },
 	{ prop: "email", label: "邮箱" },
-	{ prop: "addTime", label: "添加时间" },
+	{
+		prop: "status",
+		label: "状态",
+		enum: [
+			{ statusLabel: "启用", statusValue: 1 },
+			{ statusLabel: "禁用", statusValue: 0 }
+		],
+		fieldNames: {
+			label: "statusLabel",
+			value: "statusValue"
+		}
+	},
+	{ prop: "createTime", label: "添加时间" },
 	{ prop: "editTime", label: "修改时间" },
 	{ prop: "operation", label: "操作", fixed: "right", width: 330 }
 ]

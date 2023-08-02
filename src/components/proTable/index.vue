@@ -131,8 +131,10 @@ const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) =>
 	columns.forEach(async col => {
 		if (col._children?.length) flatArr.push(...flatColumnsFunc(col._children))
 		flatArr.push(col)
-		// 给每一项 column 添加 isShow
+
+		// 给每一项 column 添加 isShow && isFilterEnum 默认属性
 		col.isShow = col.isShow ?? true
+		col.isFilterEnum = col.isFilterEnum ?? true
 
 		// 设置 enumMap
 		setEnumMap(col)

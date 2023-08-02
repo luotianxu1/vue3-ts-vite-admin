@@ -4,11 +4,16 @@ export namespace User {
 	export interface IUserInfo {
 		id?: string
 		name?: string
-		cellphone?: number
-		enable?: number
+		age?: number
+		gender: number
+		phone?: number
+		email?: string
+		city?: string
+		status?: number
+		type?: number
+		img?: string
 		createTime?: string
 		updateTime?: string
-		img?: string
 		role?: {
 			id: string
 			name: string
