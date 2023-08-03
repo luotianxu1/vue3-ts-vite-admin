@@ -88,7 +88,7 @@ export interface ProTableProps {
 	initParam?: any // 初始化请求参数 ==> 非必传（默认为{}）
 	border?: boolean // 是否带有纵向边框 ==> 非必传（默认为true）
 	rowKey?: string // 行数据的 Key，用来优化 Table 的渲染，当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
-	searchCol?: number | Record<BreakPoint, number> // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
+	searchCol?: number | Record<BreakPoint, number> // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 6 }
 }
 const props = withDefaults(defineProps<ProTableProps>(), {
 	columns: () => [],
@@ -98,7 +98,7 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 	initParam: {},
 	border: true,
 	rowKey: "id",
-	searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
+	searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 6 })
 })
 
 // 是否显示搜索模块

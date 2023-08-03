@@ -47,7 +47,17 @@ const columns: ColumnProps<any>[] = [
 		fieldNames: { label: "genderLabel", value: "genderValue" },
 		search: { el: "select", props: { filterable: true } }
 	},
-	{ prop: "age", label: "年龄", width: 70 },
+	{
+		prop: "age",
+		label: "年龄",
+		width: 70,
+		search: {
+			// 自定义 search 显示内容
+			render: ({ searchParam }) => {
+				return <el-input v-model={searchParam.age} placeholder="请输入" />
+			}
+		}
+	},
 	{ prop: "phone", label: "手机号", width: 150, search: { el: "input" } },
 	{ prop: "email", label: "邮箱", width: 300 },
 	{
@@ -78,6 +88,15 @@ const columns: ColumnProps<any>[] = [
 		prop: "type",
 		label: "角色",
 		width: 120,
+		enum: [
+			{ statusLabel: "超级管理员", statusValue: 0 },
+			{ statusLabel: "管理员", statusValue: 1 },
+			{ statusLabel: "用户", statusValue: 2 }
+		],
+		fieldNames: {
+			label: "statusLabel",
+			value: "statusValue"
+		},
 		render: scope => {
 			return (
 				<el-tag type={scope.row.type === 0 ? "danger" : scope.row.type === 1 ? "success" : "info"}>
@@ -87,7 +106,8 @@ const columns: ColumnProps<any>[] = [
 		},
 		headerRender: scope => {
 			return <el-button type="primary">{scope.column.label}</el-button>
-		}
+		},
+		search: { el: "tree-select", props: { filterable: true } }
 	},
 	{
 		prop: "createTime",
