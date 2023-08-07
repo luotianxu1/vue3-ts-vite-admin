@@ -110,6 +110,9 @@ const tableRef = ref<InstanceType<typeof ElTable>>()
 // 表格多选 Hooks
 const { isSelected, selectedList, selectedListIds, selectionChange } = useSelection(props.rowKey)
 
+// 清空选中数据列表
+const clearSelection = () => tableRef.value!.clearSelection()
+
 // 表格操作 Hooks
 const { tableData, pageable, searchParam, searchInitParam, getTableList, search, reset, handleSizeChange, handleCurrentChange } =
 	useTable(props.requestApi, props.initParam, props.pagination)
@@ -172,6 +175,25 @@ searchColumns.forEach((column, index) => {
 })
 // 排序搜索表单项
 searchColumns.sort((a, b) => a.search!.order! - b.search!.order!)
+
+// 暴露给父组件的参数和方法(外部需要什么，都可以从这里暴露出去)
+defineExpose({
+	element: tableRef,
+	tableData,
+	pageable,
+	searchParam,
+	searchInitParam,
+	getTableList,
+	search,
+	reset,
+	handleSizeChange,
+	handleCurrentChange,
+	clearSelection,
+	enumMap,
+	isSelected,
+	selectedList,
+	selectedListIds
+})
 </script>
 <style lang="scss" scoped>
 .table {

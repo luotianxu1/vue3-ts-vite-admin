@@ -1,37 +1,57 @@
 <template>
 	<div class="user">
-		<ProTable ref="proTable" title="用户列表" :columns="columns" :request-api="getTableList">
-			<template #tableHeader="scope">
-				<el-button type="primary" :icon="CirclePlus"> 新增用户 </el-button>
-				<el-button type="primary" :icon="Upload" plain> 批量添加用户 </el-button>
-				<el-button type="primary" :icon="Download" plain> 导出用户数据 </el-button>
-				<el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected"> 批量删除用户 </el-button>
-			</template>
-			<template #nameHeader="scope">
-				<el-button type="primary">
-					{{ scope.column.label }}
-				</el-button>
-			</template>
-			<template #append>
-				<span style="color: var(--el-color-primary)">我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
-			</template>
-			<template #operation>
-				<el-button type="primary" link :icon="View"> 查看 </el-button>
-				<el-button type="primary" link :icon="EditPen"> 编辑 </el-button>
-				<el-button type="primary" link :icon="Refresh"> 重置密码 </el-button>
-				<el-button type="primary" link :icon="Delete"> 删除 </el-button>
-			</template>
-		</ProTable>
+		<TreeFilter
+			label="name"
+			title="部门列表(单选)"
+			:request-api="getDepartmentList"
+			:default-value="initParam.departmentId"
+			@change="changeTreeFilter"
+		/>
+		<div class="table-box">
+			<ProTable ref="proTableRef" title="用户列表" :columns="columns" :request-api="getTableList" :init-param="initParam">
+				<template #tableHeader="scope">
+					<el-button type="primary" :icon="CirclePlus"> 新增用户 </el-button>
+					<el-button type="primary" :icon="Upload" plain> 批量添加用户 </el-button>
+					<el-button type="primary" :icon="Download" plain> 导出用户数据 </el-button>
+					<el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected"> 批量删除用户 </el-button>
+				</template>
+				<template #nameHeader="scope">
+					<el-button type="primary">
+						{{ scope.column.label }}
+					</el-button>
+				</template>
+				<template #append>
+					<span style="color: var(--el-color-primary)">我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
+				</template>
+				<template #operation>
+					<el-button type="primary" link :icon="View"> 查看 </el-button>
+					<el-button type="primary" link :icon="EditPen"> 编辑 </el-button>
+					<el-button type="primary" link :icon="Refresh"> 重置密码 </el-button>
+					<el-button type="primary" link :icon="Delete"> 删除 </el-button>
+				</template>
+			</ProTable>
+		</div>
 	</div>
 </template>
 
 <script lang="tsx" setup name="user">
 import { CirclePlus, Delete, Download, Upload, View, EditPen, Refresh } from "@element-plus/icons-vue"
-import { getUserGender, getUserList } from "@/service/modules/user"
-import type { ColumnProps } from "@/components/proTable/interface"
+import { getUserGender, getUserList } from "@service/modules/user"
+import { getDepartmentList } from "@service/modules/department"
+import type { ColumnProps, ProTableInstance } from "@components/proTable/interface"
 
 const getTableList = (formData = {}) => {
 	return getUserList(formData)
+}
+
+const proTableRef = ref<ProTableInstance>()
+
+const initParam = reactive({ departmentId: "1" })
+
+// 树形筛选切换
+const changeTreeFilter = (val: string) => {
+	proTableRef.value!.pageable.pageNum = 1
+	initParam.departmentId = val
 }
 
 // 表格配置项
@@ -131,6 +151,12 @@ const columns: ColumnProps<any>[] = [
 	width: 100%;
 	height: 100%;
 	padding: 15px;
-	flex-direction: column;
+
+	.table-box {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		width: calc(100% - 230px);
+	}
 }
 </style>

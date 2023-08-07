@@ -19,7 +19,8 @@
 			"@stores/*": ["./src/stores/*"],
 			"@utils/*": ["./src/utils/*"],
 			"@global/*": ["./src/global/*"],
-			"@components/*": ["./src/components/*"]
+			"@components/*": ["./src/components/*"],
+			"@service/*": ["./src/service/*"]
 		},
 		"types": ["element-plus/global"],
 		"typeRoots": ["./node_modules/@types/", "./src/types/"]
