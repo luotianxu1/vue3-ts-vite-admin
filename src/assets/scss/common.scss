@@ -76,6 +76,17 @@
 	background-color: var(--base-color) !important;
 }
 
+// 侧边弹出框
+.el-drawer__header .el-drawer__title {
+	font-size: 20px;
+}
+
+.el-drawer .el-drawer__header {
+	padding: 16px 20px;
+	margin-bottom: 0;
+	border-bottom: 1px solid var(--el-border-color-lighter);
+}
+
 /* 提示文字 */
 .placeholder {
 	color: var(--el-text-color-placeholder);

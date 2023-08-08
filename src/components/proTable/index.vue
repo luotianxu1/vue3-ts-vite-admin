@@ -62,7 +62,7 @@
 		</div>
 	</div>
 
-	<ColSetting v-if="toolButton" ref="colSettingRef" v-model:col-setting="colSetting" />
+	<ColSetting v-if="toolButton" ref="colSettingRef" v-model:setting="colSetting" />
 </template>
 
 <script lang="ts" setup name="ProTable">
@@ -158,10 +158,16 @@ const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) =>
 flatColumns.value = flatColumnsFunc(tableColumns.value)
 
 // 列设置 ==> 过滤掉不需要设置的列
+let colSetting = ref([])
 const colSettingRef = ref<InstanceType<typeof ColSetting>>()
-const colSetting = tableColumns.value!.filter(
+colSetting.value = tableColumns.value!.filter(
 	item => !["selection", "index"].includes(item.type!) && item.prop !== "operation" && item.isShow
 )
+watch(colSetting, val => {
+	let header = tableColumns.value.filter(item => ["selection", "index"].includes(item.type))
+	let operation = tableColumns.value.filter(item => item.prop === "operation")
+	tableColumns.value = [...header, ...val, ...operation]
+})
 const openColSetting = () => colSettingRef.value!.openColSetting()
 
 // 过滤需要搜索的配置项
@@ -222,7 +228,6 @@ defineExpose({
 		.table-main {
 			display: flex;
 			overflow: hidden;
-			background-color: red;
 			flex: 1;
 
 			.el-table {
