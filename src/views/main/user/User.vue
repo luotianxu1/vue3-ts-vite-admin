@@ -24,10 +24,10 @@
 					<span style="color: var(--el-color-primary)">我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
 				</template>
 				<template #operation>
-					<el-button type="primary" link :icon="View"> 查看 </el-button>
-					<el-button type="primary" link :icon="EditPen"> 编辑 </el-button>
-					<el-button type="primary" link :icon="Refresh"> 重置密码 </el-button>
-					<el-button type="primary" link :icon="Delete"> 删除 </el-button>
+					<el-button type="primary" link> 查看 </el-button>
+					<el-button type="primary" link> 编辑 </el-button>
+					<el-button type="primary" link> 重置密码 </el-button>
+					<el-button type="primary" link> 删除 </el-button>
 				</template>
 			</ProTable>
 		</div>
@@ -35,7 +35,7 @@
 </template>
 
 <script lang="tsx" setup name="user">
-import { CirclePlus, Delete, Download, Upload, View, EditPen, Refresh } from "@element-plus/icons-vue"
+import { CirclePlus, Delete, Download, Upload } from "@element-plus/icons-vue"
 import { getUserGender, getUserList } from "@service/modules/user"
 import { getDepartmentList } from "@service/modules/department"
 import type { ColumnProps, ProTableInstance } from "@components/proTable/interface"
@@ -141,7 +141,7 @@ const columns: ColumnProps<any>[] = [
 		}
 	},
 	{ prop: "editTime", label: "修改时间", width: 180 },
-	{ prop: "operation", label: "操作", fixed: "right", width: 310 }
+	{ prop: "operation", label: "操作", fixed: "right", width: 230 }
 ]
 </script>
 
@@ -154,9 +154,9 @@ const columns: ColumnProps<any>[] = [
 
 	.table-box {
 		display: flex;
-		flex: 1;
 		flex-direction: column;
-		width: calc(100% - 230px);
+		flex: 1;
+		overflow: hidden;
 	}
 }
 </style>

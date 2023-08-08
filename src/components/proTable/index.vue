@@ -1,66 +1,67 @@
 <template>
-	<SearchForm
-		v-show="isShowSearch"
-		:search="search"
-		:reset="reset"
-		:columns="searchColumns"
-		:search-param="searchParam"
-		:search-col="searchCol"
-	></SearchForm>
-	<div class="card table">
-		<div class="table-header">
-			<div class="table-header-left">
-				<slot name="tableHeader" :selected-list-ids="selectedListIds" :selected-list="selectedList" :is-selected="isSelected">
-				</slot>
+	<div class="proTable">
+		<SearchForm
+			v-show="isShowSearch"
+			:search="search"
+			:reset="reset"
+			:columns="searchColumns"
+			:search-param="searchParam"
+			:search-col="searchCol"
+		></SearchForm>
+		<div class="card table">
+			<div class="table-header">
+				<div class="table-header-left">
+					<slot name="tableHeader" :selected-list-ids="selectedListIds" :selected-list="selectedList" :is-selected="isSelected">
+					</slot>
+				</div>
+				<div class="table-header-right" v-if="toolButton">
+					<slot name="toolButton">
+						<el-button :icon="Refresh" circle @click="getTableList" />
+						<el-button :icon="Operation" circle @click="openColSetting" />
+						<el-button :icon="Search" circle @click="isShowSearch = !isShowSearch" />
+					</slot>
+				</div>
 			</div>
-			<div class="table-header-right" v-if="toolButton">
-				<slot name="toolButton">
-					<el-button :icon="Refresh" circle @click="getTableList" />
-					<el-button :icon="Operation" circle @click="openColSetting" />
-					<el-button :icon="Search" circle @click="isShowSearch = !isShowSearch" />
-				</slot>
+			<div class="table-main">
+				<el-table ref="tableRef" :data="data ?? tableData" :border="border" :row-key="rowKey" @selection-change="selectionChange">
+					<slot></slot>
+					<template v-for="item in tableColumns" :key="item">
+						<el-table-column
+							v-if="item.type && ['selection', 'index'].includes(item.type)"
+							v-bind="item"
+							:align="item.align ?? 'center'"
+							:reserve-selection="item.type == 'selection'"
+						>
+						</el-table-column>
+						<TableColumn v-if="!item.type && item.prop && item.isShow" :column="item">
+							<template v-for="slot in Object.keys($slots)" #[slot]="scope">
+								<slot :name="slot" v-bind="scope"></slot>
+							</template>
+						</TableColumn>
+					</template>
+					<template #append>
+						<slot name="append"> </slot>
+					</template>
+					<template #empty>
+						<div class="table-empty">
+							<slot name="empty">
+								<div>暂无数据</div>
+							</slot>
+						</div>
+					</template>
+				</el-table>
 			</div>
-		</div>
-		<div class="table-main">
-			<el-table ref="tableRef" :data="data ?? tableData" :border="border" :row-key="rowKey" @selection-change="selectionChange">
-				<slot></slot>
-				<template v-for="item in tableColumns" :key="item">
-					<el-table-column
-						v-if="item.type && ['selection', 'index'].includes(item.type)"
-						v-bind="item"
-						:align="item.align ?? 'center'"
-						:reserve-selection="item.type == 'selection'"
-					>
-					</el-table-column>
-					<TableColumn v-if="!item.type && item.prop && item.isShow" :column="item">
-						<template v-for="slot in Object.keys($slots)" #[slot]="scope">
-							<slot :name="slot" v-bind="scope"></slot>
-						</template>
-					</TableColumn>
-				</template>
-				<!-- 插入表格最后一行之后的插槽 -->
-				<template #append>
-					<slot name="append"> </slot>
-				</template>
-				<!-- 无数据 -->
-				<template #empty>
-					<div class="table-empty">
-						<slot name="empty">
-							<div>暂无数据</div>
-						</slot>
-					</div>
-				</template>
-			</el-table>
-		</div>
-		<div class="table-page">
-			<Pagination
-				v-if="pagination"
-				:pageable="pageable"
-				:handle-size-change="handleSizeChange"
-				:handle-current-change="handleCurrentChange"
-			></Pagination>
+			<div class="table-page">
+				<Pagination
+					v-if="pagination"
+					:pageable="pageable"
+					:handle-size-change="handleSizeChange"
+					:handle-current-change="handleCurrentChange"
+				></Pagination>
+			</div>
 		</div>
 	</div>
+
 	<ColSetting v-if="toolButton" ref="colSettingRef" v-model:col-setting="colSetting" />
 </template>
 
@@ -147,6 +148,7 @@ const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) =>
 		// 给每一项 column 添加 isShow && isFilterEnum 默认属性
 		col.isShow = col.isShow ?? true
 		col.isFilterEnum = col.isFilterEnum ?? true
+		col.fixed = col.fixed ?? false
 
 		// 设置 enumMap
 		setEnumMap(col)
@@ -196,36 +198,45 @@ defineExpose({
 })
 </script>
 <style lang="scss" scoped>
-.table {
+.proTable {
 	display: flex;
+	width: 100%;
+	height: 100%;
 	flex-direction: column;
-	flex: 1;
 
-	.table-header {
+	.table {
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
-
-		.el-button {
-			margin-bottom: 15px;
-		}
-	}
-
-	.table-main {
+		flex-direction: column;
 		flex: 1;
-		display: flex;
-		overflow: hidden;
 
-		.el-table {
-			height: 100%;
+		.table-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			.el-button {
+				margin-bottom: 15px;
+			}
 		}
-	}
 
-	.table-page {
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		margin-top: 15px;
+		.table-main {
+			display: flex;
+			overflow: hidden;
+			background-color: red;
+			flex: 1;
+
+			.el-table {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.table-page {
+			display: flex;
+			margin-top: 15px;
+			align-items: center;
+			justify-content: flex-end;
+		}
 	}
 }
 </style>

@@ -88,4 +88,7 @@ declare module 'vue' {
     TableColumn: typeof import('./../components/proTable/components/TableColumn.vue')['default']
     Tabs: typeof import('./../components/layout/components/tabs/index.vue')['default']
     TreeFilter: typeof import('./../components/treeFilter/index.vue')['default']
-    TreeMenu: ty
+    TreeMenu: typeof import('./../components/layout/components/sidebar/TreeMenu.vue')['default']
+    WangEditor: typeof import('./../components/wangEditor/index.vue')['default']
+  }
+}

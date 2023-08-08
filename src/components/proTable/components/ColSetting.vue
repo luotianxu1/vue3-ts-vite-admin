@@ -9,6 +9,11 @@
 				<el-table-column v-slot="scope" prop="sortable" align="center" label="排序">
 					<el-switch v-model="scope.row.sortable"></el-switch>
 				</el-table-column>
+				<el-table-column v-slot="scope" prop="fixed" align="center" label="固定" width="110">
+					<el-select v-model="scope.row.fixed" placeholder="请选择">
+						<el-option v-for="(item, index) in fixedOptions" :key="index" :label="item.label" :value="item.value" />
+					</el-select>
+				</el-table-column>
 				<template #empty>
 					<div class="table-empty">
 						<div>暂无可配置列</div>
@@ -29,6 +34,21 @@ const drawerVisible = ref<boolean>(false)
 const openColSetting = () => {
 	drawerVisible.value = true
 }
+
+const fixedOptions = [
+	{
+		value: "left",
+		label: "左"
+	},
+	{
+		value: "right",
+		label: "右"
+	},
+	{
+		value: false,
+		label: "不固定"
+	}
+]
 
 defineExpose({
 	openColSetting
