@@ -25,6 +25,6 @@ export namespace Menu {
 
 	// 菜单返回
 	export interface IResMenuList {
-		menu: IMenuOptions[]
+		list: IMenuOptions[]
 	}
 }

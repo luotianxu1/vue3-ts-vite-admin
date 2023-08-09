@@ -44,7 +44,7 @@ export const useTable = (api?: (params: any) => Promise<any>, initParam: object 
 			// 先把初始化参数和分页参数放到总参数里面
 			Object.assign(state.totalParam, initParam, isPageable ? pageParam.value : {})
 			const { data } = await api({ ...state.searchInitParam, ...state.totalParam })
-			state.tableData = isPageable ? data.list : data
+			state.tableData = data.list
 			// 解构后台返回的分页数据 (如果有分页更新分页信息)
 			if (isPageable) {
 				const { pageNum, pageSize, total } = data

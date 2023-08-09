@@ -8,13 +8,13 @@ import {
 	GLOB_APP_LOGIN
 } from "@global/constants"
 import { accountLoginRequest, getUserInfoById, getUserMenuByRoleId } from "@/service/modules/login"
-import type { IAccountReq } from "@/types"
 import { localCache } from "@utils/cache"
 import router from "@/router"
 import { getFlatArr, getShowMenuList, getAllBreadcrumbList, getAllPermissions } from "@/utils/route"
 import { ElNotification } from "element-plus"
 import { getTimeState } from "@/utils/time"
 import type { ILoginStore } from "../interface"
+import { Login } from "@/types"
 
 export const UserStore = defineStore("UserStore", {
 	state: (): ILoginStore => ({
@@ -39,7 +39,7 @@ export const UserStore = defineStore("UserStore", {
 		 * @param remermber 是否记住密码
 		 * @returns
 		 */
-		async loginAccountAction(account: IAccountReq, remermber: boolean) {
+		async loginAccountAction(account: Login.IReqLogin, remermber: boolean) {
 			// 账号登陆，获取token信息
 			const loginResult = await accountLoginRequest(account)
 			if (!loginResult.data) return
@@ -90,7 +90,7 @@ export const UserStore = defineStore("UserStore", {
 			if (!this.userInfo.role) return
 			const userMenuListResult = await getUserMenuByRoleId(this.userInfo.role.id)
 			if (!userMenuListResult.data) return
-			this.userMenuList = userMenuListResult.data.menu
+			this.userMenuList = userMenuListResult.data.list
 
 			// 判断当前用户有没有菜单权限
 			if (!this.userMenuList.length) {

@@ -74,7 +74,7 @@ const columns: ColumnProps<any>[] = [
 		search: {
 			// 自定义 search 显示内容
 			render: ({ searchParam }) => {
-				return <el-input v-model={searchParam.age} placeholder="请输入" />
+				return <el-input-number v-model={searchParam.age} placeholder="请输入" />
 			}
 		}
 	},
@@ -141,7 +141,7 @@ const columns: ColumnProps<any>[] = [
 		}
 	},
 	{ prop: "editTime", label: "修改时间", width: 180 },
-	{ prop: "operation", label: "操作", fixed: "right", width: 230 }
+	{ prop: "operation", label: "操作", fixed: "right", width: 200 }
 ]
 </script>
 

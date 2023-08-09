@@ -17,7 +17,12 @@ body,
 }
 
 a {
+	color: var(--el-text-color-regular);
 	text-decoration: none;
+
+	&:hover {
+		color: var(--el-color-primary);
+	}
 }
 
 ul,

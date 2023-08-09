@@ -68,7 +68,7 @@ export const loginApiList: MockMethod[] = [
 				status: 200,
 				message: "查询成功！",
 				data: {
-					menu: [
+					list: [
 						{
 							path: "/dashborad",
 							name: "dashborad",
@@ -100,9 +100,8 @@ export const loginApiList: MockMethod[] = [
 							meta: {
 								title: "系统管理",
 								icon: "icon-setting",
-								isFull: false,
-								isHide: false,
-								isKeepAlive: false
+								isFull: true,
+								isHide: false
 							},
 							children: [
 								{
@@ -151,8 +150,7 @@ export const loginApiList: MockMethod[] = [
 								title: "自定义指令",
 								icon: "icon-bianji",
 								isFull: false,
-								isHide: false,
-								isKeepAlive: false
+								isHide: false
 							},
 							children: [
 								{
@@ -237,8 +235,7 @@ export const loginApiList: MockMethod[] = [
 								title: "常用功能",
 								icon: "icon-gongnengdingyi",
 								isFull: false,
-								isHide: false,
-								isKeepAlive: false
+								isHide: false
 							},
 							children: [
 								{
