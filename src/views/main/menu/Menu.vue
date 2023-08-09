@@ -1,5 +1,5 @@
 <template>
-	<div class="user">
+	<div class="menu">
 		<ProTable
 			ref="proTableRef"
 			title="用户列表"
@@ -29,7 +29,7 @@ const initParam = reactive({ userId: "1" })
 const columns: ColumnProps<any>[] = [
 	{ type: "index", label: "#", fixed: "left", width: 50 },
 	{
-		prop: "meta.title",
+		prop: "title",
 		label: "名称",
 		width: 180,
 		render: scope => {
@@ -43,11 +43,13 @@ const columns: ColumnProps<any>[] = [
 		label: "路由地址",
 		render: scope => {
 			return scope.row.component ? <router-link to={scope.row.path}>{scope.row.path}</router-link> : "--"
-		}
+		},
+		search: { el: "input" }
 	},
 	{
 		prop: "component",
-		label: "组件地址"
+		label: "组件地址",
+		search: { el: "input" }
 	},
 	{
 		prop: "meta.icon",
@@ -58,16 +60,26 @@ const columns: ColumnProps<any>[] = [
 		}
 	},
 	{
-		prop: "meta.icon",
-		label: "图标",
+		prop: "type",
+		label: "类型",
 		width: 110,
+		enum: [
+			{ typeLabel: "页面", typeValue: 0 },
+			{ typeLabel: "模块", typeValue: 1 },
+			{ typeLabel: "权限", typeValue: 2 }
+		],
+		fieldNames: {
+			label: "typeLabel",
+			value: "typeValue"
+		},
 		render: scope => {
 			return (
 				<el-tag type={scope.row.component ? "success" : scope.row.path ? "warning" : "danger"}>
 					{scope.row.component ? "页面" : scope.row.path ? "模块名称" : "按钮权限"}
 				</el-tag>
 			)
-		}
+		},
+		search: { el: "select", props: { filterable: true } }
 	},
 	{
 		prop: "meta.isFull",
@@ -99,7 +111,7 @@ const columns: ColumnProps<any>[] = [
 </script>
 
 <style lang="scss" scoped>
-.user {
+.menu {
 	width: 100%;
 	height: 100%;
 	padding: 15px;

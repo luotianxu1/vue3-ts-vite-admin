@@ -60,26 +60,32 @@ const columns: ColumnProps<any>[] = [
 	{ type: "index", label: "#", fixed: "left", width: 50 },
 	{ prop: "name", label: "用户名", width: 100, search: { el: "input" } },
 	{
-		prop: "gender",
-		label: "性别",
-		width: 70,
-		enum: getUserGender,
-		fieldNames: { label: "genderLabel", value: "genderValue" },
-		search: { el: "select", props: { filterable: true } }
+		prop: "base",
+		label: "基本信息",
+		_children: [
+			{
+				prop: "gender",
+				label: "性别",
+				width: 70,
+				enum: getUserGender,
+				fieldNames: { label: "genderLabel", value: "genderValue" },
+				search: { el: "select", props: { filterable: true } }
+			},
+			{
+				prop: "age",
+				label: "年龄",
+				width: 70,
+				search: {
+					// 自定义 search 显示内容
+					render: ({ searchParam }) => {
+						return <el-input-number v-model={searchParam.age} placeholder="请输入" />
+					}
+				}
+			},
+			{ prop: "phone", label: "手机号", width: 150, search: { el: "input" } },
+			{ prop: "email", label: "邮箱", width: 300 }
+		]
 	},
-	{
-		prop: "age",
-		label: "年龄",
-		width: 70,
-		search: {
-			// 自定义 search 显示内容
-			render: ({ searchParam }) => {
-				return <el-input-number v-model={searchParam.age} placeholder="请输入" />
-			}
-		}
-	},
-	{ prop: "phone", label: "手机号", width: 150, search: { el: "input" } },
-	{ prop: "email", label: "邮箱", width: 300 },
 	{
 		prop: "status",
 		label: "状态",
@@ -92,7 +98,7 @@ const columns: ColumnProps<any>[] = [
 			label: "statusLabel",
 			value: "statusValue"
 		},
-		search: { el: "tree-select", props: { filterable: true } },
+		search: { el: "select", props: { filterable: true } },
 		render: scope => {
 			return (
 				<el-switch
@@ -127,7 +133,7 @@ const columns: ColumnProps<any>[] = [
 		headerRender: scope => {
 			return <el-button type="primary">{scope.column.label}</el-button>
 		},
-		search: { el: "tree-select", props: { filterable: true } }
+		search: { el: "select", props: { filterable: true } }
 	},
 	{
 		prop: "createTime",
@@ -141,7 +147,7 @@ const columns: ColumnProps<any>[] = [
 		}
 	},
 	{ prop: "editTime", label: "修改时间", width: 180 },
-	{ prop: "operation", label: "操作", fixed: "right", width: 200 }
+	{ prop: "operation", label: "操作", fixed: "right", width: 230 }
 ]
 </script>
 
