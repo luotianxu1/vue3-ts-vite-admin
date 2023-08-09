@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts" name="ColSetting">
-import type { ColumnProps } from "@/components/proTable/interface"
+import type { ColumnProps } from "@components/proTable/interface"
 import draggable from "vuedraggable"
 
 const props = defineProps<{ setting: ColumnProps[] }>()
@@ -102,6 +102,10 @@ defineExpose({
 			&:nth-child(1) {
 				border-left: 1px solid var(--el-border-color-lighter);
 			}
+		}
+
+		&:hover {
+			background-color: var(--el-fill-color-lighter);
 		}
 	}
 }

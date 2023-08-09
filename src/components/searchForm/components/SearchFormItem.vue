@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts" name="SearchFormItem">
-import { ColumnProps } from "@/components/proTable/interface"
+import { ColumnProps } from "@components/proTable/interface"
 import { computed, inject, ref } from "vue"
 import { handleProp } from "@components/proTable/utils/index"
 

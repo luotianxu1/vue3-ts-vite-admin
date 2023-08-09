@@ -37,7 +37,7 @@ import MonthlySales from "./components/monthlySales/MonthlySales.vue"
 import Announcement from "./components/announcement/Announcement.vue"
 import OrderDistribution from "./components/orderDistribution/OrderDistribution.vue"
 import RealTimeData from "./components/realTimeData/RealTimeData.vue"
-import { getDashboardDataList } from "@/service/modules/dahboard"
+import { getDashboardDataList } from "@service/modules/dahboard"
 import type { Dashboard } from "@/types/modules/dashboard"
 
 onMounted(() => {

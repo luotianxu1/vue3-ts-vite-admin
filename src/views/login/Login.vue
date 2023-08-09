@@ -43,9 +43,9 @@
 import { User, Unlock, Key } from "@element-plus/icons-vue"
 import type { FormInstance, FormRules } from "element-plus"
 import CodeBox from "./components/CodeBox.vue"
-import { UserStore } from "@/stores/modules/user"
-import { localCache } from "@/utils/cache"
-import { CACHE_NAME, CACHE_PASSWORD } from "@/global/constants"
+import { UserStore } from "@stores/modules/user"
+import { localCache } from "@utils/cache"
+import { CACHE_NAME, CACHE_PASSWORD } from "@global/constants"
 import Modal from "@utils/modal"
 
 // 校验码

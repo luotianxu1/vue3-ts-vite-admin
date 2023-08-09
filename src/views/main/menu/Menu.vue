@@ -11,8 +11,8 @@
 
 <script lang="ts" setup name="userMenu">
 import { Delete, Edit } from "@element-plus/icons-vue"
-import type PageContent from "@/components/pageContent/index.vue"
-import { getUserMenuByRoleId } from "@/service/modules/login"
+import type PageContent from "@components/pageContent/index.vue"
+import { getUserMenuByRoleId } from "@service/modules/login"
 import type { Menu } from "@/types"
 
 import contentConfig from "./config/contentConfig"

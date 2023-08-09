@@ -28,8 +28,8 @@ import Grid from "@components/grid/index.vue"
 import GridItem from "@components/grid/components/GridItem.vue"
 import SearchFormItem from "@components/searchForm/components/SearchFormItem.vue"
 import { ArrowDown, ArrowUp, Search, Delete } from "@element-plus/icons-vue"
-import type { ColumnProps } from "@/components/proTable/interface"
-import type { BreakPoint } from "@/components/grid/interface"
+import type { ColumnProps } from "@components/proTable/interface"
+import type { BreakPoint } from "@components/grid/interface"
 
 interface ProTableProps {
 	columns?: ColumnProps[] // 搜索配置列

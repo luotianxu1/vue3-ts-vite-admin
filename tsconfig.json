@@ -20,7 +20,8 @@
 			"@utils/*": ["./src/utils/*"],
 			"@global/*": ["./src/global/*"],
 			"@components/*": ["./src/components/*"],
-			"@service/*": ["./src/service/*"]
+			"@service/*": ["./src/service/*"],
+			"@hooks/*": ["./src/hooks/*"]
 		},
 		"types": ["element-plus/global"],
 		"typeRoots": ["./node_modules/@types/", "./src/types/"]

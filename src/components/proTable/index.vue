@@ -23,7 +23,14 @@
 				</div>
 			</div>
 			<div class="table-main">
-				<el-table ref="tableRef" :data="data ?? tableData" :border="border" :row-key="rowKey" @selection-change="selectionChange">
+				<el-table
+					ref="tableRef"
+					stripe
+					:data="data ?? tableData"
+					:border="border"
+					:row-key="rowKey"
+					@selection-change="selectionChange"
+				>
 					<slot></slot>
 					<template v-for="item in tableColumns" :key="item">
 						<el-table-column
@@ -68,14 +75,14 @@
 <script lang="ts" setup name="ProTable">
 import SearchForm from "@components/searchForm/index.vue"
 import { Refresh, Operation, Search } from "@element-plus/icons-vue"
-import Pagination from "@/components/proTable/components/Pagination.vue"
-import ColSetting from "@/components/proTable/components/ColSetting.vue"
-import TableColumn from "@/components/proTable/components/TableColumn.vue"
-import { useSelection } from "@/hooks/useSelection"
-import { useTable } from "@/hooks/useTable"
+import Pagination from "@components/proTable/components/Pagination.vue"
+import ColSetting from "@components/proTable/components/ColSetting.vue"
+import TableColumn from "@components/proTable/components/TableColumn.vue"
+import { useSelection } from "@hooks/useSelection"
+import { useTable } from "@hooks/useTable"
 import { handleProp } from "./utils"
 import type { ElTable } from "element-plus"
-import type { ColumnProps } from "@/components/proTable/interface"
+import type { ColumnProps } from "@components/proTable/interface"
 import type { BreakPoint } from "@components/grid/interface"
 
 export interface ProTableProps {

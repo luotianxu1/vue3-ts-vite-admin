@@ -2,7 +2,7 @@
 	<RenderTableColumn v-bind="column"></RenderTableColumn>
 </template>
 <script lang="tsx" setup name="TableColumn">
-import type { ColumnProps, HeaderRenderScope, RenderScope } from "@/components/proTable/interface"
+import type { ColumnProps, HeaderRenderScope, RenderScope } from "@components/proTable/interface"
 import { filterEnum, formatValue, handleProp, handleRowAccordingToProp } from "@components/proTable/utils/index"
 
 defineProps<{ column: ColumnProps }>()

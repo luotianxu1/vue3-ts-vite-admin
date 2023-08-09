@@ -57,7 +57,7 @@ const changeTreeFilter = (val: string) => {
 // 表格配置项
 const columns: ColumnProps<any>[] = [
 	{ type: "selection", fixed: "left", width: 50 },
-	{ type: "index", label: "#", width: 50 },
+	{ type: "index", label: "#", fixed: "left", width: 50 },
 	{ prop: "name", label: "用户名", width: 100, search: { el: "input" } },
 	{
 		prop: "gender",

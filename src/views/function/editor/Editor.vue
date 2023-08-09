@@ -10,8 +10,6 @@
 </template>
 
 <script setup lang="ts" name="wangEditor">
-import { ref } from "vue"
-
 const content = ref("")
 
 const dialogVisible = ref(false)
