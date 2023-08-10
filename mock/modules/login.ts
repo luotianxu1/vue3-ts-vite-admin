@@ -113,7 +113,7 @@ export const loginApiList: MockMethod[] = [
 										icon: "icon-yonghu",
 										isFull: false,
 										isHide: false,
-										isKeepAlive: true
+										isKeepAlive: false
 									},
 									children: [
 										{

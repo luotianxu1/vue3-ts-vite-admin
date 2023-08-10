@@ -52,6 +52,14 @@ export type SearchRenderScope = {
 	data: EnumProps[]
 }
 
+export type FormRenderScope = {
+	formParam: { [key: string]: any }
+	placeholder: string
+	clearable: boolean
+	options: EnumProps[]
+	data: EnumProps[]
+}
+
 export type SearchProps = {
 	el?: SearchType // 当前项搜索框的类型
 	props?: any // 搜索项参数，根据 element plus 官方文档来传递，该属性所有值会透传到组件
@@ -63,10 +71,18 @@ export type SearchProps = {
 	render?: (scope: SearchRenderScope) => VNode // 自定义搜索内容渲染（tsx语法）
 } & Partial<Record<BreakPoint, Responsive>>
 
+export type FormProps = {
+	el?: SearchType // 当前项搜索框的类型
+	props?: any // 搜索项参数，根据 element plus 官方文档来传递，该属性所有值会透传到组件
+	order?: number // 搜索项排序（从大到小）
+	render?: (scope: FormRenderScope) => VNode // 自定义搜索内容渲染（tsx语法）
+}
+
 export interface ColumnProps<T = any> extends Partial<Omit<TableColumnCtx<T>, "children" | "renderCell" | "renderHeader">> {
 	tag?: boolean // 是否是标签展示
 	isShow?: boolean // 是否显示在表格当中
 	search?: SearchProps | undefined // 搜索项配置
+	form?: FormProps
 	enum?: EnumProps[] | ((params?: any) => Promise<any>) // 枚举类型（字典）
 	isFilterEnum?: boolean // 当前单元格值是否根据 enum 格式化（示例：enum 只作为搜索项数据）
 	fieldNames?: FieldNamesProps // 指定 label && value && children 的 key 值

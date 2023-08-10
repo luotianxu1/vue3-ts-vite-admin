@@ -8,9 +8,9 @@
 			@change="changeTreeFilter"
 		/>
 		<div class="table-box">
-			<ProTable ref="proTableRef" title="用户列表" :columns="columns" :request-api="getTableList" :init-param="initParam">
+			<ProTable ref="proTableRef" title="用户" :columns="columns" :request-api="getTableList" :init-param="initParam">
 				<template #tableHeader="scope">
-					<el-button type="primary" :icon="CirclePlus"> 新增用户 </el-button>
+					<el-button type="primary" :icon="CirclePlus" @click="proTableRef.setDialogVisible(true)"> 新增用户 </el-button>
 					<el-button type="primary" :icon="Upload" plain> 批量添加用户 </el-button>
 					<el-button type="primary" :icon="Download" plain> 导出用户数据 </el-button>
 					<el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected"> 批量删除用户 </el-button>
@@ -58,7 +58,7 @@ const changeTreeFilter = (val: string) => {
 const columns: ColumnProps<any>[] = [
 	{ type: "selection", fixed: "left", width: 50 },
 	{ type: "index", label: "#", fixed: "left", width: 50 },
-	{ prop: "name", label: "用户名", width: 100, search: { el: "input" } },
+	{ prop: "name", label: "用户名", width: 100, search: { el: "input" }, form: { el: "input" } },
 	{
 		prop: "base",
 		label: "基本信息",
@@ -69,7 +69,8 @@ const columns: ColumnProps<any>[] = [
 				width: 70,
 				enum: getUserGender,
 				fieldNames: { label: "genderLabel", value: "genderValue" },
-				search: { el: "select", props: { filterable: true } }
+				search: { el: "select", props: { filterable: true } },
+				form: { el: "select", props: { filterable: true } }
 			},
 			{
 				prop: "age",
@@ -80,10 +81,16 @@ const columns: ColumnProps<any>[] = [
 					render: ({ searchParam }) => {
 						return <el-input-number v-model={searchParam.age} placeholder="请输入" />
 					}
+				},
+				form: {
+					// 自定义 form 显示内容
+					render: ({ formParam }) => {
+						return <el-input-number v-model={formParam.age} placeholder="请输入" />
+					}
 				}
 			},
-			{ prop: "phone", label: "手机号", width: 150, search: { el: "input" } },
-			{ prop: "email", label: "邮箱", width: 300 }
+			{ prop: "phone", label: "手机号", width: 150, search: { el: "input" }, form: { el: "input" } },
+			{ prop: "email", label: "邮箱", width: 300, form: { el: "input" } }
 		]
 	},
 	{
@@ -108,6 +115,18 @@ const columns: ColumnProps<any>[] = [
 					inactive-value={0}
 				/>
 			)
+		},
+		form: {
+			render: ({ formParam }) => {
+				return (
+					<el-switch
+						model-value={formParam.status}
+						active-text={formParam.status ? "启用" : "禁用"}
+						active-value={1}
+						inactive-value={0}
+					/>
+				)
+			}
 		}
 	},
 	{
@@ -133,7 +152,8 @@ const columns: ColumnProps<any>[] = [
 		headerRender: scope => {
 			return <el-button type="primary">{scope.column.label}</el-button>
 		},
-		search: { el: "select", props: { filterable: true } }
+		search: { el: "select", props: { filterable: true } },
+		form: { el: "select", props: { filterable: true } }
 	},
 	{
 		prop: "createTime",

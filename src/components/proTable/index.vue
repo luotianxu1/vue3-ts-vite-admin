@@ -69,11 +69,13 @@
 		</div>
 	</div>
 
-	<ColSetting v-if="toolButton" ref="colSettingRef" v-model:setting="colSetting" />
+	<ColSetting ref="colSettingRef" v-if="toolButton" v-model:setting="colSetting" />
+	<FormDialog ref="formDialogRef" :title="title" :columns="formColumns" :formParam="formParam"></FormDialog>
 </template>
 
 <script lang="ts" setup name="ProTable">
 import SearchForm from "@components/searchForm/index.vue"
+import FormDialog from "@components/proTable/components/FormDialog.vue"
 import { Refresh, Operation, Search } from "@element-plus/icons-vue"
 import Pagination from "@components/proTable/components/Pagination.vue"
 import ColSetting from "@components/proTable/components/ColSetting.vue"
@@ -179,7 +181,6 @@ const openColSetting = () => colSettingRef.value!.openColSetting()
 
 // 过滤需要搜索的配置项
 const searchColumns = flatColumns.value.filter(item => item.search?.el || item.search?.render)
-
 // 设置搜索表单排序默认值 && 设置搜索表单项的默认值
 searchColumns.forEach((column, index) => {
 	column.search!.order = column.search!.order ?? index + 2
@@ -190,6 +191,19 @@ searchColumns.forEach((column, index) => {
 })
 // 排序搜索表单项
 searchColumns.sort((a, b) => a.search!.order! - b.search!.order!)
+
+// 表单
+const formDialogRef = ref<InstanceType<typeof FormDialog>>()
+const formParam = ref([])
+const formColumns = flatColumns.value.filter(item => item.form?.el || item.form?.render)
+formColumns.forEach(column => {
+	formParam.value[handleProp(column.prop!)] = null
+})
+formColumns.sort((a, b) => a.form!.order! - b.form!.order!)
+
+const setDialogVisible = val => {
+	formDialogRef.value.setVisible(val)
+}
 
 // 暴露给父组件的参数和方法(外部需要什么，都可以从这里暴露出去)
 defineExpose({
@@ -207,7 +221,8 @@ defineExpose({
 	enumMap,
 	isSelected,
 	selectedList,
-	selectedListIds
+	selectedListIds,
+	setDialogVisible
 })
 </script>
 <style lang="scss" scoped>

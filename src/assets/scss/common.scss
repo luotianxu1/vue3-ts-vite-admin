@@ -87,6 +87,15 @@
 	border-bottom: 1px solid var(--el-border-color-lighter);
 }
 
+// 弹出框
+.el-dialog__header {
+	margin: 0;
+}
+
+.el-dialog .el-dialog__header {
+	border-bottom: 1px solid var(--el-border-color-lighter);
+}
+
 /* 提示文字 */
 .placeholder {
 	color: var(--el-text-color-placeholder);
