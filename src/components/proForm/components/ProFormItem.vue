@@ -43,10 +43,9 @@ const fieldNames = computed(() => {
 	}
 })
 
-// 接收 enumMap (el 为 select-v2 需单独处理 enumData)
-const enumMap = inject("enumMap", ref(new Map()))
+// el 为 select-v2 需单独处理 enumData
 const columnEnum = computed(() => {
-	let enumData = enumMap.value.get(props.column.prop)
+	let enumData = props.column.enum
 	if (!enumData) return []
 	if (props.column.form?.el === "select-v2" && props.column.fieldNames) {
 		enumData = enumData.map((item: { [key: string]: any }) => {

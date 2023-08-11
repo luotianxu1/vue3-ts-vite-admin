@@ -1,8 +1,5 @@
 <template>
-	<div class="card content-box">
-		<span class="text">长按指令</span>
-		<el-button type="primary" v-longpress="longpress">长按2秒触发事件</el-button>
-	</div>
+	<el-button type="primary" v-longpress="longpress">长按2秒触发事件</el-button>
 </template>
 
 <script setup lang="ts">

@@ -113,7 +113,7 @@ export const loginApiList: MockMethod[] = [
 										icon: "icon-yonghu",
 										isFull: false,
 										isHide: false,
-										isKeepAlive: false
+										isKeepAlive: true
 									},
 									children: [
 										{
@@ -230,7 +230,7 @@ export const loginApiList: MockMethod[] = [
 						{
 							path: "/function",
 							name: "function",
-							redirect: "/function/bootPage",
+							redirect: "/function/guide",
 							meta: {
 								title: "常用功能",
 								icon: "icon-gongnengdingyi",
@@ -239,8 +239,8 @@ export const loginApiList: MockMethod[] = [
 							},
 							children: [
 								{
-									path: "/function/bootPage",
-									name: "bootPage",
+									path: "/function/guide",
+									name: "guide",
 									component: "/function/guide/Guide",
 									meta: {
 										title: "引导页",

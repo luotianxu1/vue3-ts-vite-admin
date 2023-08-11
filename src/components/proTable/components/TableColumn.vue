@@ -9,12 +9,10 @@ defineProps<{ column: ColumnProps }>()
 
 const slots = useSlots()
 
-const enumMap = inject("enumMap", ref(new Map()))
-
 // 渲染表格数据
 const renderCellData = (item: ColumnProps, scope: RenderScope<any>) => {
-	return enumMap.value.get(item.prop) && item.isFilterEnum
-		? filterEnum(handleRowAccordingToProp(scope.row, item.prop!), enumMap.value.get(item.prop)!, item.fieldNames)
+	return item.isFilterEnum
+		? filterEnum(handleRowAccordingToProp(scope.row, item.prop!), item.enum, item.fieldNames)
 		: formatValue(handleRowAccordingToProp(scope.row, item.prop!))
 }
 

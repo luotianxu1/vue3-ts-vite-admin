@@ -83,7 +83,8 @@ export interface ColumnProps<T = any> extends Partial<Omit<TableColumnCtx<T>, "c
 	isShow?: boolean // 是否显示在表格当中
 	search?: SearchProps | undefined // 搜索项配置
 	form?: FormProps
-	enum?: EnumProps[] | ((params?: any) => Promise<any>) // 枚举类型（字典）
+	enum?: EnumProps[] // 枚举类型（字典）
+	enumApi?: (params?: any) => Promise<any>
 	isFilterEnum?: boolean // 当前单元格值是否根据 enum 格式化（示例：enum 只作为搜索项数据）
 	fieldNames?: FieldNamesProps // 指定 label && value && children 的 key 值
 	headerRender?: (scope: HeaderRenderScope<T>) => VNode // 自定义表头内容渲染（tsx语法）

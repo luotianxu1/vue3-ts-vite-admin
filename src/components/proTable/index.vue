@@ -136,15 +136,10 @@ watch(() => props.initParam, getTableList, { deep: true })
 // 接收 columns 并设置为响应式
 const tableColumns = ref<ColumnProps[]>(props.columns)
 
-// 定义 enumMap 存储 enum 值（避免异步请求无法格式化单元格内容 || 无法填充搜索下拉选择）
-const enumMap = ref(new Map<string, { [key: string]: any }[]>())
-provide("enumMap", enumMap)
 const setEnumMap = async (col: ColumnProps) => {
-	if (!col.enum) return
-	// 如果当前 enum 为后台数据需要请求数据，则调用该请求接口，并存储到 enumMap
-	if (typeof col.enum !== "function") return enumMap.value.set(col.prop!, col.enum!)
-	const { data } = await col.enum()
-	enumMap.value.set(col.prop!, data)
+	if (!col.enumApi) return
+	const { data } = await col.enumApi()
+	col.enum = data
 }
 
 // 扁平化 columns
@@ -218,7 +213,6 @@ defineExpose({
 	handleSizeChange,
 	handleCurrentChange,
 	clearSelection,
-	enumMap,
 	isSelected,
 	selectedList,
 	selectedListIds,

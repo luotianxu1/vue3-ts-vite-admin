@@ -1,5 +1,8 @@
 <template>
 	<Card title="商品订单分布占比">
+		<template #sub>
+			<span class="placeholder link">详情</span>
+		</template>
 		<BaseEcharts :option="orderDistributionOptions"></BaseEcharts>
 	</Card>
 </template>

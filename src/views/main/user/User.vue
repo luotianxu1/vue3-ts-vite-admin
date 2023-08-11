@@ -67,7 +67,7 @@ const columns: ColumnProps<any>[] = [
 				prop: "gender",
 				label: "性别",
 				width: 70,
-				enum: getUserGender,
+				enumApi: getUserGender,
 				fieldNames: { label: "genderLabel", value: "genderValue" },
 				search: { el: "select", props: { filterable: true } },
 				form: { el: "select", props: { filterable: true } }
