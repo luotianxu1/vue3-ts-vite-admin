@@ -1,4 +1,5 @@
 import { ElMessage, ElMessageBox, ElNotification, ElLoading } from "element-plus"
+import type { messageType } from "element-plus"
 
 let loadingInstance: any
 
@@ -52,19 +53,19 @@ export default {
 		ElNotification.warning(content)
 	},
 	// 确认窗体
-	confirm(content: string) {
+	confirm(content: string, type: messageType = "warning") {
 		return ElMessageBox.confirm(content, "系统提示", {
 			confirmButtonText: "确定",
 			cancelButtonText: "取消",
-			type: "warning"
+			type: type
 		})
 	},
 	// 提交内容
-	prompt(content: string) {
+	prompt(content: string, type: messageType = "warning") {
 		return ElMessageBox.prompt(content, "系统提示", {
 			confirmButtonText: "确定",
 			cancelButtonText: "取消",
-			type: "warning"
+			type: type
 		})
 	},
 	// 打开遮罩层

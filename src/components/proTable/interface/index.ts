@@ -75,6 +75,7 @@ export type FormProps = {
 	el?: SearchType // 当前项搜索框的类型
 	props?: any // 搜索项参数，根据 element plus 官方文档来传递，该属性所有值会透传到组件
 	order?: number // 搜索项排序（从大到小）
+	rules?: any
 	render?: (scope: FormRenderScope) => VNode // 自定义搜索内容渲染（tsx语法）
 }
 

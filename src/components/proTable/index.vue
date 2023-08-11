@@ -52,7 +52,7 @@
 					<template #empty>
 						<div class="table-empty">
 							<slot name="empty">
-								<div>暂无数据</div>
+								<el-empty description="暂无数据" />
 							</slot>
 						</div>
 					</template>

@@ -2,7 +2,7 @@
 	<div class="user">
 		<TreeFilter
 			label="name"
-			title="部门列表(单选)"
+			title="部门列表"
 			:request-api="getDepartmentList"
 			:default-value="initParam.departmentId"
 			@change="changeTreeFilter"
@@ -13,7 +13,15 @@
 					<el-button type="primary" :icon="CirclePlus" @click="proTableRef.setDialogVisible(true)"> 新增用户 </el-button>
 					<el-button type="primary" :icon="Upload" plain> 批量添加用户 </el-button>
 					<el-button type="primary" :icon="Download" plain> 导出用户数据 </el-button>
-					<el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected"> 批量删除用户 </el-button>
+					<el-button
+						type="danger"
+						:icon="Delete"
+						plain
+						:disabled="!scope.isSelected"
+						@click="batchDeletionUser(scope.selectedListIds)"
+					>
+						批量删除用户
+					</el-button>
 				</template>
 				<template #nameHeader="scope">
 					<el-button type="primary">
@@ -23,11 +31,11 @@
 				<template #append>
 					<span style="color: var(--el-color-primary)">我是插入在表格最后的内容。若表格有合计行，该内容会位于合计行之上。</span>
 				</template>
-				<template #operation>
+				<template #operation="scope">
 					<el-button type="primary" link> 查看 </el-button>
 					<el-button type="primary" link> 编辑 </el-button>
-					<el-button type="primary" link> 重置密码 </el-button>
-					<el-button type="primary" link> 删除 </el-button>
+					<el-button type="primary" link @click="resetPassword(scope.row)"> 重置密码 </el-button>
+					<el-button type="primary" link @click="deleteUser(scope.row)"> 删除 </el-button>
 				</template>
 			</ProTable>
 		</div>
@@ -39,14 +47,15 @@ import { CirclePlus, Delete, Download, Upload } from "@element-plus/icons-vue"
 import { getUserGender, getUserList } from "@service/modules/user"
 import { getDepartmentList } from "@service/modules/department"
 import type { ColumnProps, ProTableInstance } from "@components/proTable/interface"
-
-const getTableList = (formData = {}) => {
-	return getUserList(formData)
-}
+import modal from "@/utils/modal"
 
 const proTableRef = ref<ProTableInstance>()
 
 const initParam = reactive({ departmentId: "1" })
+
+const getTableList = (formData = {}) => {
+	return getUserList(formData)
+}
 
 // 树形筛选切换
 const changeTreeFilter = (val: string) => {
@@ -58,7 +67,22 @@ const changeTreeFilter = (val: string) => {
 const columns: ColumnProps<any>[] = [
 	{ type: "selection", fixed: "left", width: 50 },
 	{ type: "index", label: "#", fixed: "left", width: 50 },
-	{ prop: "name", label: "用户名", width: 100, search: { el: "input" }, form: { el: "input" } },
+	{
+		prop: "name",
+		label: "用户名",
+		width: 100,
+		search: { el: "input" },
+		form: {
+			el: "input",
+			rules: [
+				{
+					required: true,
+					message: "请输入用户名",
+					trigger: "blur"
+				}
+			]
+		}
+	},
 	{
 		prop: "base",
 		label: "基本信息",
@@ -70,7 +94,19 @@ const columns: ColumnProps<any>[] = [
 				enumApi: getUserGender,
 				fieldNames: { label: "genderLabel", value: "genderValue" },
 				search: { el: "select", props: { filterable: true } },
-				form: { el: "select", props: { filterable: true } }
+				form: {
+					el: "select",
+					props: {
+						filterable: true
+					},
+					rules: [
+						{
+							required: true,
+							message: "请选择性别",
+							trigger: "change"
+						}
+					]
+				}
 			},
 			{
 				prop: "age",
@@ -86,11 +122,47 @@ const columns: ColumnProps<any>[] = [
 					// 自定义 form 显示内容
 					render: ({ formParam }) => {
 						return <el-input-number v-model={formParam.age} placeholder="请输入" />
-					}
+					},
+					rules: [
+						{
+							required: true,
+							message: "请输入年龄",
+							trigger: "blur"
+						}
+					]
 				}
 			},
-			{ prop: "phone", label: "手机号", width: 150, search: { el: "input" }, form: { el: "input" } },
-			{ prop: "email", label: "邮箱", width: 300, form: { el: "input" } }
+			{
+				prop: "phone",
+				label: "手机号",
+				width: 150,
+				search: { el: "input" },
+				form: {
+					el: "input",
+					rules: [
+						{
+							required: true,
+							message: "请输入手机号",
+							trigger: "blur"
+						}
+					]
+				}
+			},
+			{
+				prop: "email",
+				label: "邮箱",
+				width: 300,
+				form: {
+					el: "input",
+					rules: [
+						{
+							required: true,
+							message: "请输入邮箱",
+							trigger: "blur"
+						}
+					]
+				}
+			}
 		]
 	},
 	{
@@ -126,7 +198,14 @@ const columns: ColumnProps<any>[] = [
 						inactive-value={0}
 					/>
 				)
-			}
+			},
+			rules: [
+				{
+					required: true,
+					message: "请选择状态",
+					trigger: "change"
+				}
+			]
 		}
 	},
 	{
@@ -153,7 +232,17 @@ const columns: ColumnProps<any>[] = [
 			return <el-button type="primary">{scope.column.label}</el-button>
 		},
 		search: { el: "select", props: { filterable: true } },
-		form: { el: "select", props: { filterable: true } }
+		form: {
+			el: "select",
+			props: { filterable: true },
+			rules: [
+				{
+					required: true,
+					message: "请选择角色",
+					trigger: "change"
+				}
+			]
+		}
 	},
 	{
 		prop: "createTime",
@@ -169,6 +258,27 @@ const columns: ColumnProps<any>[] = [
 	{ prop: "editTime", label: "修改时间", width: 180 },
 	{ prop: "operation", label: "操作", fixed: "right", width: 230 }
 ]
+
+// 删除用户
+const deleteUser = user => {
+	modal.confirm(`是否确认删除【${user.name}】?`, "error").then(() => {
+		modal.msgSuccess("删除成功！")
+	})
+}
+
+// 批量删除用户
+const batchDeletionUser = ids => {
+	modal.confirm(`是否确认删除【${ids.length}】个用户?`, "error").then(() => {
+		modal.msgSuccess("删除成功！")
+	})
+}
+
+// 重置密码
+const resetPassword = user => {
+	modal.confirm(`是否确认重置用户【${user.name}】的密码?`, "warning").then(() => {
+		modal.msgSuccess("重置成功！")
+	})
+}
 </script>
 
 <style lang="scss" scoped>

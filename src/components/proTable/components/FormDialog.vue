@@ -33,7 +33,9 @@ const setVisible = val => {
 }
 
 // 提交表单
-const submit = () => {
+const submit = async () => {
+	const res = await proFormRef.value.submitForm()
+	if (!res) return
 	closeDialog()
 }
 
