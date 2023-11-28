@@ -25,7 +25,7 @@
 		"driver.js": "^0.9.8",
 		"echarts": "5.4.2",
 		"echarts-liquidfill": "^3.1.0",
-		"element-plus": "^2.3.8",
+		"element-plus": "^2.4.3",
 		"gsap": "^3.11.5",
 		"mitt": "^3.0.1",
 		"mockjs": "^1.1.0",
