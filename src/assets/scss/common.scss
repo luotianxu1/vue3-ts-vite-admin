@@ -62,16 +62,6 @@
 	}
 }
 
-.el-menu-item.is-active::before {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	width: 4px;
-	background-color: var(--el-color-primary);
-	content: "";
-}
-
 .el-table th.el-table__cell {
 	background-color: var(--base-color) !important;
 }
