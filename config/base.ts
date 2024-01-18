@@ -10,6 +10,7 @@ import IconsResolver from "unplugin-icons/resolver"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import { resolve } from "path"
 import setupExtend from "vite-plugin-vue-setup-extend"
+// import viteCompression from "vite-plugin-compression"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -56,6 +57,7 @@ export default defineConfig({
 			iconDirs: [resolve(process.cwd(), "src/assets/svg")],
 			symbolId: "icon-[dir]-[name]"
 		})
+		// viteCompression() // gzip压缩
 	],
 	resolve: {
 		alias: {
@@ -80,5 +82,24 @@ export default defineConfig({
 		modules: {
 			localsConvention: "camelCaseOnly"
 		}
+	},
+	// server: {
+	// 	proxy: {
+	// 		"/api": {
+	// 			target: "http://127.0.0.1:7001",
+	// 			changeOrigin: true,
+	// 			rewrite: path => path.replace(/^\/api/, "")
+	// 		}
+	// 	}
+	// },
+	build: {
+		rollupOptions: {
+			output: {
+				assetFileNames: "[hash].[name].[ext]"
+			}
+		},
+		assetsInlineLimit: 4096000,
+		outDir: "dist",
+		assetsDir: "static"
 	}
 })
