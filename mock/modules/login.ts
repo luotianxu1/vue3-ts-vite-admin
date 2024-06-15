@@ -94,6 +94,18 @@ export const loginApiList: MockMethod[] = [
 							}
 						},
 						{
+							path: "/computed",
+							name: "computed",
+							component: "/computed/index",
+							meta: {
+								title: "工资计算",
+								icon: "icon-baobiao",
+								isFull: true,
+								isHide: false,
+								isKeepAlive: false
+							}
+						},
+						{
 							path: "/main",
 							name: "main",
 							redirect: "/main/user",
